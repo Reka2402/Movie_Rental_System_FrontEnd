@@ -1,0 +1,78 @@
+<h3 class="mb-4 text-center">Login Form</h3>
+<form
+  #loginForm="ngForm"
+  (ngSubmit)="onSubmit(loginForm)"
+  class="container p-4 border rounded-3 shadow"
+  style="
+    background: rgba(255, 255, 255, 0.15); /* Semi-transparent white */
+    backdrop-filter: blur(8px); /* Background blur effect */
+    -webkit-backdrop-filter: blur(8px); /* Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Light border */
+  "
+>
+  <div class="row g-4 align-items-center">
+    <div class="col-md-6">
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input
+          type="email"
+          [(ngModel)]="user.emailAddress"
+          name="email"
+          class="form-control"
+          aria-describedby="emailHelp"
+          #mail="ngModel"
+          required
+          email
+        />
+        <div
+          id="emailHelp"
+          class="form-text text-danger"
+          *ngIf="(loginForm.submitted || mail.touched) && mail.invalid"
+        >
+          Email Address is invalid
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input
+          type="password"
+          [(ngModel)]="user.password"
+          name="password"
+          class="form-control"
+          #pw="ngModel"
+          required
+          minlength="6"
+        />
+        <div
+          id="Help"
+          class="form-text text-danger"
+          *ngIf="(loginForm.submitted || pw.touched) && pw.invalid"
+        >
+          Password is invalid
+        </div>
+      </div>
+
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+        <label class="form-check-label" for="exampleCheck1">Remember me</label>
+      </div>
+
+      <button
+        class="btn btn-primary w-100"
+        type="submit"
+        [disabled]="loginForm.invalid"
+      >
+        Submit
+      </button>
+    </div>
+    <div class="col-md-6 text-center">
+      <img
+        src="/2024.11.02 - Lab work - signin-image.jpg"
+        alt="signin image"
+        class="img-fluid rounded"
+        style="max-height: 300px;"
+      />
+    </div>
+  </div>
+</form>
