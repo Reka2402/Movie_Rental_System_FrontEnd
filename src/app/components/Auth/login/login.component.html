@@ -1,15 +1,5 @@
 <h3 class="mb-4 text-center">Login Form</h3>
-<form
-  #loginForm="ngForm"
-  (ngSubmit)="onSubmit(loginForm)"
-  class="container p-4 border rounded-3 shadow"
-  style="
-    background: rgba(255, 255, 255, 0.15); /* Semi-transparent white */
-    backdrop-filter: blur(8px); /* Background blur effect */
-    -webkit-backdrop-filter: blur(8px); /* Safari support */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Light border */
-  "
->
+<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="container p-4 border rounded shadow-sm">
   <div class="row g-4 align-items-center">
     <div class="col-md-6">
       <div class="mb-3">
@@ -24,11 +14,7 @@
           required
           email
         />
-        <div
-          id="emailHelp"
-          class="form-text text-danger"
-          *ngIf="(loginForm.submitted || mail.touched) && mail.invalid"
-        >
+        <div id="emailHelp" class="form-text text-danger" *ngIf="(loginForm.submitted || mail.touched) && mail.invalid">
           Email Address is invalid
         </div>
       </div>
@@ -44,11 +30,7 @@
           required
           minlength="6"
         />
-        <div
-          id="Help"
-          class="form-text text-danger"
-          *ngIf="(loginForm.submitted || pw.touched) && pw.invalid"
-        >
+        <div id="Help" class="form-text text-danger" *ngIf="(loginForm.submitted || pw.touched) && pw.invalid">
           Password is invalid
         </div>
       </div>
@@ -58,11 +40,7 @@
         <label class="form-check-label" for="exampleCheck1">Remember me</label>
       </div>
 
-      <button
-        class="btn btn-primary w-100"
-        type="submit"
-        [disabled]="loginForm.invalid"
-      >
+      <button class="btn btn-primary w-100" type="submit" [disabled]="loginForm.invalid">
         Submit
       </button>
     </div>
