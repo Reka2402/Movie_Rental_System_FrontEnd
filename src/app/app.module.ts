@@ -33,7 +33,8 @@ import { RouterOutlet, RouterModule } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    RouterModule
+    RouterModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
