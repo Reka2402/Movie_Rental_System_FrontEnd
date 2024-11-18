@@ -16,62 +16,110 @@
                 <i class='bx bx-movie-play bx-tada main-color'></i>Fl<span class="main-color">i</span>x
             </a>
             <ul class="nav-menu" id="nav-menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Genre</a></li>
-                <li><a href="#">Movies</a></li>
-                <li><a href="#">Series</a></li>
+                <li><a routerLink="/Home" href="#">Home</a></li>
+                <li><a  routerLink="/movies" href="#">Genre</a></li>
+                <li><a routerLink="/movies" href="#">Movies</a></li>
+                <li><a routerLink="/movies" href="#">Series</a></li>
                 <li><a href="#">About</a></li>
                 <li>
-                    <a href="#" class="btn btn-hover">
+                    <a routerLink="/register" href="#" class="btn btn-hover">
                         <span>Sign in</span>
                     </a>
                 </li>
-            </ul>
-            <!-- MOBILE MENU TOGGLE -->
-            <div class="hamburger-menu" id="hamburger-menu">
-                <div class="hamburger"></div>
-            </div>
+            </ul>         
         </div>
     </div>
 </div>
-<div class="hero-section">
-  <div class="owl-carousel carousel-nav-center" id="hero-carousel">
-             <!-- SLIDE ITEM -->
-             <div class="hero-slide-item">
-              <img src="" alt="">
-              <div class="overlay"></div>
-              <div class="hero-slide-item-content">
-                  <div class="item-content-wraper">
-                      <div class="item-content-title top-down">
-                          Black Panther
-                      </div>
-                      <div class="movie-infos top-down delay-2">
-                          <div class="movie-info">
-                              <i class="bx bxs-star"></i>
-                              <span>9.5</span>
-                          </div>
-                          <div class="movie-info">
-                              <i class="bx bxs-time"></i>
-                              <span>120 mins</span>
-                          </div>
-                          <div class="movie-info">
-                              <span>HD</span>
-                          </div>
-                          <div class="movie-info">
-                              <span>16+</span>
-                          </div>
-                      </div>
-                      <div class="item-content-description top-down delay-4">
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, possimus eius. Deserunt non odit, cum vero reprehenderit laudantium odio vitae autem quam, incidunt molestias ratione mollitia accusantium, facere ab suscipit.
-                      </div>
-                      <div class="item-action top-down delay-6">
-                          <a href="#" class="btn btn-hover">
-                              <i class="bx bxs-right-arrow"></i>
-                              <span>Watch now</span>
-                          </a>
-                      </div>
+<div id="customCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner" >
+      <!-- First Slide -->
+      <div class="carousel-item active">
+        <div class="container-fulid" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6))">
+            <div class="carousel-content text-light d-flex align-items-center" style="background: url('/black-banner.png') no-repeat center/cover; height: 100vh;">
+                <div class="container">
+                  <div class="carousel-caption text-start">
+                    <h1 class="display-3 fw-bold">Black Panther</h1>
+                    <p class="lead mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, possimus eius.</p>
+                    <p>
+                      <span class="badge bg-danger me-2">9.5</span>
+                      <span class="text-light">120 mins</span> <span class="text-light mx-2">|</span>
+                      <span class="text-light">HD</span> <span class="text-light mx-2">|</span>
+                      <span class="text-light">16+</span>
+                    </p>
+                    <a href="#" class="btn btn-danger btn-lg mt-3">WATCH NOW</a>
                   </div>
+                </div>
               </div>
+        </div>
+        
+      </div>
+  
+      <!-- Second Slide -->
+      <div class="carousel-item">
+        <div class="carousel-content text-light d-flex align-items-center" style="background: url('/transformer-banner.jpg') no-repeat center/cover; height: 100vh;">
+          <div class="container">
+            <div class="carousel-caption text-start">
+              <h1 class="display-3 fw-bold">Transformers</h1>
+              <p class="lead mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, possimus eius.</p>
+              <p>
+                <span class="badge bg-danger me-2">9.5</span>
+                <span class="text-light">120 mins</span> <span class="text-light mx-2">|</span>
+                <span class="text-light">HD</span> <span class="text-light mx-2">|</span>
+                <span class="text-light">16+</span>
+              </p>
+              <a href="#" class="btn btn-danger btn-lg mt-3">WATCH NOW</a>
+            </div>
           </div>
+        </div>
+      </div>
+  
+      <!-- Third Slide -->
+      <div class="carousel-item">
+        <div class="carousel-content text-light d-flex align-items-center" style="background: url('/wanda-banner.jpg') no-repeat center/cover; height: 100vh;">
+          <div class="container">
+            <div class="carousel-caption text-start">
+              <h1 class="display-3 fw-bold">WandaVision</h1>
+              <p class="lead mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, possimus eius.</p>
+              <p>
+                <span class="badge bg-danger me-2">9.5</span>
+                <span class="text-light">120 mins</span> <span class="text-light mx-2">|</span>
+                <span class="text-light">HD</span> <span class="text-light mx-2">|</span>
+                <span class="text-light">16+</span>
+              </p>
+              <a href="#" class="btn btn-danger btn-lg mt-3">WATCH NOW</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Fourth Slide -->
+      <div class="carousel-item">
+        <div class="carousel-content text-light d-flex align-items-center" style="background: url('/supergirl-banner.jpg') no-repeat center/cover; height: 100vh;">
+          <div class="container">
+            <div class="carousel-caption text-start">
+              <h1 class="display-3 fw-bold">Supergirl</h1>
+              <p class="lead mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, possimus eius.</p>
+              <p>
+                <span class="badge bg-danger me-2">9.5</span>
+                <span class="text-light">120 mins</span> <span class="text-light mx-2">|</span>
+                <span class="text-light">HD</span> <span class="text-light mx-2">|</span>
+                <span class="text-light">16+</span>
+              </p>
+              <a href="#" class="btn btn-danger btn-lg mt-3">WATCH NOW</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  
+    <!-- Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#customCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#customCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
