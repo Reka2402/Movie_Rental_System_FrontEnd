@@ -1,8 +1,43 @@
-<div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="container mt-5 bg-dark">
+  <div class="row justify-content-center">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mt-4" *ngFor="let item of movieItems">
+      <div class="card movie-card shadow-lg">
+        <div class="movie-image position-relative">
+          <img [src]="item.images" class="card-img-top rounded-top" alt="{{item.name}}">
+          <div class="badge position-absolute top-0 end-0 m-2 px-3 py-1 rounded-pill" [ngClass]="item.availableCopies > 0 ? 'bg-success' : 'bg-danger'">
+            {{item.availableCopies > 0 ? 'In Stock' : 'Out of Stock'}}
+          </div>
+        </div>
+        <div class="card-body text-center">
+          <h5 class="card-title text-truncate">{{item.name}}</h5>
+          <p class="card-text text-muted small mb-1">{{item.genre}}</p>         
+          <p class="text-muted small">Directed by: <span class="fw-bold">{{item.director}}</span></p> 
+          <div class="rating mb-2">
+            <i class="fa-solid fa-star text-warning"></i>
+            <span class="text-secondary small">({{item.rating}})</span>
+          </div>        
+          <p class="fw-bold text-success mb-3">Price: {{item.price | currency:'USD'}}</p>
+            <div class="d-flex justify-content-center gap-2">
+            <button class="btn btn-danger btn-sm" [disabled]="item.availableCopies === 0">Add to Library</button>
+            <button class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#viewMoreModal" (click)="selectedMovie = item">View More</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+</div>
+
+
+
+
+
+
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="viewMoreModal" tabindex="-1" aria-labelledby="viewMoreModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <app-product-popup [product]="selectedMovie"></app-product-popup>
+    </div>
+  </div>
+</div> -->
