@@ -23,6 +23,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { CustomerDashboardComponent } from './components/customer-dashboard/customer-dashboard.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { MatListModule } from '@angular/material/list';
     RegisterComponent,
     HomeComponent,
     CollectionsComponent,
-    ManagerDashboardComponent
+    ManagerDashboardComponent,
+    CustomerDashboardComponent
    
   ],
   imports: [

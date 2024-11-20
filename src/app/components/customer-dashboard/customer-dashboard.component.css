@@ -1,0 +1,52 @@
+.logo {
+    font-size: 2rem;
+    font-weight: 900;
+  }
+  /* Hover effect for navigation buttons */
+  .hover-effect:hover {
+    background-color: #c0392b;
+    color: #fff;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  /* Hover effect for movie card */
+  .card-hover:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+  }
+
+  /* Hover effect for sidebar links */
+  .nav-link:hover {
+    background-color: #444;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Profile image dropdown hover effect */
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    transition: all 0.3s ease;
+  }
+
+  .dropdown-menu {
+    background-color: #333;
+    border-radius: 5px;
+  }
+   /* Ensure the image fills the top section and stays proportional */
+   .card-img-top {
+    object-fit: cover;
+    height: 200px; /* Fixed height for the image */
+  }
+
+  /* Positioning the In Stock / Out of Stock icon in the top right corner */
+  .stock-status {
+    z-index: 10;
+  }
+
+  /* Hover effect for movie card */
+  .card-hover:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+  }
