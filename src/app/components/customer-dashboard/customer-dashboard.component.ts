@@ -24,7 +24,8 @@ export class CustomerDashboardComponent {
         { id: 3, name: 'Finn Wolfhard' },
       ],
       images: [
-        '\movies\movie 1.jpg',  
+        '/series/stranger-thing.jpg', 
+        '/movies/movie 5.jpg' 
       ],
     },
     {
@@ -44,7 +45,8 @@ export class CustomerDashboardComponent {
         { id: 3, name: 'Marie Avgeropoulos' },
       ],
       images: [
-        '/movies/the100.jpg',
+       '/series/the 100.jpg', 
+        '/movies/movie 21.jpg'
       ],
     },
     {
@@ -63,7 +65,8 @@ export class CustomerDashboardComponent {
         { id: 2, name: 'Dwayne Johnson' },
       ],
       images: [
-        '/movies/moana2.jpg',
+          '/movies/movie 4.jpg', 
+        '/movies/movie 32.jpg'
       ],
     },
     {
@@ -83,7 +86,8 @@ export class CustomerDashboardComponent {
         { id: 3, name: 'Josh Gad' },
       ],
       images: [
-        '/movies/frozen2.jpg',
+        '/series/frozen 2.jpg',
+        '/movies/frozen.jpg'
       ],
     },
 
@@ -91,6 +95,18 @@ export class CustomerDashboardComponent {
   ];
     
   public selectedMovie: any = null;
+  public rentalDays: number = 1;
+  
+  rentMovie() {
+    console.log(`Renting movie: ${this.selectedMovie.name} for ${this.rentalDays} days`);
+    
+  }
+  
+  
+  addToFavorites() {
+    console.log(`Added ${this.selectedMovie.name} to favorites`);
+    
+  }
   
   @Output() movie = new EventEmitter();
   
