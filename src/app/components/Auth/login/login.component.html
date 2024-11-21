@@ -1,18 +1,18 @@
-<div class="d-flex justify-content-center align-items-center vh-100 bg-black" style="background-image: url(/Sliders/IMG-20241120-WA0004.jpg);">
+<div class="d-flex justify-content-center align-items-center vh-100 bg-black" 
+     style="background-image: url(/Sliders/tv-series-bg.jpg);">
   <div class="card p-4 border-0 shadow-lg rounded-3" 
        style="width: 30rem; background-image: url(/Sliders/tv-series-bg.jpg); color: white; height: auto;">
-    <h3 class="mb-4 text-center text-danger" >Login Here</h3>
-    <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+    <h3 class="mb-4 text-center text-danger">Login Here</h3>
+    <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
       <!-- Email -->
       <div class="mb-3">
         <label for="email" class="form-label text-white">Email Address</label>
         <div class="input-group">
           <span class="input-group-text bg-black text-white"><i class="bi bi-envelope"></i></span>
-          <input type="email" [(ngModel)]="user.emailAddress" name="email" 
-                 class="form-control bg-dark text-white border-0" id="email" 
-                 placeholder="Your Email" #mail="ngModel" required email />
+          <input type="email" formControlName="email" class="form-control bg-dark text-white border-0" 
+                 id="email" placeholder="Your Email" />
         </div>
-        <div class="form-text text-danger" *ngIf="(loginForm.submitted || mail.touched) && mail.invalid">
+        <div class="form-text text-danger" *ngIf="signinForm.get('email')?.touched && signinForm.get('email')?.invalid">
           Email Address is invalid
         </div>
       </div>
@@ -22,25 +22,23 @@
         <label for="password" class="form-label text-white">Password</label>
         <div class="input-group">
           <span class="input-group-text bg-black text-white"><i class="bi bi-lock"></i></span>
-          <input type="password" [(ngModel)]="user.password" name="password" 
-                 class="form-control bg-dark text-white border-0" id="password" 
-                 placeholder="Password" #pw="ngModel" required minlength="6" />
+          <input type="password" formControlName="password" class="form-control bg-dark text-white border-0" 
+                 id="password" placeholder="Password" />
         </div>
-        <div class="form-text text-danger" *ngIf="(loginForm.submitted || pw.touched) && pw.invalid">
+        <div class="form-text text-danger" *ngIf="signinForm.get('password')?.touched && signinForm.get('password')?.invalid">
           Password must be at least 6 characters long
         </div>
       </div>
 
       <!-- Remember Me Checkbox -->
       <div class="mb-3 form-check">
-        <input type="checkbox" name="rememberMe" 
-               class="form-check-input" id="rememberMe">
+        <input type="checkbox" formControlName="rememberMe" class="form-check-input" id="rememberMe">
         <label class="form-check-label text-white" for="rememberMe">Remember Me</label>
       </div>
 
       <!-- Submit Button -->
       <div class="d-grid">
-        <button routelink="/customer" class="btn btn-danger" type="submit" [disabled]="loginForm.invalid">
+        <button class="btn btn-danger" type="submit" [disabled]="signinForm.invalid">
           Submit
         </button>
       </div>
@@ -51,12 +49,6 @@
           New customer? <a href="/register" class="text-danger">Register now</a>
         </p>
       </div>
-
-      <!-- Image Section
-      <div class="text-center mt-4">
-        <img src="../../../../assets/movies/movie 13.png" alt="signin image" 
-             class="img-fluid rounded" style="max-height: 300px;">
-      </div> -->
     </form>
   </div>
 </div>

@@ -1,97 +1,97 @@
-<div class="d-flex justify-content-center align-items-center vh-100 bg-black" style="background-image: url(/Sliders/IMG-20241120-WA0004.jpg);">
+<div class="d-flex justify-content-center align-items-center vh-100 bg-black" 
+     style="background-image: url(/Sliders/movie-detail-bg.png);">
   <div class="card p-3 border-5 shadow-lg rounded-3 " 
        style="width: 30rem; background-image:url(/Sliders/tv-series-bg.jpg); color: white; height: auto">
     <h3 class="text-center mb-4 text-danger">Register Now</h3>
-    <form #RegisterForm="ngForm" (ngSubmit)="onRegister(RegisterForm)">
-      <div>
-        <!-- Full Name -->
-        <div class="mb-3">
-          <div class="input-group">
-            <span class="input-group-text bg-black text-white"><i class="bi bi-person"></i></span>
-            <input type="text" [(ngModel)]="user.fullname" name="fullname" class="form-control bg-dark text-white border-0" placeholder="John Doe" 
-                   #fullname="ngModel" required />
-          </div>
-          <div class="form-text text-danger" *ngIf="(RegisterForm.submitted || fullname.touched) && fullname.invalid">
-            FullName is required
-          </div>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      
+      <!-- Full Name -->
+      <div class="mb-3">
+        <div class="input-group">
+          <span class="input-group-text bg-black text-white"><i class="bi bi-person"></i></span>
+          <input type="text" formControlName="fullname" class="form-control bg-dark text-white border-0" 
+                 placeholder="John Doe" />
         </div>
+        <div class="form-text text-danger" *ngIf="signupForm.get('fullname')?.touched && signupForm.get('fullname')?.invalid">
+          FullName is required
+        </div>
+      </div>
 
-        <!-- Email Address -->
-        <div class="mb-3">
-          <div class="input-group">
-            <span class="input-group-text bg-black text-white"><i class="bi bi-envelope"></i></span>
-            <input type="email" [(ngModel)]="user.emailAddress" name="email" class="form-control bg-dark text-white border-0" placeholder="Your Email" 
-                   #mail="ngModel" required email />
-          </div>
-          <div class="form-text text-danger" *ngIf="(RegisterForm.submitted || mail.touched) && mail.invalid">
-            Valid email is required
-          </div>
+      <!-- Email Address -->
+      <div class="mb-3">
+        <div class="input-group">
+          <span class="input-group-text bg-black text-white"><i class="bi bi-envelope"></i></span>
+          <input type="email" formControlName="email" class="form-control bg-dark text-white border-0" 
+                 placeholder="Your Email" />
         </div>
+        <div class="form-text text-danger" *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid">
+          Valid email is required
+        </div>
+      </div>
 
-        <!-- Password -->
-        <div class="mb-3">
-          <div class="input-group">
-            <span class="input-group-text bg-black text-white"><i class="bi bi-lock"></i></span>
-            <input type="password" [(ngModel)]="user.password" name="password" class="form-control bg-dark text-white border-0" 
-                   placeholder="Password" #pw="ngModel" required minlength="6" />
-          </div>
-          <div class="form-text text-danger" *ngIf="(RegisterForm.submitted || pw.touched) && pw.invalid">
-            Password must be at least 6 characters long
-          </div>
+      <!-- Password -->
+      <div class="mb-3">
+        <div class="input-group">
+          <span class="input-group-text bg-black text-white"><i class="bi bi-lock"></i></span>
+          <input type="password" formControlName="password" class="form-control bg-dark text-white border-0" 
+                 placeholder="Password" />
         </div>
+        <div class="form-text text-danger" *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.invalid">
+          Password must be at least 6 characters long
+        </div>
+      </div>
 
-        <!-- Confirm Password -->
-        <div class="mb-3">
-          <div class="input-group">
-            <span class="input-group-text bg-black text-white"><i class="bi bi-lock-fill"></i></span>
-            <input type="password" [(ngModel)]="user.confirmPassword" name="confirmPassword" 
-                   class="form-control bg-dark text-white border-0" placeholder="Repeat your password" #pw2="ngModel" required minlength="6" 
-                   (ngModelChange)="checkPasswords()" />
-          </div>
-          <div class="form-text text-danger" *ngIf="(RegisterForm.submitted || pw2.touched) && !passwordsMatch">
-            Passwords must match
-          </div>
+      <!-- Confirm Password -->
+      <div class="mb-3">
+        <div class="input-group">
+          <span class="input-group-text bg-black text-white"><i class="bi bi-lock-fill"></i></span>
+          <input type="password" formControlName="confirmPassword" class="form-control bg-dark text-white border-0" 
+                 placeholder="Repeat your password" (ngModelChange)="checkPasswords()" />
         </div>
+        <div class="form-text text-danger" *ngIf="signupForm.get('confirmPassword')?.touched && passwordsMatch">
+          Passwords must match
+        </div>
+      </div>
 
-        <!-- Select Role -->
-        <div class="mb-3">
-          <div class="input-group">
-            <span class="input-group-text bg-black text-white"><i class="bi bi-person-badge"></i></span>
-            <select [(ngModel)]="user.role" name="role" #role="ngModel" class="form-select bg-dark text-white border-0" aria-label="Select Role" required>
-              <option value="" disabled selected>Select Role</option>
-              <option value="1">Admin</option>
-              <option value="2">Editor</option>
-              <option value="3">Viewer</option>
-            </select>
-          </div>
-          <div class="form-text text-danger" *ngIf="(RegisterForm.submitted || role.touched) && role.invalid">
-            Role is required
-          </div>
+      <!-- Select Role -->
+      <div class="mb-3">
+        <div class="input-group">
+          <span class="input-group-text bg-black text-white"><i class="bi bi-person-badge"></i></span>
+          <select formControlName="role" class="form-select bg-dark text-white border-0" aria-label="Select Role">
+            <option value="" disabled>Select Role</option>
+            <option value="1">Admin</option>
+            <option value="2">Editor</option>
+            <option value="3">Viewer</option>
+          </select>
         </div>
+        <div class="form-text text-danger" *ngIf="signupForm.get('role')?.touched && signupForm.get('role')?.invalid">
+          Role is required
+        </div>
+      </div>
 
-        <!-- Terms and Conditions -->
-        <div class="mb-3 form-check">
-          <input type="checkbox" [(ngModel)]="user.agreed" name="termsCheck" class="form-check-input" id="termsCheck" 
-                 #termsCheck="ngModel" required>
-          <label class="form-check-label" for="termsCheck">
-            I agree to all statements in <a href="#" class="text-danger">Terms of service</a>
-          </label>
-          <div class="form-text text-danger" *ngIf="(RegisterForm.submitted || termsCheck.touched) && termsCheck.invalid">
-            You must agree to the terms
-          </div>
-        </div>
+      <!-- Terms and Conditions -->
+      <div class="mb-3 form-check">
+        <input type="checkbox" formControlName="agreed" class="form-check-input" id="termsCheck" />
+        <label class="form-check-label" for="termsCheck">
+          I agree to all statements in <a href="#" class="text-danger">Terms of service</a>
+        </label>
+        <!-- <div class="form-text text-danger" *ngIf="signupForm.get('')?.touched && signupForm.get('agreed')?.invalid">
+          You must agree to the terms
+        </div> -->
+      </div>
 
-        <!-- Submit Button -->
-        <div class="d-grid" >
-          <button  type="submit" class="btn btn-danger">Register</button>
-        </div>
+      <!-- Submit Button -->
+      <div class="d-grid">
+        <button type="submit" class="btn btn-danger" [disabled]="signupForm.invalid || passwordMatch">
+          Register
+        </button>
+      </div>
 
-        <!-- Login Option -->
-        <div class="text-center mt-3">
-          <p class="text-white">
-            Already have an account? <a href="/login" class="text-danger">Login</a>
-          </p>
-        </div>
+      <!-- Login Option -->
+      <div class="text-center mt-3">
+        <p class="text-white">
+          Already have an account? <a href="/login" class="text-danger">Login</a>
+        </p>
       </div>
     </form>
   </div>

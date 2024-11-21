@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,22 +10,63 @@ import { NgForm } from '@angular/forms';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  user = {
-    emailAddress:'',
-    password:'',
+
+  signinForm: FormGroup;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private signInService: AuthService,
+    private toastr: ToastrService,
+    private rout:Router
+  ) {
+      this.signinForm = this.formBuilder.group({
+          email: ['', [Validators.required, Validators.email]],
+          password: ['', [Validators.required, Validators.minLength(8)]],
+          rememberMe:['']
+      });
   }
-  // onSubmit(loginForm:any){
-  //   console.log(loginForm.value);
-  // }
-  onSubmit(form: NgForm) {
-    if (form.valid) {
-     
-        alert('Form Submitted!');
-    } else {
-      
-        form.control.markAllAsTouched();
-    }
+  onSubmit() {
+    this.signInService.UserSignIn(this.signinForm.value).subscribe({
+      next:(response:any) => {
+        localStorage.setItem("token" , response)
+        this.toastr.success("User Login Successfully.." , "" , {
+          positionClass:"toast-top-right",
+          progressBar:true,
+          timeOut:4000
+        })
+      },complete:()=>{
+        this.rout.navigate(['/admin/user-list'])
+      },error:(error:any)=>{
+        this.toastr.warning( error.error, "" , {
+          positionClass:"toast-top-right",
+          progressBar:true,
+          timeOut:4000
+        })
+      }
+    })
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 
 }
 

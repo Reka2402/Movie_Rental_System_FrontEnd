@@ -17,6 +17,7 @@ import { ManagerDashboardComponent } from './components/manager-dashboard/manage
 
 import { CustomerDashboardComponent } from './components/customer-dashboard/customer-dashboard.component';
 
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,9 +35,8 @@ import { CustomerDashboardComponent } from './components/customer-dashboard/cust
     AppRoutingModule,
     HttpClientModule,
     CommonModule,
-  
-   
-    
+    BrowserAnimationsModule, 
+    ToastrModule.forRoot(), 
     RouterOutlet,
     FormsModule,
     ReactiveFormsModule,

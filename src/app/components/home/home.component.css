@@ -302,3 +302,11 @@ a.movie-item:hover {
   font-family:'Inter';
 }
 
+.cardcontent.relative {
+
+  left: 30px;
+  
+  bottom:30px;
+
+ 
+}
