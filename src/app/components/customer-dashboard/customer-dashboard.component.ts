@@ -6,6 +6,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrl: './customer-dashboard.component.css'
 })
 export class CustomerDashboardComponent {
+
   movieItems: any[] = [
     {
       id: 1,
@@ -93,9 +94,19 @@ export class CustomerDashboardComponent {
 
 
   ];
+  customer = {
+    profilePicture: '/icons/avatar.png',
+    fullName: 'John Doe',
+    nic: '123456789V',
+    mobileNumber: '0712345678',
+    email: 'johndoe@example.com',
+    password: '******', // In real cases, you won't show password here for security reasons
+    activeStatus: 'Active'
+  };
     
   public selectedMovie: any = null;
   public rentalDays: number = 1;
+  
   
   rentMovie() {
     console.log(`Renting movie: ${this.selectedMovie.name} for ${this.rentalDays} days`);

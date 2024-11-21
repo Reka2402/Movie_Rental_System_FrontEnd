@@ -16,10 +16,11 @@
 
 html {
   font-size: 16px;
+  
 }
 
 body {
-  font-family: "Cairo", sans-serif;
+  
   background-color:#181616;
   color: #ffffff;
   padding-top: 60px;
@@ -72,11 +73,15 @@ img {
 
 .nav a {
   color: #ffffff;
+  font-family: 'Open Sans';
+  
+
 }
 
 .logo {
   font-size: 2rem;
   font-weight: 900;
+  font-family: 'Roboto';
 }
 
 .nav-menu {
@@ -92,7 +97,7 @@ img {
 
 .nav-menu a {
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .nav-menu a:hover {
@@ -280,3 +285,20 @@ a.movie-item:hover {
 .item-action {
   margin-top: var(--space-top);
 }
+
+.carousel-caption h1{
+  font-family:'Roboto' ;
+}
+.carousel-caption p{
+  font-family:'Open Sans' ;
+}
+.watchnow{
+  font-family:'Roboto' ;
+  font-weight:100;
+  font-size: small;
+
+}
+.siginin{
+  font-family:'Inter';
+}
+

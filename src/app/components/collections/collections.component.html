@@ -1,23 +1,22 @@
 <body class="bg-dark">
   <div class="container">
-    <!-- Top Section with Logo and Heading -->
     <header class="text-center py-4">
-      <!-- Logo -->
+    
       <a href="#" class="logo text-white">
         <i class="bx bx-movie-play bx-tada text-danger"></i>
         Fl<span class="text-danger">i</span>x
       </a>
-      <!-- Welcome Text -->
-      <h1 class="text-light text-uppercase">
+     
+      <h1 class="text-light text-uppercase" style="font-family: 'Roboto';">
         Explore <span class="text-danger">Our</span> Collections
       </h1>
       
       
-      <p class="text-light">
+      <p class="text-light" style="font-family: 'Open Sans';">
         Dive into the world of movies, series, cartoons, and anime. Rent and enjoy your favorites today!
       </p>
       
-        <div class="d-flex justify-content-center align-items-center">
+        <div class="d-flex justify-content-center align-items-center" style="font-family: 'Inter';">
           <div class="input-group w-50">
             <input
               type="text"
@@ -51,12 +50,11 @@
       
     </header>
 
-    <!-- Categories Section -->
-    <div *ngFor="let category of categories">
-      <!-- Category Title -->
-      <h3 class="text-center text-uppercase text-danger mt-3">{{ category.name }}</h3>
+    <div *ngFor="let category of categories" style="font-family: 'Montserrat';">
+ 
+      <h3 class="text-center text-uppercase text-danger mt-3" style="font-family: 'Roboto';">{{ category.name }}</h3>
       <div class="row justify-content-center">
-        <!-- Loop through items in each category -->
+
         <div
           class="col-lg-3 col-md-4 col-sm-6 col-12 mt-4"
           *ngFor="let item of category.items"
@@ -93,23 +91,35 @@
               <p class="fw-bold text-success">
                 Price: {{ item.price | currency: 'USD' }}
               </p>
-              <div class="d-flex justify-content-center gap-2">
+              <div class="d-flex flex-column align-items-center gap-2">
                 <button
-                  class="btn btn-outline-dark btn-sm"
+                  type="button"
+                  *ngIf="selectedMovie?.availableCopies > 0"
+                  [routerLink]="'/login'"
+                  class="btn btn-danger px-2 py-1 shadow-sm rounded-pill"
+                  style="font-size: 0.85rem;"
+                >
+                  <i class="fa-solid fa-sign-in-alt me-2"></i> Sign In to Rent
+                </button>
+                <button
+                  class="btn btn-outline-dark btn-sm px-3 py-2 shadow-sm rounded"
                   data-bs-toggle="modal"
                   data-bs-target="#viewMoreModal"
                   (click)="selectedMovie = item"
+                  style="font-size: 0.85rem;"
                 >
-                  View More
+                  <i class="fa-solid fa-info-circle me-2"></i> View More
                 </button>
               </div>
+              
+              
             </div>
           </div>
         </div>
       </div>
     </div>
     <!-- Modal for Viewing More Details -->
-<div class="modal fade" id="viewMoreModal" tabindex="-1" aria-labelledby="viewMoreModalLabel" aria-hidden="true">
+<div class="modal fade" id="viewMoreModal" tabindex="-1" aria-labelledby="viewMoreModalLabel" aria-hidden="true" style="font-family: 'Poppins';">
   <div class="modal-dialog modal-lg">
     <div class="modal-content bg-dark text-light">
       <div class="modal-header">
@@ -133,9 +143,10 @@
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-      </div>
+     
+        <button type="button" *ngIf="selectedMovie?.availableCopies > 0" [routerLink]="'/login'" class="btn btn-danger">
+          Sign In to Rent
+        </button>
     </div>
   </div>
 </div>

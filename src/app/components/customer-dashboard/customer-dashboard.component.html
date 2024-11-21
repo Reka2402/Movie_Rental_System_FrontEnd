@@ -1,20 +1,20 @@
 <div class="container-fluid p-0 bg-black text-white" style="height: max-content;">
   <div class="row g-0" >
-    <div class="col-lg-1 col-md-3 col-sm-4 col-12 bg-dark d-flex flex-column align-items-center py-4">
+    <div class="col-lg-1 col-md-3 col-sm-4 col-12 bg-dark d-flex flex-column align-items-center py-4" style="font-family: 'Poppins';">
       <!-- <a href="#" class="logo text-white">
         <i class="bx bx-movie-play bx-tada text-danger"></i>
         Fl<span class="text-danger">i</span>x
       </a> -->
-      <nav class="nav flex-column w-100 text-center">
-        <a class="nav-link py-3 text-white" href="#" title="Home">
+      <nav class="nav flex-column w-100 text-center" style="font-size: small;">
+        <a class="nav-link text-white" href="#" title="Home">
           <i class="bi bi-house fs-6"></i>
           <!-- <span class="d-block">Home</span> -->
         </a>
-        <a class="nav-link py-3 text-white" href="#" title="Rental History">
+        <a class="nav-link  text-white" href="#" title="Rental History">
           <i class="bi bi-clock-history fs-6"></i>
-          <!-- <span class="d-block">Rental History</span> -->
+          <!-- <span class="d-block">History</span> -->
         </a>
-        <a class="nav-link py-3 text-white" href="#" title="Favorites">
+        <a class="nav-link  text-white" href="#" title="Favorites">
           <i class="bi bi-heart fs-6"></i>
           <!-- <span class="d-block">Favorites</span> -->
         </a>
@@ -44,10 +44,10 @@
       </a>
       <div class="d-flex justify-content-between align-items-center px-4 py-3 border-bottom border-secondary">
         
-        <div class="text-white">
+        <div class="text-white" style="font-family:'Roboto' ;">
           <h4>Welcome, <span class="text-danger">Customer</span>!</h4>
         </div>
-        <div class="input-group w-50">
+        <div class="input-group w-50" style="font-family: 'Roboto';">
           <input type="text" class="form-control bg-light text-dark border-danger rounded-start shadow"
             placeholder="Search movies by director, genre..." aria-label="Search"
             style="border-radius: 25px 0 0 25px;" />
@@ -64,7 +64,7 @@
           </ul>
         </div>
       </div>
-      <div class="d-flex justify-content-center gap-3 py-3 border-bottom border-secondary">
+      <div class="d-flex justify-content-center gap-3 py-3 border-bottom border-secondary" style="font-family: 'Roboto';">
         <button class="btn btn-outline-danger px-4 py-2 hover-effect">Movies</button>
         <button class="btn btn-outline-danger px-4 py-2 hover-effect">Series</button>
         <button class="btn btn-outline-danger px-4 py-2 hover-effect">Anime</button>
@@ -73,18 +73,18 @@
       <!-- Movie Collections -->
       <div class="row mt-4 px-4 overflow-auto">
         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-4" *ngFor="let item of movieItems">
-          <div class="card bg-dark border-secondary shadow-sm h-100 card-hover">
-            <div class="position-relative">
-              <img [src]="item.images[0]" class="card-img-top rounded-top w-100 h-100 object-cover" alt="{{item.name}}" />
+          <div class="card bg-dark border-secondary shadow-sm h-100 card-hover" style="height: 400px;">
+            <div class="position-relative" style="height: 200px;">
+              <img [src]="item.images[0]" class="card-img-top rounded-top w-100" alt="{{item.name}}" style="object-fit: cover; height: 100%;"/>
               <div class="stock-status position-absolute top-0 end-0 p-2">
                 <i class="bi" [ngClass]="{
-              'bi-check-circle-fill text-success': item.availableCopies > 0,
-              'bi-x-circle-fill text-danger': item.availableCopies === 0
-            }" style="font-size: 1.5rem;"></i>
+                  'bi-check-circle-fill text-success': item.availableCopies > 0,
+                  'bi-x-circle-fill text-danger': item.availableCopies === 0
+                }" style="font-size: 1.5rem;"></i>
               </div>
             </div>
-            <div class="card-body d-flex flex-column justify-content-between text-center">
-              <h5 class="card-title text-truncate text-danger">{{item.name}}</h5>
+            <div class="card-body d-flex flex-column justify-content-between text-center" style="flex-grow: 1; overflow: hidden;">
+              <h5 class="card-title text-truncate text-danger" style="font-size: 1rem;">{{item.name}}</h5>
               <p class="card-text text-white-50 small">{{item.genre}}</p>
               <p class="fw-bold text-danger mt-2">Price: {{item.price | currency:'USD'}}</p>
               <button class="btn btn-sm btn-outline-danger mt-2" data-bs-toggle="modal" data-bs-target="#viewMoreModal"
@@ -95,6 +95,9 @@
           </div>
         </div>
       </div>
+      
+      
+      
       <div class="modal fade" id="viewMoreModal" tabindex="-1" aria-labelledby="viewMoreModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content bg-dark text-white">

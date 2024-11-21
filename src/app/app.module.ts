@@ -14,17 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { CollectionsComponent } from './components/collections/collections.component';
 import { ManagerDashboardComponent } from './components/manager-dashboard/manager-dashboard.component';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatTableModule } from '@angular/material/table';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { CustomerDashboardComponent } from './components/customer-dashboard/customer-dashboard.component';
 
+import { CustomerDashboardComponent } from './components/customer-dashboard/customer-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -43,22 +34,17 @@ import { CustomerDashboardComponent } from './components/customer-dashboard/cust
     AppRoutingModule,
     HttpClientModule,
     CommonModule,
-
+  
+   
+    
     RouterOutlet,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     RouterModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatIconModule,
-    MatDividerModule,
-    MatListModule,
-    MatButtonModule,
-    MatCardModule,
+   
+    
   
-    MatTableModule
   
     
   ],
