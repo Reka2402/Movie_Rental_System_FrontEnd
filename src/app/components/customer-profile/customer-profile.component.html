@@ -1,0 +1,188 @@
+<div class="container-fluid p-0 bg-black text-white" style="height: max-content;">
+    <div class="row g-0" >
+      <div class="col-lg-2 col-md-3 col-sm-4 col-12 bg-dark d-flex flex-column align-items-center py-5 " style="font-family: 'Poppins'; width:100px; justify-content: space-between;">
+        <!-- <a href="#" class="logo text-white">
+          <i class="bx bx-movie-play bx-tada text-danger"></i>
+          Fl<span class="text-danger">i</span>x
+        </a> -->
+        <nav class="nav flex-column w-20 text-center" style="height: 100vh;margin-top: 3rem;">
+          <a class="nav-link text-white" href="#" title="Home">
+            <i class="bi bi-house fs-2"></i>
+            <!-- <span class="d-block">Home</span> -->
+          </a>
+          <a class="nav-link  text-white" href="#" title="Rental History">
+            <i class="bi bi-clock-history fs-2"></i>
+            <!-- <span class="d-block">History</span> -->
+          </a>
+          <a class="nav-link  text-white" href="#" title="Favorites">
+            <i class="bi bi-heart fs-2"></i>
+            <!-- <span class="d-block">Favorites</span> -->
+          </a>
+          <!-- <a class="nav-link py-3 text-white" href="#" title="Library">
+            <i class="bi bi-collection-play fs-4"></i>
+            <span class="d-block">Library</span>
+          </a> -->
+          <a class="nav-link py-3 text-white" href="#" title="Notifications">
+            <i class="bi bi-bell fs-2"></i>
+            <!-- <span class="d-block">Notifications</span> -->
+          </a>
+          <a class="nav-link py-3 text-white" href="#" title="Profile">
+            <i class="bi bi-person fs-2"></i>
+            <!-- <span class="d-block">Profile</span> -->
+          </a>
+          <a class="nav-link py-3 text-white" href="#" title="Password Update">
+            <i class="bi bi-shield-lock fs-2"></i>
+            <!-- <span class="d-block">Password Update</span> -->
+          </a>
+        </nav>
+  
+      </div>
+      <div class=" col-xl-10 col-lg-10 col-md-9 col-sm-8 col-12 d-flex flex-column">
+        <a href="#" class="logo text-white">
+          <i class="bx bx-movie-play bx-tada text-danger"></i>
+          Fl<span class="text-danger">i</span>x
+        </a>
+        <div class="d-flex justify-content-between align-items-center px-4 py-3 border-bottom border-secondary">
+          
+          <div class="text-white" style="font-family:'Roboto' ;">
+            <h4>Welcome, <span class="text-danger">Customer</span>!</h4>
+          </div>
+          <div class="input-group w-50" style="font-family: 'Roboto';">
+            <input type="text" class="form-control bg-light text-dark border-danger rounded-start shadow"
+              placeholder="Search movies by director, genre..." aria-label="Search"
+              style="border-radius: 25px 0 0 25px;" />
+            <button class="btn btn-danger shadow" style="border-radius: 0 25px 25px 0;">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+          <div class="dropdown">
+            <img src="/icons'/avatar.png" class="rounded-circle ms-3" alt="Profile" width="40" data-bs-toggle="dropdown"
+              aria-expanded="false" />
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" href="#">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center gap-3 py-3 border-bottom border-secondary" style="font-family: 'Roboto';">
+          <button class="btn btn-outline-danger px-4 py-2 hover-effect">Movies</button>
+          <button class="btn btn-outline-danger px-4 py-2 hover-effect">Series</button>
+          <button class="btn btn-outline-danger px-4 py-2 hover-effect">Anime</button>
+          <button class="btn btn-outline-danger px-4 py-2 hover-effect">Cartoons</button>
+        </div>
+        <!-- Movie Collections -->
+        <div *ngFor="let category of categories" style="font-family: 'Montserrat';">
+   
+          <h3 class="text-center text-uppercase text-danger mt-3" style="font-family: 'Roboto';">{{ category.name }}</h3>
+          <div class="row justify-content-center">
+    
+            <div
+              class="col-lg-3 col-md-4 col-sm-6 col-12 mt-4"
+              *ngFor="let item of category.items"
+            >
+              <div class="card shadow-lg" style="height: 100%; max-width: 30rem;">
+                <div class="position-relative">
+                  <img
+                    [src]="item.images[0]"
+                    class="card-img-top rounded-top"
+                    alt="{{ item.name }}"
+                    style="height: 12rem; object-fit: cover;"
+                  />
+                  <div class="stock-status position-absolute top-0 end-0 p-2">
+                    <i
+                      class="bi"
+                      [ngClass]="{
+                        'bi-check-circle-fill text-success': item.availableCopies > 0,
+                        'bi-x-circle-fill text-danger': item.availableCopies === 0
+                      }"
+                      style="font-size: 1.5rem;"
+                    ></i>
+                  </div>
+                </div>
+                <div
+                  class="card-body text-center bg-success-subtle"
+                  style="height: 100%; max-width: 30rem;"
+                >
+                  <h5 class="card-title text-truncate">{{ item.name }}</h5>
+                  <p class="card-text text-muted small mb-1">{{ item.genre }}</p>
+                  <div class="rating">
+                    <i class="fa-solid fa-star text-warning"></i>
+                    <span class="text-secondary small">({{ item.rating }})</span>
+                  </div>
+                  <p class="fw-bold text-success">
+                    Price: {{ item.price | currency: 'USD' }}
+                  </p>
+                  <div class="d-flex flex-column align-items-center gap-2">
+                    <button
+                      type="button"
+                      *ngIf="selectedMovie?.availableCopies > 0"
+                      [routerLink]="'/login'"
+                      class="btn btn-danger px-2 py-1 shadow-sm rounded-pill"
+                      style="font-size: 0.85rem;"
+                    >
+                      <i class="fa-solid fa-sign-in-alt me-2"></i> Sign In to Rent
+                    </button>
+                    <button
+                      class="btn btn-outline-dark btn-sm px-3 py-2 shadow-sm rounded"
+                      data-bs-toggle="modal"
+                      data-bs-target="#viewMoreModal"
+                      (click)="selectedMovie = item"
+                      style="font-size: 0.85rem;"
+                    >
+                      <i class="fa-solid fa-info-circle me-2"></i> View More
+                    </button>
+                  </div>
+                  
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Movie Popup- -->
+        <div class="modal fade" id="viewMoreModal" tabindex="-1" aria-labelledby="viewMoreModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content bg-dark text-white">
+              <div class="modal-header">
+                <h5 class="modal-title" id="viewMoreModalLabel">{{selectedMovie?.name}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <img [src]="selectedMovie?.images[1]" class="img-fluid" alt="{{selectedMovie?.name}}">
+                  </div>
+                  <div class="col-md-6">
+                    <p><strong>Genre:</strong> {{selectedMovie?.genre}}</p>
+                    <p><strong>Release Date:</strong> {{selectedMovie?.releaseDate | date}}</p>
+                    <p><strong>Director:</strong> {{selectedMovie?.director}}</p>
+                    <p><strong>Rating:</strong> {{selectedMovie?.rating}}</p>
+                    <p><strong>Description:</strong> {{selectedMovie?.description}}</p>
+                    <p><strong>Cast:</strong></p>
+                    <ul>
+                      <li *ngFor="let actor of selectedMovie?.cast">{{actor.name}}</li>
+                    </ul>
+                    <!-- <div class="mb-3">
+                      <label for="rentalDays" class="form-label">Select Rental Days</label>
+                      <select id="rentalDays" class="form-select" [(ngModel)]="rentalDays">
+                        <option value="1">1 Day</option>
+                        <option value="3">3 Days</option>
+                        <option value="7">1 Week</option>
+                        <option value="14">2 Weeks</option>
+                        <option value="30">1 Month</option>
+                      </select>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" >Rent Now</button>
+                <button type="button" class="btn btn-outline-danger" >Add to Favorites</button>
+              </div>
+            </div>
+          </div>
+        </div>
+       </div>
+    </div>
+  </div>

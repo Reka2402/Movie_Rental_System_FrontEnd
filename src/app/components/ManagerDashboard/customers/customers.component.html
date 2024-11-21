@@ -1,0 +1,118 @@
+<div class="container p-4" style="font-family: 'Roboto', sans-serif;">
+  <!-- Header Section -->
+  <div class="text-center mb-4">
+    <h2 class="text-primary">Customers</h2>
+    <button class="btn btn-primary mb-3 px-4" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
+      <i class="bi bi-person-plus me-2"></i>Add New Customer
+    </button>
+  </div>
+
+  <!-- Search Bar Section -->
+  <div class="mb-4 d-flex justify-content-center">
+    <input
+      type="text"
+      class="form-control w-50"
+      placeholder="Search by Name or NIC"
+   
+    />
+  </div>
+
+  <!-- Customers Table -->
+  <table class="table table-striped table-hover table-bordered table-responsive-md">
+    <thead class="table-primary">
+      <tr>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>NIC</th>
+        <th>Mobile Number</th>
+        <th>Address</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers">
+        <td>{{ customer.fullName }}</td>
+        <td>{{ customer.email }}</td>
+        <td>{{ customer.nic }}</td>
+        <td>{{ customer.mobileNumber }}</td>
+        <td>{{ customer.address }}</td>
+        <td>
+          <i
+            class="bi"
+            [ngClass]="customer.isActive ? 'bi-check-circle-fill text-success' : 'bi-x-circle-fill text-danger'"
+          ></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Add Customer Modal -->
+  <div class="modal fade" id="addCustomerModal" tabindex="-1" aria-labelledby="addCustomerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title" id="addCustomerModalLabel">Add New Customer</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="fullName" class="form-label">Full Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="fullName"
+                [(ngModel)]="newCustomer.fullName"
+                placeholder="Enter full name"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                [(ngModel)]="newCustomer.email"
+                placeholder="Enter email"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="nic" class="form-label">NIC</label>
+              <input
+                type="text"
+                class="form-control"
+                id="nic"
+                [(ngModel)]="newCustomer.nic"
+                placeholder="Enter NIC number"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="mobileNumber" class="form-label">Mobile Number</label>
+              <input
+                type="text"
+                class="form-control"
+                id="mobileNumber"
+                [(ngModel)]="newCustomer.mobileNumber"
+                placeholder="Enter mobile number"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="address" class="form-label">Address</label>
+              <input
+                type="text"
+                class="form-control"
+                id="address"
+                [(ngModel)]="newCustomer.address"
+                placeholder="Enter address"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Add Customer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

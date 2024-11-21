@@ -13,11 +13,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { CollectionsComponent } from './components/collections/collections.component';
-import { ManagerDashboardComponent } from './components/manager-dashboard/manager-dashboard.component';
+import { ManagerDashboardComponent } from './components/ManagerDashboard/manager-dashboard/manager-dashboard.component';
+import { CustomersComponent } from './components/ManagerDashboard/customers/customers.component';
+import { MoviesComponent } from './components/ManagerDashboard/movies/movies.component';
+import { RentalsComponent } from './components/ManagerDashboard/rentals/rentals.component';
+import { ReportsComponent } from './components/ManagerDashboard/reports/reports.component';
+import { InventoryComponent } from './components/ManagerDashboard/inventory/inventory.component';
+import { CustomerProfileComponent } from './components/customer-profile/customer-profile.component';
+import { SummaryViewComponent } from './components/ManagerDashboard/summary-view/summary-view.component';
 
-import { CustomerDashboardComponent } from './components/customer-dashboard/customer-dashboard.component';
-
-import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +30,15 @@ import { ToastrModule } from 'ngx-toastr';
     HomeComponent,
     CollectionsComponent,
     ManagerDashboardComponent,
-    CustomerDashboardComponent
+
+    CustomersComponent,
+    MoviesComponent,
+    RentalsComponent,
+    ReportsComponent,
+    InventoryComponent,
+    CustomerProfileComponent,
+    SummaryViewComponent,
+ 
    
   ],
   imports: [
@@ -36,13 +48,13 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     CommonModule,
     BrowserAnimationsModule, 
-    ToastrModule.forRoot(), 
+ 
     RouterOutlet,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     RouterModule,
-   
+
     
   
   

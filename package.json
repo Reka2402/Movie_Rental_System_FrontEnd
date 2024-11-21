@@ -23,6 +23,7 @@
     "angular-font-awesome": "^3.1.2",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^4.0.0",
     "ngx-toastr": "^19.0.0",
     "rxjs": "~7.8.0",

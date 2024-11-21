@@ -1,0 +1,153 @@
+<div class="container p-4" style="font-family: 'Roboto', sans-serif;">
+    <!-- Header Section -->
+    <div class="text-center mb-4">
+      <h2 class="text-primary">Movies</h2>
+      <button class="btn btn-primary mb-3 px-4" data-bs-toggle="modal" data-bs-target="#addMovieModal">
+        <i class="bi bi-film me-2"></i>Add New Movie
+      </button>
+    </div>
+  
+    <!-- Search Bar Section -->
+    <div class="mb-4 d-flex justify-content-center">
+      <input
+        type="text"
+        class="form-control w-50"
+        placeholder="Search by Name or Genre"
+        
+      />
+    </div>
+  
+    <!-- Movies Table -->
+    <table class="table table-striped table-hover table-bordered table-responsive-md">
+      <thead class="table-primary">
+        <tr>
+          <th>Movie Name</th>
+          <th>Genre</th>
+          <th>Release Date</th>
+          <th>Director</th>
+          <th>Description</th>
+          <th>Cast</th>
+          <th>Available Copies</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let movie of movies">
+          <td>{{ movie.movieName }}</td>
+          <td>{{ movie.genre }}</td>
+          <td>{{ movie.releaseDate | date:'shortDate' }}</td>
+          <td>{{ movie.director }}</td>
+          <td>{{ movie.description }}</td>
+          <td>{{ movie.cast }}</td>
+          <td>{{ movie.availableCopies }}</td>
+          <td>
+            <i
+              class="bi"
+              [ngClass]="movie.isAvailable ? 'bi-check-circle-fill text-success' : 'bi-x-circle-fill text-danger'"
+            ></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Add Movie Modal -->
+    <div class="modal fade" id="addMovieModal" tabindex="-1" aria-labelledby="addMovieModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="addMovieModalLabel">Add New Movie</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="movieName" class="form-label">Movie Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="movieName"
+                  [(ngModel)]="newMovie.movieName"
+                  placeholder="Enter movie name"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="genre" class="form-label">Genre</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="genre"
+                  [(ngModel)]="newMovie.genre"
+                  placeholder="Enter genre"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="releaseDate" class="form-label">Release Date</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="releaseDate"
+                  [(ngModel)]="newMovie.releaseDate"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="director" class="form-label">Director</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="director"
+                  [(ngModel)]="newMovie.director"
+                  placeholder="Enter director's name"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea
+                  class="form-control"
+                  id="description"
+                  [(ngModel)]="newMovie.description"
+                  placeholder="Enter description"
+                  rows="3"
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="cast" class="form-label">Cast</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cast"
+                  [(ngModel)]="newMovie.cast"
+                  placeholder="Enter cast names"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="availableCopies" class="form-label">Available Copies</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="availableCopies"
+                  [(ngModel)]="newMovie.availableCopies"
+                  placeholder="Enter number of available copies"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="isAvailable" class="form-label">Availability Status</label>
+                <select
+                  class="form-control"
+                  id="isAvailable"
+                  [(ngModel)]="newMovie.isAvailable"
+                >
+                  <option [ngValue]="true">Available</option>
+                  <option [ngValue]="false">Not Available</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Add Movie</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

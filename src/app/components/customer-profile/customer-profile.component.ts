@@ -1,12 +1,11 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-customer-dashboard',
-  templateUrl: './customer-dashboard.component.html',
-  styleUrl: './customer-dashboard.component.css'
+  selector: 'app-customer-profile',
+  templateUrl: './customer-profile.component.html',
+  styleUrl: './customer-profile.component.css'
 })
-export class CustomerDashboardComponent {
-
+export class CustomerProfileComponent {
   selectedMovie: any = null;
   categories = [
     {
