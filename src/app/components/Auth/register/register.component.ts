@@ -21,7 +21,7 @@ export class RegisterComponent {
     private rout:Router
   ) {
       this.signupForm = this.formBuilder.group({
-          fullName: ['', Validators.required],
+          fullname: ['', Validators.required],
           email: ['', [Validators.required, Validators.email]],
           password: ['', [Validators.required, Validators.minLength(6)]],
           confirmPassword: ['', Validators.required],
@@ -29,7 +29,7 @@ export class RegisterComponent {
           terms: [false, Validators.requiredTrue]
       })
   }
-  get fullName() { return this.signupForm.get('fullName'); }
+  get fullname() { return this.signupForm.get('fullname'); }
   get email() { return this.signupForm.get('email'); }
   get password() { return this.signupForm.get('password'); }
   get confirmPassword() { return this.signupForm.get('confirmPassword'); }

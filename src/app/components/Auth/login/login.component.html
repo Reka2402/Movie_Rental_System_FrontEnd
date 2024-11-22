@@ -4,7 +4,7 @@
        style="width: 30rem; background-image: url(/Sliders/tv-series-bg.jpg); color: white; height: auto;">
     <h3 class="mb-4 text-center text-danger">Login Here</h3>
     <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
-      <!-- Email -->
+
       <div class="mb-3">
         <label for="email" class="form-label text-white">Email Address</label>
         <div class="input-group">
@@ -17,7 +17,7 @@
         </div>
       </div>
 
-      <!-- Password -->
+
       <div class="mb-3">
         <label for="password" class="form-label text-white">Password</label>
         <div class="input-group">
@@ -30,20 +30,20 @@
         </div>
       </div>
 
-      <!-- Remember Me Checkbox -->
+
       <div class="mb-3 form-check">
         <input type="checkbox" formControlName="rememberMe" class="form-check-input" id="rememberMe">
         <label class="form-check-label text-white" for="rememberMe">Remember Me</label>
       </div>
 
-      <!-- Submit Button -->
+
       <div class="d-grid">
         <button class="btn btn-danger" type="submit" [disabled]="signinForm.invalid">
           Submit
         </button>
       </div>
 
-      <!-- Register Link -->
+
       <div class="text-center mt-3">
         <p class="text-white">
           New customer? <a href="/register" class="text-danger">Register now</a>

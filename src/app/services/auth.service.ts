@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { jwtDecode } from "jwt-decode";
 
 @Injectable({
@@ -7,25 +7,35 @@ import { jwtDecode } from "jwt-decode";
 })
 export class AuthService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) {}
   UserURL:string = 'http://localhost:5273/api/User'
   UserSignUp(UserSignUp:SignUp){
-    return this.http.post(this.UserURL + '/add-user' , UserSignUp)
+    return this.http.post(this.UserURL , UserSignUp)
   }
   UserSignIn(UserSignIn:SignIn){
-    return this.http.post(this.UserURL + '/login', UserSignIn ,{
+    return this.http.post(this.UserURL+'/login', UserSignIn ,{
       responseType:'text'
     });
   }
+
   isLoggedIn():boolean{
+    console.log("hello")
     const token:string = localStorage.getItem("token")!;
     const decode:any = jwtDecode(token)
-    if(decode.Role == "Admin"){  
-      return true
-    }else{
-      return false
-    }
+    console.log(decode)
+    return true
+    // if(decode.Role == "Admin"){  
+    //   console.log("Hello")
+    //   return true
+    // }
+    // if(decode.Role == "Customer"){
+    //   return false
+    // }
+    // else{
+    //   return false
+    // }
   }
+
 }
 export interface SignIn{
   email:string,

@@ -11,6 +11,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr'
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { CollectionsComponent } from './components/collections/collections.component';
 import { ManagerDashboardComponent } from './components/ManagerDashboard/manager-dashboard/manager-dashboard.component';
@@ -22,6 +24,7 @@ import { InventoryComponent } from './components/ManagerDashboard/inventory/inve
 import { CustomerProfileComponent } from './components/customer-profile/customer-profile.component';
 import { SummaryViewComponent } from './components/ManagerDashboard/summary-view/summary-view.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +33,6 @@ import { SummaryViewComponent } from './components/ManagerDashboard/summary-view
     HomeComponent,
     CollectionsComponent,
     ManagerDashboardComponent,
-
     CustomersComponent,
     MoviesComponent,
     RentalsComponent,
@@ -48,7 +50,7 @@ import { SummaryViewComponent } from './components/ManagerDashboard/summary-view
     HttpClientModule,
     CommonModule,
     BrowserAnimationsModule, 
- 
+    ToastrModule.forRoot(),
     RouterOutlet,
     FormsModule,
     ReactiveFormsModule,

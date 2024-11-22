@@ -7,6 +7,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class CustomerProfileComponent {
   selectedMovie: any = null;
+  rentalDays: number = 1; 
   categories = [
     {
       name: 'Movies',
@@ -28,7 +29,10 @@ export class CustomerProfileComponent {
             { id: 3, name: 'Jessica Chastain' },
             { id: 4, name: 'Michael Caine' }
           ],
-          images: ['/movies/movie 39.webp'],
+          images: ['/movies/movie 39.webp',
+
+
+          ],
         },
         // {
         //   id: 2,
@@ -347,6 +351,26 @@ export class CustomerProfileComponent {
       ],
     },
   ];
+
+
+  onRentalDaysChange() {
+    console.log(`Selected rental days: ${this.rentalDays}`);
+   
+  }
+
+  calculateRentalCost() {
+    let costPerDay = 5; 
+    let totalCost = this.rentalDays * costPerDay;
+    console.log(`Total rental cost: $${totalCost}`);
+    
+  }
+
+
+
+
+
+
+
 
   setSelectedMovie(movie: any): void {
     this.selectedMovie = movie;

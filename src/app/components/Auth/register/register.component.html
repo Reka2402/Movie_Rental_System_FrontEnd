@@ -5,19 +5,18 @@
     <h3 class="text-center mb-4 text-danger">Register Now</h3>
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
       
-      <!-- Full Name -->
+
       <div class="mb-3">
         <div class="input-group">
           <span class="input-group-text bg-black text-white"><i class="bi bi-person"></i></span>
           <input type="text" formControlName="fullname" class="form-control bg-dark text-white border-0" 
                  placeholder="John Doe" />
         </div>
-        <div class="form-text text-danger" *ngIf="signupForm.get('fullname')?.touched && signupForm.get('fullname')?.invalid">
+        <div class="form-text text-danger" *ngIf="signupForm.get('fullname')?.touched && signupForm.get('fullName')?.invalid">
           FullName is required
         </div>
       </div>
 
-      <!-- Email Address -->
       <div class="mb-3">
         <div class="input-group">
           <span class="input-group-text bg-black text-white"><i class="bi bi-envelope"></i></span>
@@ -29,7 +28,6 @@
         </div>
       </div>
 
-      <!-- Password -->
       <div class="mb-3">
         <div class="input-group">
           <span class="input-group-text bg-black text-white"><i class="bi bi-lock"></i></span>
@@ -41,27 +39,22 @@
         </div>
       </div>
 
-      <!-- Confirm Password -->
-      <div class="mb-3">
+    
+      <div class="form-group mb-3">
         <div class="input-group">
-          <span class="input-group-text bg-black text-white"><i class="bi bi-lock-fill"></i></span>
-          <input type="password" formControlName="confirmPassword" class="form-control bg-dark text-white border-0" 
-                 placeholder="Repeat your password" (ngModelChange)="checkPasswords()" />
+            <div class="input-group-text  bg-black text-white" id="btnGroupAddon"><i class="bi bi-lock-fill"></i></div>
+            <input type="password" class="form-control bg-dark text-white border-0" placeholder="Confirm password" aria-label="Input group example" aria-describedby="btnGroupAddon" formControlName="confirmPassword">
         </div>
-        <div class="form-text text-danger" *ngIf="signupForm.get('confirmPassword')?.touched && passwordsMatch">
-          Passwords must match
-        </div>
-      </div>
-
-      <!-- Select Role -->
+    </div>
+     
       <div class="mb-3">
         <div class="input-group">
           <span class="input-group-text bg-black text-white"><i class="bi bi-person-badge"></i></span>
           <select formControlName="role" class="form-select bg-dark text-white border-0" aria-label="Select Role">
             <option value="" disabled>Select Role</option>
             <option value="1">Admin</option>
-            <option value="2">Editor</option>
-            <option value="3">Viewer</option>
+            <option value="2">Customer</option>
+           
           </select>
         </div>
         <div class="form-text text-danger" *ngIf="signupForm.get('role')?.touched && signupForm.get('role')?.invalid">
@@ -71,18 +64,18 @@
 
       <!-- Terms and Conditions -->
       <div class="mb-3 form-check">
-        <input type="checkbox" formControlName="agreed" class="form-check-input" id="termsCheck" />
+        <input type="checkbox" formControlName="terms" class="form-check-input" id="termsCheck" />
         <label class="form-check-label" for="termsCheck">
           I agree to all statements in <a href="#" class="text-danger">Terms of service</a>
         </label>
-        <!-- <div class="form-text text-danger" *ngIf="signupForm.get('')?.touched && signupForm.get('agreed')?.invalid">
+        <div class="form-text text-danger" *ngIf="signupForm.get('')?.touched && signupForm.get('terms')?.invalid">
           You must agree to the terms
-        </div> -->
+        </div>
       </div>
 
       <!-- Submit Button -->
       <div class="d-grid">
-        <button type="submit" class="btn btn-danger" [disabled]="signupForm.invalid || passwordMatch">
+        <button type="submit" class="btn btn-danger" [disabled]="signupForm.invalid">
           Register
         </button>
       </div>

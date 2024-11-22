@@ -21,7 +21,7 @@ export class LoginComponent {
   ) {
       this.signinForm = this.formBuilder.group({
           email: ['', [Validators.required, Validators.email]],
-          password: ['', [Validators.required, Validators.minLength(8)]],
+          password: ['', [Validators.required, Validators.minLength(6)]],
           rememberMe:['']
       });
   }
@@ -35,7 +35,7 @@ export class LoginComponent {
           timeOut:4000
         })
       },complete:()=>{
-        this.rout.navigate(['/admin/user-list'])
+        // this.rout.navigate(['/customer'])
       },error:(error:any)=>{
         this.toastr.warning( error.error, "" , {
           positionClass:"toast-top-right",

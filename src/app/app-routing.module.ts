@@ -13,6 +13,9 @@ import { RentalsComponent } from './components/ManagerDashboard/rentals/rentals.
 import { ReportsComponent } from './components/ManagerDashboard/reports/reports.component';
 import { CustomerProfileComponent } from './components/customer-profile/customer-profile.component';
 import { SummaryViewComponent } from './components/ManagerDashboard/summary-view/summary-view.component';
+import { authManagerGuard } from './Guard/auth-manager.guard';
+
+
 
 const routes: Routes = [
   { path: 'login' , component: LoginComponent},
@@ -22,8 +25,11 @@ const routes: Routes = [
   {path:'movies',component:CollectionsComponent},
   {path:'customer',component:CustomerProfileComponent},
  
+
+
   {
-    path: 'manager',
+    path: 'manager', 
+    // canActivate:[authManagerGuard],
     component: ManagerDashboardComponent,
     children: [
       { path: 'home', component:SummaryViewComponent },
@@ -32,6 +38,19 @@ const routes: Routes = [
       { path: 'rentals', component: RentalsComponent },
       { path: 'inventory', component: InventoryComponent },
       { path: 'reports', component: ReportsComponent },
+    ],
+  },
+  {
+    path: 'customer', 
+    component: CustomerProfileComponent,
+    // canActivate:[AuthCustomerGuard],
+    children: [
+      // { path: 'home', component:SummaryViewComponent },
+      // { path: 'customers', component: CustomersComponent },
+      // { path: 'movies', component: MoviesComponent },
+      // { path: 'rentals', component: RentalsComponent },
+      // { path: 'inventory', component: InventoryComponent },
+      // { path: 'reports', component: ReportsComponent },
     ],
   },
 
