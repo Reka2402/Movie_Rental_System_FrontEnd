@@ -20,8 +20,7 @@ import { authManagerGuard } from './Guard/auth-manager.guard';
 const routes: Routes = [
   { path: 'login' , component: LoginComponent},
   { path: 'register',component:RegisterComponent},
-  { path: '',component:HomeComponent},
-  {path:'Home',component:HomeComponent},
+
   {path:'movies',component:CollectionsComponent},
   {path:'customer',component:CustomerProfileComponent},
  
@@ -29,7 +28,7 @@ const routes: Routes = [
 
   {
     path: 'manager', 
-    // canActivate:[authManagerGuard],
+    canActivate:[authManagerGuard],
     component: ManagerDashboardComponent,
     children: [
       { path: 'home', component:SummaryViewComponent },
@@ -43,17 +42,18 @@ const routes: Routes = [
   {
     path: 'customer', 
     component: CustomerProfileComponent,
-    // canActivate:[AuthCustomerGuard],
+    
     children: [
-      // { path: 'home', component:SummaryViewComponent },
-      // { path: 'customers', component: CustomersComponent },
-      // { path: 'movies', component: MoviesComponent },
-      // { path: 'rentals', component: RentalsComponent },
-      // { path: 'inventory', component: InventoryComponent },
-      // { path: 'reports', component: ReportsComponent },
+      { path: 'home', component:SummaryViewComponent },
+      { path: 'customers', component: CustomersComponent },
+      { path: 'movies', component: MoviesComponent },
+      { path: 'rentals', component: RentalsComponent },
+      { path: 'inventory', component: InventoryComponent },
+      { path: 'reports', component: ReportsComponent },
     ],
   },
-
+  { path: '',component:HomeComponent},
+  {path:'Home',component:HomeComponent},
   
 
 ];

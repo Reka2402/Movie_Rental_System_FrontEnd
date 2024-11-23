@@ -9,14 +9,17 @@ export const authManagerGuard: CanActivateFn = (route, state) => {
   const router = new Router();
 
   if (authService.isLoggedIn()) {
-    console.log("hello")
-    const token: string = localStorage.getItem('token')!;
-    const decode: any = jwtDecode(token);
-
-    router.navigate(['/manager']);
+    
+    const role = localStorage.getItem("Role");
+    if(role == "Admin") {
+      return true;
+    } else if(role == "Customer") {
+      return false;
+    }
     return true;
+  } else {
+    router.navigate(['/login']);
+    return false;
   }
-  
-  router.navigate(['/login']);
-  return false;
+
 };
