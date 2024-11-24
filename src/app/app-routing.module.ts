@@ -52,7 +52,7 @@ const routes: Routes = [
       { path: 'reports', component: ReportsComponent },
     ],
   },
-  { path: '',component:HomeComponent},
+  {path: '',component:HomeComponent},
   {path:'Home',component:HomeComponent},
   
 
