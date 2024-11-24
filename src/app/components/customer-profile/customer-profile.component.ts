@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Customer, CustomerService } from '../../services/customer.service';
 
 @Component({
   selector: 'app-customer-profile',
@@ -7,6 +8,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class CustomerProfileComponent {
   selectedMovie: any = null;
+  customerId: number = 1; 
+ 
   rentalDays: number = 1; 
   categories = [
     {
@@ -392,6 +395,35 @@ export class CustomerProfileComponent {
   
   AddMovie(movie: any) {
     this.movie.emit(movie);
+  }
+
+  selectedCustomer: Customer | null = null;
+
+  constructor(private customerService: CustomerService) {}
+
+  openProfileModal(customerId: number): void {
+    this.customerService.getCustomerDetails(customerId).subscribe((data) => {
+      this.selectedCustomer = data;
+      this.populateModalData();
+    });
+  }
+
+  populateModalData(): void {
+    if (this.selectedCustomer) {
+      document.getElementById('profilePicture')!.setAttribute('src', this.selectedCustomer.profilePicture);
+      document.getElementById('customerName')!.textContent = this.selectedCustomer.name;
+      document.getElementById('customerEmail')!.textContent = this.selectedCustomer.email;
+      document.getElementById('customerPhone')!.textContent = this.selectedCustomer.phone;
+      document.getElementById('customerAddress')!.textContent = this.selectedCustomer.address;
+
+      const rentalHistoryList = document.getElementById('rentalHistoryList')!;
+      rentalHistoryList.innerHTML = '';
+      this.selectedCustomer.rentalHistory.forEach((rental) => {
+        const li = document.createElement('li');
+        li.textContent = `${rental.title} (Rented on ${rental.date})`;
+        rentalHistoryList.appendChild(li);
+      });
+    }
   }
   
 }

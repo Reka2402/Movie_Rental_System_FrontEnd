@@ -20,9 +20,9 @@
             </a>
             <ul class="nav-menu" id="nav-menu">
                 <li><a routerLink="/Home" href="#">Home</a></li>
-                <li><a  routerLink="/movies" href="#">Genre</a></li>
-                <li><a routerLink="/movies" href="#">Movies</a></li>
-                <li><a routerLink="/movies" href="#">Series</a></li>
+                <li><a  routerLink="/movies" href="#">Collections</a></li>
+                <li><a routerLink="#" href="#">Contact Us</a></li>
+                <!-- <li><a routerLink="/movies" href="#">Series</a></li> -->
                 <li><a href="#">About</a></li>
                 <li>
                     <a routerLink="/login" href="#" class="btn btn-hover siginin">
@@ -33,10 +33,10 @@
         </div>
     </div>
 </div>
-<div id="customCarousel" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner" >
+<!-- <div id="customCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner" > -->
     <!-- First Slide -->
-    <div class="carousel-item active">
+    <!-- <div class="carousel-item active">
       <div class="container-fulid" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6))">
           <div class="carousel-content text-light d-flex align-items-center" style="background: url('/Sliders/slider\ 10.jpg') no-repeat center/cover; height: 100vh;">
               <div class="container cardcontent" style="position: absolute; left: 5%; width: 40%;">
@@ -55,11 +55,11 @@
             </div>
       </div>
       
-    </div>
+    </div> -->
 
      <!-- First Slide -->
-     <div class="carousel-item active">
-      <div class="container-fulid" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6))">
+     <!-- <div class="carousel-item active"> -->
+      <!-- <div class="container-fulid" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6))">
           <div class="carousel-content text-light d-flex align-items-center" style="background: url('/Sliders/Slider\ 1.jpg') no-repeat center/cover; height: 100vh;">
               <div class="container cardcontent" style="position: absolute; left: 5%; width: 40%;">
                 <div class="carousel-caption text-start ">
@@ -76,12 +76,12 @@
               </div>
             </div>
       </div>
-      </div>
+      </div> -->
 
     
 
     <!-- Third Slide -->
-    <div class="carousel-item">
+    <!-- <div class="carousel-item">
       <div class="carousel-content text-light d-flex align-items-center" style="background: url('/Sliders/slider\ 11.jpg') no-repeat center/cover; height: 100vh;">
         <div class="container">
           <div class="carousel-caption text-start ">
@@ -98,10 +98,10 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Fourth Slide -->
-    <div class="carousel-item">
+    <!-- <div class="carousel-item">
       <div class="carousel-content text-light d-flex align-items-center" style="background: url('/Sliders/slider\ 5.jpeg') no-repeat center/cover; height: 100vh;">
         <div class="container">
           <div class="carousel-caption text-start ">
@@ -118,16 +118,92 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
  
 
   <!-- Controls -->
-  <button class="carousel-control-prev" type="button" data-bs-target="#customCarousel" data-bs-slide="prev">
+  <!-- <button class="carousel-control-prev" type="button" data-bs-target="#customCarousel" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
   <button class="carousel-control-next" type="button" data-bs-target="#customCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div> -->
+<div id="movieCarousel" class="carousel slide" data-bs-ride="carousel">
+  <!-- Indicators -->
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#movieCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#movieCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#movieCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#movieCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+  </div>
+
+  <!-- Slides -->
+  <div class="carousel-inner">
+    <!-- Slide 1 -->
+    <div class="carousel-item active">
+      <div class="slide-container" style="background: url('/Sliders/slider 10.jpg') no-repeat center/cover;">
+        <div class="dark-overlay"></div>
+        <div class="carousel-caption text-start">
+          <h1 class="display-3 fw-bold">Stranger Things</h1>
+          <p class="lead mb-4">Experience the thrills of Hawkins, where supernatural forces collide. Join the adventure and uncover the mysteries of the Upside Down!</p>
+          <p>
+            <span class="badge bg-danger me-3">9.5</span>
+            <span>4 Seasons</span> <span class="mx-2">|</span>
+            <span>HD</span> <span class="mx-2">|</span>
+            <span>16+</span>
+          </p>
+          <a href="#" class="btn btn-lg btn-custom">WATCH NOW</a>
+        </div>
+      </div>
+    </div>
+    <!-- Slide 2 -->
+    <div class="carousel-item">
+      <div class="slide-container" style="background: url('/Sliders/Slider 1.jpg') no-repeat center/cover;">
+        <div class="dark-overlay"></div>
+        <div class="carousel-caption text-start">
+          <h1 class="display-3 fw-bold">Frozen 2</h1>
+          <p class="lead mb-4">Join Elsa, Anna, and friends on a magical journey beyond Arendelle to uncover the secrets of their past and save their kingdom.</p>
+          <p>
+            <span class="badge bg-danger me-3">9.5</span>
+            <span>140 mins</span> <span class="mx-2">|</span>
+            <span>HD</span> <span class="mx-2">|</span>
+            <span>16+</span>
+          </p>
+          <a href="#" class="btn btn-lg btn-custom">WATCH NOW</a>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="slide-container" style="background: url('/Sliders/slider\ 5.jpeg') no-repeat center/cover;">
+        <div class="dark-overlay"></div>
+        <div class="carousel-caption text-start">
+          <h1 class="display-3 fw-bold">Moana 2</h1>
+          <p class="lead mb-4">Set sail once more with Moana as she embarks on a new ocean adventure</p>
+          <p>
+            <span class="badge bg-danger me-3">9.5</span>
+            <span>140 mins</span> <span class="mx-2">|</span>
+            <span>HD</span> <span class="mx-2">|</span>
+            <span>16+</span>
+          </p>
+          <a href="#" class="btn btn-lg btn-custom">WATCH NOW</a>
+        </div>
+      </div>
+    </div>
+
+    
+    <!-- Add similar structure for Slide 3 and 4 -->
+  </div>
+
+  <!-- Controls -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#movieCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#movieCarousel" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>

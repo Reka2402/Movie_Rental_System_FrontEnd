@@ -27,7 +27,6 @@ export class AuthService {
       return false
     }
   }
-
 }
 export interface SignIn {
   email: string,

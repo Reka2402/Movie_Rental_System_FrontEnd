@@ -8,6 +8,25 @@
   --space-top: 30px;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 * {
   padding: 0;
   margin: 0;
@@ -309,4 +328,82 @@ a.movie-item:hover {
   bottom:30px;
 
  
+}
+
+/* General Carousel Styling */
+.carousel-inner {
+  position: relative;
+}
+
+.slide-container {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.dark-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+  z-index: 1;
+}
+
+.carousel-caption {
+  position: relative;
+  z-index: 2;
+  max-width: 50%;
+}
+
+.carousel-caption h1 {
+  font-size: 3rem;
+  animation: fadeInDown 1s;
+}
+
+.carousel-caption p {
+  font-size: 1.25rem;
+  animation: fadeInUp 1.2s;
+}
+
+.btn-custom {
+  background-color: #c0392b;
+  color: #fff;
+  padding: 10px 30px;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  transition: transform 0.2s ease;
+}
+
+.btn-custom:hover {
+  background-color: #a12824;
+  transform: scale(1.1);
+}
+
+/* Keyframes */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

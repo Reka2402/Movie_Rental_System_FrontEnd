@@ -1,123 +1,63 @@
 <body class="bg-dark">
   <div class="container">
     <header class="text-center py-4">
-    
       <a href="#" class="logo text-white">
         <i class="bx bx-movie-play bx-tada text-danger"></i>
         Fl<span class="text-danger">i</span>x
       </a>
-     
       <h1 class="text-light text-uppercase" style="font-family: 'Roboto';">
         Explore <span class="text-danger">Our</span> Collections
       </h1>
-      
-      
       <p class="text-light" style="font-family: 'Open Sans';">
         Dive into the world of movies, series, cartoons, and anime. Rent and enjoy your favorites today!
       </p>
-      
-        <div class="d-flex justify-content-center align-items-center" style="font-family: 'Inter';">
-          <div class="input-group w-50">
-            <input
-              type="text"
-              class="form-control bg-light text-dark border-danger rounded-start shadow"
-              placeholder="Search movies by director, genre..."
-              aria-label="Search"
-              style="
-                border-radius: 25px 0 0 25px;
-                box-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
-                transition: box-shadow 0.3s ease-in-out;
-              "
-              onfocus="this.style.boxShadow='0 0 10px 3px rgba(255, 0, 0, 0.8)'"
-              onblur="this.style.boxShadow='0 0 5px rgba(255, 255, 255, 0.6)'"
-            />
-            <button
-              class="btn btn-danger shadow"
-              style="
-                border-radius: 0 25px 25px 0;
-                box-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
-                transition: box-shadow 0.3s ease-in-out;
-              "
-              onmouseover="this.style.boxShadow='0 0 10px 3px rgba(255, 0, 0, 0.8)'"
-              onmouseout="this.style.boxShadow='0 0 5px rgba(255, 0, 0, 0.8)'"
-            >
-              <i class="bi bi-search"></i>
-            </button>
-          </div>
-        </div>
-      
-      
-      
     </header>
 
     <div *ngFor="let category of categories" style="font-family: 'Montserrat';">
- 
-      <h3 class="text-center text-uppercase text-danger mt-3" style="font-family: 'Roboto';">{{ category.name }}</h3>
+      <h3 class="text-center text-uppercase text-danger mt-3" style="font-family: 'Roboto';">
+        {{ category.name }}
+      </h3>
       <div class="row justify-content-center">
-
         <div
           class="col-lg-3 col-md-4 col-sm-6 col-12 mt-4"
           *ngFor="let item of category.items"
         >
-          <div class="card shadow-lg" style="height: 100%; max-width: 30rem;">
-            <div class="position-relative">
-              <img
-                [src]="item.images[0]"
-                class="card-img-top rounded-top"
-                alt="{{ item.name }}"
-                style="height: 12rem; object-fit: cover;"
-              />
-              <div class="stock-status position-absolute top-0 end-0 p-2">
-                <i
-                  class="bi"
-                  [ngClass]="{
-                    'bi-check-circle-fill text-success': item.availableCopies > 0,
-                    'bi-x-circle-fill text-danger': item.availableCopies === 0
-                  }"
-                  style="font-size: 1.5rem;"
-                ></i>
-              </div>
+          <div class="movie-card position-relative overflow-hidden shadow-lg">
+            <img
+              [src]="item.images[0]"
+              class="movie-image"
+              alt="{{ item.name }}"
+            />
+            <div class="movie-title bg-danger">
+              {{ item.name }}
             </div>
-            <div
-              class="card-body text-center bg-success-subtle"
-              style="height: 100%; max-width: 30rem;"
-            >
-              <h5 class="card-title text-truncate">{{ item.name }}</h5>
-              <p class="card-text text-muted small mb-1">{{ item.genre }}</p>
-              <div class="rating">
-                <i class="fa-solid fa-star text-warning"></i>
-                <span class="text-secondary small">({{ item.rating }})</span>
-              </div>
-              <p class="fw-bold text-success">
+            <div class="movie-details text-center text-light d-flex flex-column justify-content-center">
+              <p class="mb-1 text-muted">{{ item.genre }}</p>
+              <p class="fw-bold text-success mb-2">
                 Price: {{ item.price | currency: 'USD' }}
               </p>
-              <div class="d-flex flex-column align-items-center gap-2">
-                <button
-                  type="button"
-                  *ngIf="selectedMovie?.availableCopies > 0"
-                  [routerLink]="'/login'"
-                  class="btn btn-danger px-2 py-1 shadow-sm rounded-pill"
-                  style="font-size: 0.85rem;"
-                >
-                  <i class="fa-solid fa-sign-in-alt me-2"></i> Sign In to Rent
-                </button>
-                <button
-                  class="btn btn-outline-dark btn-sm px-3 py-2 shadow-sm rounded"
-                  data-bs-toggle="modal"
-                  data-bs-target="#viewMoreModal"
-                  (click)="selectedMovie = item"
-                  style="font-size: 0.85rem;"
-                >
-                  <i class="fa-solid fa-info-circle me-2"></i> View More
-                </button>
-              </div>
-              
-              
+              <button
+                class="btn btn-danger btn-sm mb-1"
+                *ngIf="item.availableCopies > 0"
+                [routerLink]="'/login'"
+              >
+                Rent Now
+              </button>
+              <button
+                class="btn btn-outline-light btn-sm"
+                data-bs-toggle="modal"
+                data-bs-target="#viewMoreModal"
+                (click)="selectedMovie = item"
+              >
+                View More
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
+    
+  
     <!-- Modal for Viewing More Details -->
 <div class="modal fade" id="viewMoreModal" tabindex="-1" aria-labelledby="viewMoreModalLabel" aria-hidden="true" style="font-family: 'Poppins';">
   <div class="modal-dialog modal-lg">
