@@ -7,6 +7,78 @@
   --nav-height: 60px;
   --space-top: 30px;
 }
+/* General Styles for About Us and Contact Us */
+#about-us, #contact-us {
+  background-color: #333; /* Dark background for both sections */
+  color: #fff;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+#about-us h2, #contact-us h2 {
+  color: #c0392b; /* Red text for headings */
+  font-weight: bold;
+}
+
+#about-us h4, #contact-us h4 {
+  color: #fff;
+  font-weight: bold;
+}
+
+#about-us p, #contact-us p {
+  color: #ccc; /* Light text color for general paragraphs */
+}
+
+#about-us .col-md-6, #contact-us .col-md-6 {
+  margin-bottom: 30px;
+}
+
+#about-us .list-unstyled li, #contact-us .list-unstyled li {
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+#contact-us .form-control {
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid #555;
+  background-color: #444;
+  color: #fff;
+}
+
+#contact-us .form-control:focus {
+  border-color: #c0392b;
+  background-color: #555;
+  color: #fff;
+}
+
+#contact-us .btn-custom {
+  background-color: #c0392b;
+  color: #fff;
+  border-radius: 8px;
+  padding: 12px 20px;
+  border: none;
+}
+
+#contact-us .btn-custom:hover {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+#contact-us i, #about-us i {
+  color: #c0392b;
+  margin-right: 10px;
+}
+
+@media (max-width: 767px) {
+  #about-us h2, #contact-us h2 {
+      font-size: 1.8rem;
+  }
+
+  #about-us .col-md-6, #contact-us .col-md-6 {
+      margin-bottom: 30px;
+  }
+}
 
 
 

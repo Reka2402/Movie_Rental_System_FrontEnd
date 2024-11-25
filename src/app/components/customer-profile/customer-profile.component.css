@@ -73,4 +73,29 @@
     border-bottom: 1px solid #555;
     padding: 5px 0;
   }
+  /* Styling for the modal */
+.modal-content {
+  border-radius: 10px;
+  background-color: #222; /* Darker background color for content */
+}
+
+.modal-header {
+  border-bottom: 1px solid #444; /* Subtle border for the header */
+}
+
+.profile-info p {
+  font-size: 1.1rem;  /* Slightly larger text for better readability */
+}
+
+.profile-info p strong {
+  color: #c0392b;  /* Red color for labels */
+}
+
+.btn-close {
+  background-color: #444;  /* Dark close button */
+}
+
+.btn-close:hover {
+  background-color: #c0392b; /* Red close button on hover */
+}
   

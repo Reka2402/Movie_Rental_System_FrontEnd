@@ -1,16 +1,34 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { Customer, CustomerService } from '../../services/customer.service';
-
+declare var bootstrap: any;
 @Component({
   selector: 'app-customer-profile',
   templateUrl: './customer-profile.component.html',
   styleUrl: './customer-profile.component.css'
 })
-export class CustomerProfileComponent {
+export class CustomerProfileComponent  {
   selectedMovie: any = null;
   customerId: number = 1; 
- 
-  rentalDays: number = 1; 
+   rentalDays: number = 1; 
+   @ViewChild('profileModal') profileModal!: ElementRef;
+
+  customer = {
+    name: 'John Doe',
+    email: 'john.doe@example.com',
+    phone: '+123456789',
+    address: '123 Street Name, City',
+    rentalHistory: [
+      { title: 'Movie A', rentedOn: '2024-11-01', returnedOn: '2024-11-03' },
+      { title: 'Movie B', rentedOn: '2024-11-05', returnedOn: '2024-11-10' },
+      { title: 'Movie C', rentedOn: '2024-11-12', returnedOn: '2024-11-15' }
+    ]
+  };
+
+  openProfileModal(): void {
+    const modalElement = this.profileModal.nativeElement;
+    const bootstrapModal = new bootstrap.Modal(modalElement);
+    bootstrapModal.show();
+  }
   categories = [
     {
       name: 'Movies',
@@ -397,33 +415,10 @@ export class CustomerProfileComponent {
     this.movie.emit(movie);
   }
 
-  selectedCustomer: Customer | null = null;
 
-  constructor(private customerService: CustomerService) {}
+  
 
-  openProfileModal(customerId: number): void {
-    this.customerService.getCustomerDetails(customerId).subscribe((data) => {
-      this.selectedCustomer = data;
-      this.populateModalData();
-    });
-  }
+ 
 
-  populateModalData(): void {
-    if (this.selectedCustomer) {
-      document.getElementById('profilePicture')!.setAttribute('src', this.selectedCustomer.profilePicture);
-      document.getElementById('customerName')!.textContent = this.selectedCustomer.name;
-      document.getElementById('customerEmail')!.textContent = this.selectedCustomer.email;
-      document.getElementById('customerPhone')!.textContent = this.selectedCustomer.phone;
-      document.getElementById('customerAddress')!.textContent = this.selectedCustomer.address;
-
-      const rentalHistoryList = document.getElementById('rentalHistoryList')!;
-      rentalHistoryList.innerHTML = '';
-      this.selectedCustomer.rentalHistory.forEach((rental) => {
-        const li = document.createElement('li');
-        li.textContent = `${rental.title} (Rented on ${rental.date})`;
-        rentalHistoryList.appendChild(li);
-      });
-    }
-  }
   
 }

@@ -18,17 +18,18 @@ import { authManagerGuard } from './Guard/auth-manager.guard';
 
 
 const routes: Routes = [
-  { path: 'login' , component: LoginComponent},
+{ path: 'login' , component: LoginComponent},
   { path: 'register',component:RegisterComponent},
 
   {path:'movies',component:CollectionsComponent},
   {path:'customer',component:CustomerProfileComponent},
+  {path:'customer/:id',component:CustomerProfileComponent},
  
 
 
-  {
+  {  
     path: 'manager', 
-    canActivate:[authManagerGuard],
+    // canActivate:[authManagerGuard],
     component: ManagerDashboardComponent,
     children: [
       { path: 'home', component:SummaryViewComponent },
@@ -41,7 +42,7 @@ const routes: Routes = [
   },
   {
     path: 'customer', 
-    component: CustomerProfileComponent,
+    // component: CustomerProfileComponent,
     
     children: [
       { path: 'home', component:SummaryViewComponent },
