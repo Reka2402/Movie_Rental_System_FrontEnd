@@ -9,8 +9,81 @@ declare var bootstrap: any;
 export class CustomerProfileComponent  {
   selectedMovie: any = null;
   customerId: number = 1; 
-   rentalDays: number = 1; 
+  showHistory = false;
+  isSignedIn = true;
+   
    @ViewChild('profileModal') profileModal!: ElementRef;
+   rentalHistory: any[] = [];
+  
+   isCustomerSignedIn = false; // Set to true if logged in
+   rentalDays: number | null = null;
+    rentMovie(movie: any) {
+    if (!this.isSignedIn) {
+      alert('Please sign in to rent a movie.');
+      return;
+    }
+
+    if (movie.availableCopies <= 0) {
+      alert('This DVD is not available.');
+      return;
+    }
+
+    // Example condition: Check if rental days are selected
+    const rentalDays = prompt('Enter rental days (e.g., 1, 3, 7):');
+    if (!rentalDays || +rentalDays <= 0) {
+      alert('Please select valid rental days.');
+      return;
+    }
+
+    // Update movie status
+    movie.rentPending = true;
+
+    // Add to rental history
+    this.rentalHistory.push({
+      name: movie.name,
+      status: 'Pending',
+      rentalDays: rentalDays,
+    });
+
+    // Toast message
+    alert('Wait for the confirmation of your rental and collect your DVD.');
+  }
+  //  rentMovie(item: any): void {
+  //   if (!this.isCustomerSignedIn) {
+  //     alert('Please sign in to rent a movie.');
+  //     return;
+  //   }
+  //   if (item.availableCopies <= 0) {
+  //     alert('This DVD is not available.');
+  //     return;
+  //   }
+  //   if (!this.rentalDays) {
+  //     alert('Please select rental days.');
+  //     return;
+  //   }
+
+  //   // Update item state to pending
+  //   item.pending = true;
+
+  //   // Add to rental history
+  //   this.rentalHistory.push({
+  //     ...item,
+  //     status: 'Pending',
+  //   });
+
+  //   // Show toaster message
+  //   alert('Wait for confirmation of your rental and collect your DVD.');
+  // }
+
+  viewRentalHistory(): void {
+    // This can include logic for navigating or displaying the rental history tab
+    console.log('Rental History:', this.rentalHistory);
+  }
+  showRentalHistory() {
+    this.showHistory = true;
+  }
+
+ 
 
   customer = {
     name: 'John Doe',
@@ -30,6 +103,93 @@ export class CustomerProfileComponent  {
     bootstrapModal.show();
   }
   categories = [
+  
+    {
+      name: 'Series',
+      items: [
+        {
+          id: 1,
+          name: 'The 100',
+          genre: 'Drama, Sci-Fi, Adventure',
+          releaseDate: '2014-03-19',
+          review: 4.5,
+          availableCopies: 30,
+          description: '100 juvenile delinquents are sent to Earth to see if it is habitable.',
+          director: 'Jason Rothenberg',
+          rating: 4.5,
+          price: 22.99,
+          cast: [{ id: 1, name: 'Eliza Taylor' }],
+          images: ['/series/the 100.jpg'],
+          pending: false,
+          rentPending: false,
+        },
+        {
+          id: 2,
+          name: 'Stranger Things',
+          genre: 'Sci-Fi, Horror, Thriller',
+          releaseDate: '2016-07-15',
+          review: 4.5,
+          availableCopies: 30,
+          description: 'Supernatural occurrences in a small town. A group of kids discover the mysteries behind their town.',
+          director: 'The Duffer Brothers',
+          rating: 4.5,
+          price: 15.99,
+          cast: [
+            { id: 1, name: 'Winona Ryder' },
+            { id: 2, name: 'David Harbour' },
+            { id: 3, name: 'Finn Wolfhard' },
+          ],
+          images: ['/series/stranger-thing.jpg'],
+          pending: false,
+          rentPending: false,
+        },
+        {
+          id: 3,
+          name: 'Money Heist',
+          genre: 'Crime, Thriller',
+          releaseDate: '2017-05-02',
+          review: 4.7,
+          availableCopies: 25,
+          description: 'A criminal mastermind plans the biggest heist in recorded history.',
+          director: 'Álex Pina',
+          rating: 4.7,
+          price: 16.99,
+          cast: [{ id: 1, name: 'Álvaro Morte' }, { id: 2, name: 'Úrsula Corberó' }],
+          images: ['/movies/movie 20.png'],
+        },
+        {
+          id: 4,
+          name: 'Hunger Games',
+          genre: 'Action, Drama, Sci-Fi',
+          releaseDate: '2012-03-23',
+          review: 4.6,
+          availableCopies: 25,
+          description: 'Katniss Everdeen fights for survival in a deadly televised competition.',
+          director: 'Gary Ross',
+          rating: 4.6,
+          price: 21.99,
+          cast: [{ id: 1, name: 'Jennifer Lawrence' }],
+          images: ['/series/Hungergames.jpg'],
+          pending: false,
+          rentPending: false,
+        },
+        // {
+        //   id: 5,
+        //   name: 'Wednesday',
+        //   genre: 'Comedy, Horror',
+        //   releaseDate: '2022-11-23',
+        //   review: 4.8,
+        //   availableCopies: 35,
+        //   description: 'Wednesday Addams investigates mysteries at Nevermore Academy.',
+        //   director: 'Tim Burton',
+        //   rating: 4.8,
+        //   price: 23.99,
+        //   cast: [{ id: 1, name: 'Jenna Ortega' }],
+        //   images: ['/series/wednesday.jpg'],
+        // },
+        
+      ],
+    },
     {
       name: 'Movies',
       items: [
@@ -50,10 +210,9 @@ export class CustomerProfileComponent  {
             { id: 3, name: 'Jessica Chastain' },
             { id: 4, name: 'Michael Caine' }
           ],
-          images: ['/movies/movie 39.webp',
-
-
-          ],
+          images: ['/movies/movie 39.webp'],
+          pending: false,
+            rentPending: false,
         },
         // {
         //   id: 2,
@@ -87,6 +246,8 @@ export class CustomerProfileComponent  {
             { id: 3, name: 'Gerard Butler' }
           ],
           images: ['/movies/movie 34.jpg'],
+          pending: false,
+          rentPending: false,
         
       },
         {
@@ -102,6 +263,8 @@ export class CustomerProfileComponent  {
           price: 16.99,
           cast: [{ id: 1, name: 'Gal Gadot' }, { id: 2, name: 'Kenneth Branagh' }],
           images: ['/movies/movie 12.png'],
+          pending : false,
+          rentPending : false
         },
         {
           id: 2,
@@ -116,6 +279,8 @@ export class CustomerProfileComponent  {
           price: 12.99,
           cast: [{ id: 1, name: 'Barbara Loden' }],
           images: ['/series/wanda.png'],
+          pending: false,
+          rentPending: false
         },
         // {
         //   id: 5,
@@ -133,244 +298,164 @@ export class CustomerProfileComponent  {
         // },
       ],
     },
-    {
-      name: 'Series',
-      items: [
-        {
-          id: 1,
-          name: 'The 100',
-          genre: 'Drama, Sci-Fi, Adventure',
-          releaseDate: '2014-03-19',
-          review: 4.5,
-          availableCopies: 30,
-          description: '100 juvenile delinquents are sent to Earth to see if it is habitable.',
-          director: 'Jason Rothenberg',
-          rating: 4.5,
-          price: 22.99,
-          cast: [{ id: 1, name: 'Eliza Taylor' }],
-          images: ['/series/the 100.jpg'],
-        },
-        {
-          id: 2,
-          name: 'Stranger Things',
-          genre: 'Sci-Fi, Horror, Thriller',
-          releaseDate: '2016-07-15',
-          review: 4.5,
-          availableCopies: 30,
-          description: 'Supernatural occurrences in a small town. A group of kids discover the mysteries behind their town.',
-          director: 'The Duffer Brothers',
-          rating: 4.5,
-          price: 15.99,
-          cast: [
-            { id: 1, name: 'Winona Ryder' },
-            { id: 2, name: 'David Harbour' },
-            { id: 3, name: 'Finn Wolfhard' },
-          ],
-          images: ['/series/stranger-thing.jpg'],
-        },
-        {
-          id: 3,
-          name: 'Money Heist',
-          genre: 'Crime, Thriller',
-          releaseDate: '2017-05-02',
-          review: 4.7,
-          availableCopies: 25,
-          description: 'A criminal mastermind plans the biggest heist in recorded history.',
-          director: 'Álex Pina',
-          rating: 4.7,
-          price: 16.99,
-          cast: [{ id: 1, name: 'Álvaro Morte' }, { id: 2, name: 'Úrsula Corberó' }],
-          images: ['/movies/movie 20.png'],
-        },
-        {
-          id: 4,
-          name: 'Hunger Games',
-          genre: 'Action, Drama, Sci-Fi',
-          releaseDate: '2012-03-23',
-          review: 4.6,
-          availableCopies: 25,
-          description: 'Katniss Everdeen fights for survival in a deadly televised competition.',
-          director: 'Gary Ross',
-          rating: 4.6,
-          price: 21.99,
-          cast: [{ id: 1, name: 'Jennifer Lawrence' }],
-          images: ['/series/Hungergames.jpg'],
-        },
-        // {
-        //   id: 5,
-        //   name: 'Wednesday',
-        //   genre: 'Comedy, Horror',
-        //   releaseDate: '2022-11-23',
-        //   review: 4.8,
-        //   availableCopies: 35,
-        //   description: 'Wednesday Addams investigates mysteries at Nevermore Academy.',
-        //   director: 'Tim Burton',
-        //   rating: 4.8,
-        //   price: 23.99,
-        //   cast: [{ id: 1, name: 'Jenna Ortega' }],
-        //   images: ['/series/wednesday.jpg'],
-        // },
-        
-      ],
-    },
-    {
-      name: 'Cartoons',
-      items: [
-        {
-          id: 1,
-          name: 'Frozen 2',
-          genre: 'Animation, Adventure, Musical',
-          releaseDate: '2019-11-22',
-          review: 4.5,
-          availableCopies: 35,
-          description: 'Elsa and Anna venture into the unknown to uncover the source of Elsa’s powers and save their kingdom.',
-          director: 'Chris Buck, Jennifer Lee',
-          rating: 4.5,
-          price: 16.99,
-          cast: [
-            { id: 1, name: 'Kristen Bell' },
-            { id: 2, name: 'Idina Menzel' },
-            { id: 3, name: 'Josh Gad' },
-          ],
-          images: ['/series/frozen 2.jpg'],
-        },
-        {
-          id: 6,
-          name: 'Moana 2',
-          genre: 'Animation, Adventure, Comedy',
-          releaseDate: '2024-11-15',
-          review: 4.7,
-          availableCopies: 0,
-          description: 'Moana continues her journey of self-discovery, facing new challenges and exploring uncharted waters.',
-          director: 'John Musker, Ron Clements',
-          rating: 4.7,
-          price: 18.99,
-          cast: [
-            { id: 1, name: 'Auliʻi Cravalho' },
-            { id: 2, name: 'Dwayne Johnson' },
-          ],
-          images: ['/movies/movie 4.jpg'],
-        },
-        {
-          id: 13,
-          name: 'Coco',
-          genre: 'Animation, Adventure, Family',
-          releaseDate: '2017-11-22',
-          review: 4.9,
-          availableCopies: 35,
-          description: 'A boy journeys to the Land of the Dead to find his great-great-grandfather.',
-          director: 'Lee Unkrich, Adrian Molina',
-          rating: 4.9,
-          price: 16.99,
-          cast: [{ id: 1, name: 'Anthony Gonzalez' }],
-          images: ['/cartoons/coco.jpg'],
-        },
-        {
-          id: 14,
-          name: 'The Croods',
-          genre: 'Animation, Adventure, Comedy',
-          releaseDate: '2013-03-22',
-          review: 4.5,
-          availableCopies: 30,
-          description: 'A prehistoric family embarks on a journey to find a new home.',
-          director: 'Kirk DeMicco, Chris Sanders',
-          rating: 4.5,
-          price: 14.99,
-          cast: [{ id: 1, name: 'Nicolas Cage' }],
-          images: ['/cartoons/croods.jpg'],
-        },
-        // {
-        //   id: 15,
-        //   name: 'Tangled',
-        //   genre: 'Animation, Adventure, Comedy',
-        //   releaseDate: '2010-11-24',
-        //   review: 4.7,
-        //   availableCopies: 40,
-        //   description: 'Rapunzel escapes her tower with the help of a charming thief.',
-        //   director: 'Nathan Greno, Byron Howard',
-        //   rating: 4.7,
-        //   price: 15.99,
-        //   cast: [{ id: 1, name: 'Mandy Moore' }],
-        //   images: ['/cartoons/tangled.jpg'],
-        // },
-      ],
-    },
-    {
+    // {
+    //   name: 'Cartoons',
+    //   items: [
+    //     {
+    //       id: 1,
+    //       name: 'Frozen 2',
+    //       genre: 'Animation, Adventure, Musical',
+    //       releaseDate: '2019-11-22',
+    //       review: 4.5,
+    //       availableCopies: 35,
+    //       description: 'Elsa and Anna venture into the unknown to uncover the source of Elsa’s powers and save their kingdom.',
+    //       director: 'Chris Buck, Jennifer Lee',
+    //       rating: 4.5,
+    //       price: 16.99,
+    //       cast: [
+    //         { id: 1, name: 'Kristen Bell' },
+    //         { id: 2, name: 'Idina Menzel' },
+    //         { id: 3, name: 'Josh Gad' },
+    //       ],
+    //       images: ['/series/frozen 2.jpg'],
+    //     },
+    //     {
+    //       id: 6,
+    //       name: 'Moana 2',
+    //       genre: 'Animation, Adventure, Comedy',
+    //       releaseDate: '2024-11-15',
+    //       review: 4.7,
+    //       availableCopies: 0,
+    //       description: 'Moana continues her journey of self-discovery, facing new challenges and exploring uncharted waters.',
+    //       director: 'John Musker, Ron Clements',
+    //       rating: 4.7,
+    //       price: 18.99,
+    //       cast: [
+    //         { id: 1, name: 'Auliʻi Cravalho' },
+    //         { id: 2, name: 'Dwayne Johnson' },
+    //       ],
+    //       images: ['/movies/movie 4.jpg'],
+    //     },
+    //     {
+    //       id: 13,
+    //       name: 'Coco',
+    //       genre: 'Animation, Adventure, Family',
+    //       releaseDate: '2017-11-22',
+    //       review: 4.9,
+    //       availableCopies: 35,
+    //       description: 'A boy journeys to the Land of the Dead to find his great-great-grandfather.',
+    //       director: 'Lee Unkrich, Adrian Molina',
+    //       rating: 4.9,
+    //       price: 16.99,
+    //       cast: [{ id: 1, name: 'Anthony Gonzalez' }],
+    //       images: ['/cartoons/coco.jpg'],
+    //     },
+    //     {
+    //       id: 14,
+    //       name: 'The Croods',
+    //       genre: 'Animation, Adventure, Comedy',
+    //       releaseDate: '2013-03-22',
+    //       review: 4.5,
+    //       availableCopies: 30,
+    //       description: 'A prehistoric family embarks on a journey to find a new home.',
+    //       director: 'Kirk DeMicco, Chris Sanders',
+    //       rating: 4.5,
+    //       price: 14.99,
+    //       cast: [{ id: 1, name: 'Nicolas Cage' }],
+    //       images: ['/cartoons/croods.jpg'],
+    //     },
+    //     // {
+    //     //   id: 15,
+    //     //   name: 'Tangled',
+    //     //   genre: 'Animation, Adventure, Comedy',
+    //     //   releaseDate: '2010-11-24',
+    //     //   review: 4.7,
+    //     //   availableCopies: 40,
+    //     //   description: 'Rapunzel escapes her tower with the help of a charming thief.',
+    //     //   director: 'Nathan Greno, Byron Howard',
+    //     //   rating: 4.7,
+    //     //   price: 15.99,
+    //     //   cast: [{ id: 1, name: 'Mandy Moore' }],
+    //     //   images: ['/cartoons/tangled.jpg'],
+    //     // },
+    //   ],
+    // },
+    // {
 
-      name: 'Anime',
-      items: [
-        {
-          id: 7,
-          name: 'Demon Slayer',
-          genre: 'Action, Fantasy, Anime',
-          releaseDate: '2019-04-06',
-          review: 4.9,
-          availableCopies: 40,
-          description: 'A young boy becomes a demon slayer to save his sister and avenge his family.',
-          director: 'Haruo Sotozaki',
-          rating: 4.9,
-          price: 19.99,
-          cast: [{ id: 1, name: 'Natsuki Hanae' }],
-          images: ['/cartoons/demon-slayer.jpg'],
-        },
-        {
-          id: 8,
-          name: 'Naruto',
-          genre: 'Action, Adventure, Anime',
-          releaseDate: '2002-10-03',
-          review: 4.8,
-          availableCopies: 50,
-          description: 'The story of Naruto Uzumaki, a young ninja striving to be the best and earn respect.',
-          director: 'Masashi Kishimoto',
-          rating: 4.8,
-          price: 17.99,
-          cast: [{ id: 1, name: 'Junko Takeuchi' }],
-          images: ['/cartoons/naruto.jpeg'],
-        },
-        {
-          id: 17,
-          name: 'Over the Moon',
-          genre: 'Animation, Family, Adventure',
-          releaseDate: '2020-10-23',
-          review: 4.6,
-          availableCopies: 25,
-          description: 'A girl builds a rocket to meet a mythical moon goddess.',
-          director: 'Glen Keane',
-          rating: 4.6,
-          price: 13.99,
-          cast: [{ id: 1, name: 'Cathy Ang' }],
-          images: ['/cartoons/over-the-moon.jpg'],
-        },
-        {
-          id: 18,
-          name: 'Dragon Ball Z',
-          genre: 'Action, Adventure, Anime',
-          releaseDate: '1989-04-26',
-          review: 4.8,
-          availableCopies: 50,
-          description: 'Goku and his friends defend the Earth from powerful foes.',
-          director: 'Daisuke Nishio',
-          rating: 4.8,
-          price: 17.99,
-          cast: [{ id: 1, name: 'Masako Nozawa' }],
-          images: ['/cartoons/dragon.jpg'],
-        },
-        // {
-        //   id: 20,
-        //   name: 'Attack on Titan',
-        //   genre: 'Action, Fantasy, Anime',
-        //   releaseDate: '2013-04-07',
-        //   review: 4.9,
-        //   availableCopies: 35,
-        //   description: 'Humanity fights for survival against monstrous Titans.',
-        //   director: 'Tetsurō Araki',
-        //   rating: 4.9,
-        //   price: 18.99,
-        //   cast: [{ id: 1, name: 'Yūki Kaji' }],
-        //   images: ['/anime/attackontitan.jpg'],
-        // },
-      ],
-    },
+    //   name: 'Anime',
+    //   items: [
+    //     {
+    //       id: 7,
+    //       name: 'Demon Slayer',
+    //       genre: 'Action, Fantasy, Anime',
+    //       releaseDate: '2019-04-06',
+    //       review: 4.9,
+    //       availableCopies: 40,
+    //       description: 'A young boy becomes a demon slayer to save his sister and avenge his family.',
+    //       director: 'Haruo Sotozaki',
+    //       rating: 4.9,
+    //       price: 19.99,
+    //       cast: [{ id: 1, name: 'Natsuki Hanae' }],
+    //       images: ['/cartoons/demon-slayer.jpg'],
+    //     },
+    //     {
+    //       id: 8,
+    //       name: 'Naruto',
+    //       genre: 'Action, Adventure, Anime',
+    //       releaseDate: '2002-10-03',
+    //       review: 4.8,
+    //       availableCopies: 50,
+    //       description: 'The story of Naruto Uzumaki, a young ninja striving to be the best and earn respect.',
+    //       director: 'Masashi Kishimoto',
+    //       rating: 4.8,
+    //       price: 17.99,
+    //       cast: [{ id: 1, name: 'Junko Takeuchi' }],
+    //       images: ['/cartoons/naruto.jpeg'],
+    //     },
+    //     {
+    //       id: 17,
+    //       name: 'Over the Moon',
+    //       genre: 'Animation, Family, Adventure',
+    //       releaseDate: '2020-10-23',
+    //       review: 4.6,
+    //       availableCopies: 25,
+    //       description: 'A girl builds a rocket to meet a mythical moon goddess.',
+    //       director: 'Glen Keane',
+    //       rating: 4.6,
+    //       price: 13.99,
+    //       cast: [{ id: 1, name: 'Cathy Ang' }],
+    //       images: ['/cartoons/over-the-moon.jpg'],
+    //     },
+    //     {
+    //       id: 18,
+    //       name: 'Dragon Ball Z',
+    //       genre: 'Action, Adventure, Anime',
+    //       releaseDate: '1989-04-26',
+    //       review: 4.8,
+    //       availableCopies: 50,
+    //       description: 'Goku and his friends defend the Earth from powerful foes.',
+    //       director: 'Daisuke Nishio',
+    //       rating: 4.8,
+    //       price: 17.99,
+    //       cast: [{ id: 1, name: 'Masako Nozawa' }],
+    //       images: ['/cartoons/dragon.jpg'],
+    //     },
+    //     // {
+    //     //   id: 20,
+    //     //   name: 'Attack on Titan',
+    //     //   genre: 'Action, Fantasy, Anime',
+    //     //   releaseDate: '2013-04-07',
+    //     //   review: 4.9,
+    //     //   availableCopies: 35,
+    //     //   description: 'Humanity fights for survival against monstrous Titans.',
+    //     //   director: 'Tetsurō Araki',
+    //     //   rating: 4.9,
+    //     //   price: 18.99,
+    //     //   cast: [{ id: 1, name: 'Yūki Kaji' }],
+    //     //   images: ['/anime/attackontitan.jpg'],
+    //     // },
+    //   ],
+    // },
   ];
 
 
@@ -379,12 +464,12 @@ export class CustomerProfileComponent  {
    
   }
 
-  calculateRentalCost() {
-    let costPerDay = 5; 
-    let totalCost = this.rentalDays * costPerDay;
-    console.log(`Total rental cost: $${totalCost}`);
+  // calculateRentalCost() {
+  //   let costPerDay = 5; 
+  //   let totalCost = this.rentalDays * costPerDay;
+  //   console.log(`Total rental cost: $${totalCost}`);
     
-  }
+  // }
 
 
 
@@ -408,6 +493,9 @@ export class CustomerProfileComponent  {
   //   console.log(`Added ${this.selectedMovie.name} to favorites`);
     
   // }
+  getStars(rating: number): number[] {
+    return Array(Math.round(rating)).fill(0);
+  }
   
   @Output() movie = new EventEmitter();
   

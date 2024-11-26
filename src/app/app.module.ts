@@ -23,7 +23,7 @@ import { ReportsComponent } from './components/ManagerDashboard/reports/reports.
 import { InventoryComponent } from './components/ManagerDashboard/inventory/inventory.component';
 import { CustomerProfileComponent } from './components/customer-profile/customer-profile.component';
 import { SummaryViewComponent } from './components/ManagerDashboard/summary-view/summary-view.component';
-
+//import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -56,6 +56,7 @@ import { SummaryViewComponent } from './components/ManagerDashboard/summary-view
     ReactiveFormsModule,
     BrowserAnimationsModule,
     RouterModule,
+   // AngularFontAwesomeModule
 
     
   

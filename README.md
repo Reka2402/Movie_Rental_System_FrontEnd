@@ -1,6 +1,7 @@
 # MovieRental
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.11.
+              //  "node_modules/font-awesome/css/font-awesome
 
 ## Development server
 

@@ -16,9 +16,8 @@
             <i class="bi bi-house fs-2"></i>
             <!-- <span class="d-block">Home</span> -->
           </a>
-          <a class="nav-link  text-white" href="#" title="Rental History">
+          <a class="nav-link text-white" href="#" title="Rental History" (click)="showRentalHistory()">
             <i class="bi bi-clock-history fs-2"></i>
-            <!-- <span class="d-block">History</span> -->
           </a>
           <a class="nav-link  text-white" href="#" title="Favorites">
             <i class="bi bi-heart fs-2"></i>
@@ -61,14 +60,25 @@
               <i class="bi bi-search"></i>
             </button>
           </div>
-          <img 
-  src="/icons'/avatar.png" 
-  class="rounded-circle ms-3" 
-  alt="Profile" 
-  width="40" 
-  (click)="openProfileModal()" 
-  aria-expanded="false"
-/>
+          <div class="d-flex align-items-center">
+            <div class="position-relative me-3">
+              <i class="bi bi-bell fs-5 text-white" style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Notifications"></i>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.4rem;">
+                3
+                <span class="visually-hidden">unread notifications</span>
+              </span>
+            </div>
+            <img 
+              src="/icons'/avatar.png" 
+              class="rounded-circle" 
+              alt="Profile" 
+              width="40" 
+              style="cursor: pointer;" 
+              (click)="openProfileModal()" 
+            />
+          </div>
+          
+
             
           
         </div>
@@ -80,60 +90,48 @@
         </div>
         <!-- Movie Collections -->
         <div *ngFor="let category of categories" style="font-family: 'Montserrat';">
-   
-          <h3 class="text-center text-uppercase text-danger mt-3" style="font-family: 'Roboto';">{{ category.name }}</h3>
+          <h3 class="text-center text-uppercase text-danger mt-3" style="font-family: 'Roboto';">
+            {{ category.name }}
+          </h3>
           <div class="row justify-content-center">
-    
             <div
               class="col-lg-3 col-md-4 col-sm-6 col-12 mt-4"
               *ngFor="let item of category.items"
             >
-              <div class="card shadow-lg" style="height: 100%; max-width: 30rem;">
-                <div class="position-relative">
-                  <img
-                    [src]="item.images[0]"
-                    class="card-img-top rounded-top"
-                    alt="{{ item.name }}"
-                    style="height: 12rem; object-fit: cover;"
-                  />
-                  <div class="stock-status position-absolute top-0 end-0 p-2">
-                    <i
-                      class="bi"
-                      [ngClass]="{
-                        'bi-check-circle-fill text-success': item.availableCopies > 0,
-                        'bi-x-circle-fill text-danger': item.availableCopies === 0
-                      }"
-                      style="font-size: 1.5rem;"
-                    ></i>
-                  </div>
+              <div class="movie-card position-relative overflow-hidden shadow-lg">
+                <img
+                  [src]="item.images[0]"
+                  class="movie-image"
+                  alt="{{ item.name }}"
+                />
+                <div class="movie-title bg-danger">
+                  {{ item.name }}
                 </div>
-                <div
-                  class="card-body text-center bg-success-subtle"
-                  style="height: 100%; max-width: 30rem;"
-                >
-                  <h5 class="card-title text-truncate">{{ item.name }}</h5>
-                  <p class="card-text text-muted small mb-1">{{ item.genre }}</p>
-                  <div class="rating">
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <span class="text-secondary small">({{ item.rating }})</span>
-                  </div>
-                  <p class="fw-bold text-success">
+                <div class="movie-details text-center text-light d-flex flex-column justify-content-center">
+                  <p class="mb-1 text-light">{{ item.genre }}</p>
+                  <p>
+                    <ng-container *ngFor="let star of getStars(selectedMovie?.rating)">
+                      <i class="bi bi-star-fill text-warning"></i>
+                    </ng-container>
+                  </p>
+                  <p class="fw-bold text-success mb-2">
                     Price: {{ item.price | currency: 'USD' }}
                   </p>
-                  <div class="d-flex flex-column align-items-center gap-2">
-                   
-                    <button
-                      class="btn btn-outline-dark btn-sm px-3 py-2 shadow-sm rounded"
-                      data-bs-toggle="modal"
-                      data-bs-target="#viewMoreModal"
-                      (click)="selectedMovie = item"
-                      style="font-size: 0.85rem;"
-                    >
-                      <i class="fa-solid fa-info-circle me-2"></i> View More
-                    </button>
-                  </div>
-                  
-                  
+                 <!-- <button
+                  class="btn btn-danger btn-sm mb-1"
+                  [disabled]="movie.rentPending"
+                  (click)="rentMovie(movie)"
+                >
+                  {{ movie.rentPending ? 'Pending' : 'Rent Now' }}
+                </button> -->
+                  <button
+                    class="btn btn-outline-light btn-sm"
+                    data-bs-toggle="modal"
+                    data-bs-target="#viewMoreModal"
+                    (click)="selectedMovie = item"
+                  >
+                    View More
+                  </button>
                 </div>
               </div>
             </div>
@@ -213,6 +211,79 @@
     </div>
   </div>
 </div>
+<div class="container-fluid p-0 bg-black text-white" style="height: max-content;">
+  <div class="row g-0">
+    <div class="col-lg-2 col-md-3 col-sm-4 col-12 bg-dark d-flex flex-column align-items-center py-5">
+      <nav class="nav flex-column w-20 text-center" style="height: 100vh; margin-top: 3rem;">
+        <a class="nav-link text-white" href="#" title="Rental History" (click)="viewRentalHistory()">
+          <i class="bi bi-clock-history fs-2"></i>
+        </a>
+      </nav>
+    </div>
+    <div class="col-xl-10 col-lg-10 col-md-9 col-sm-8 col-12">
+      <div *ngFor="let category of categories">
+        <h3 class="text-center text-uppercase text-danger mt-3">{{ category.name }}</h3>
+        <div class="row justify-content-center">
+          <div class="col-lg-3 col-md-4 col-sm-6 col-12 mt-4" *ngFor="let item of category.items">
+            <div class="movie-card position-relative overflow-hidden shadow-lg">
+              <img [src]="item.images[0]" class="movie-image" alt="{{ item.name }}" />
+              <div class="movie-title bg-danger">{{ item.name }}</div>
+              <div class="movie-details text-center text-light d-flex flex-column justify-content-center">
+                <p class="mb-1 text-light">{{ item.genre }}</p>
+                <p>
+                  <ng-container *ngFor="let star of getStars(item.rating)">
+                    <i class="bi bi-star-fill text-warning"></i>
+                  </ng-container>
+                </p>
+                <p class="fw-bold text-success mb-2">Price: {{ item.price | currency: 'USD' }}</p>
+                <button
+                  class="btn btn-danger btn-sm mb-1"
+                  *ngIf="item.availableCopies > 0 && !item.pending"
+                  (click)="rentMovie(item)"
+                >
+                  Rent Now
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  *ngIf="item.pending"
+                  disabled
+                >
+                  Pending
+                </button>
+                <button
+                  class="btn btn-outline-light btn-sm"
+                  data-bs-toggle="modal"
+                  data-bs-target="#viewMoreModal"
+                  (click)="selectedMovie = item"
+                >
+                  View More
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rental History -->
+      <div class="rental-history mt-5" *ngIf="rentalHistory.length > 0">
+        <h3 class="text-danger text-center">Rental History</h3>
+        <div class="row justify-content-center">
+          <div class="col-lg-3 col-md-4 col-sm-6 col-12 mt-4" *ngFor="let rental of rentalHistory">
+            <div class="movie-card position-relative overflow-hidden shadow-lg">
+              <img [src]="rental.images[0]" class="movie-image" alt="{{ rental.name }}" />
+              <div class="movie-title bg-danger">{{ rental.name }}</div>
+              <div class="movie-details text-center text-light">
+                <p>{{ rental.genre }}</p>
+                <p>Status: <span class="text-warning">{{ rental.status }}</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
        </div>

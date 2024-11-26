@@ -32,7 +32,12 @@
               {{ item.name }}
             </div>
             <div class="movie-details text-center text-light d-flex flex-column justify-content-center">
-              <p class="mb-1 text-muted">{{ item.genre }}</p>
+              <p class="mb-1 text-light">{{ item.genre }}</p>
+              <p>
+                <ng-container *ngFor="let star of getStars(selectedMovie?.rating)">
+                  <i class="bi bi-star-fill text-warning"></i>
+                </ng-container>
+              </p>
               <p class="fw-bold text-success mb-2">
                 Price: {{ item.price | currency: 'USD' }}
               </p>
@@ -76,7 +81,14 @@
             <p><strong>Release Date:</strong> {{ selectedMovie?.releaseDate | date }}</p>
             <p><strong>Director:</strong> {{ selectedMovie?.director }}</p>
             <p><strong>Cast:</strong> <span *ngFor="let actor of selectedMovie?.cast; let last = last">{{ actor.name }}<span *ngIf="!last">,</span></span></p>
-            <p><strong>Rating:</strong> {{ selectedMovie?.rating }} <i class="fa-solid fa-star text-warning"></i></p>
+          
+            <p>
+              <strong>Rating:</strong>
+              <ng-container *ngFor="let star of getStars(selectedMovie?.rating)">
+                <i class="bi bi-star-fill text-warning"></i>
+              </ng-container>
+            </p>
+            
             <p><strong>Description:</strong> {{ selectedMovie?.description }}</p>
             <p><strong>Price:</strong> {{ selectedMovie?.price | currency: 'USD' }}</p>
             <p><strong>Available Copies:</strong> {{ selectedMovie?.availableCopies }}</p>

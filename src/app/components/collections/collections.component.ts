@@ -347,7 +347,10 @@ export class CollectionsComponent {
       ],
     },
   ];
-
+  getStars(rating: number): number[] {
+    return Array(Math.round(rating)).fill(0);
+  }
+  
   setSelectedMovie(movie: any): void {
     this.selectedMovie = movie;
   }
