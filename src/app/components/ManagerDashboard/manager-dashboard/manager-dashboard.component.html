@@ -1,199 +1,81 @@
-<body>
-  <!-- Loding -->
-<div class="page-loader-wrapper">
-  <div class="loader">
-      <div class="m-t-30">
-          <img class="loading-img-spin" src="assets/images/loading.png" alt="admin">
-      </div>
-      <p>Please wait...</p>
-  </div>
-</div>
-<div class="overlay"></div>
-<!-- NavBar -->
-<nav class="navbar">
-  <div class="container-fluid">
-      <div class="navbar-header">
-          <a href="#" onClick="return false;" class="navbar-toggle collapsed" data-bs-toggle="collapse"
-              data-bs-target="#navbar-collapse" aria-expanded="false"></a>
-          <a href="#" onClick="return false;" class="bars"></a>
-          <a class="navbar-brand" href="index.html">
-              <img src="assets/images/logo.png" alt="" />
-              <span class="logo-name">AtrioHR</span>
+<div class="container-fluid p-0 bg-light text-dark" style="height: 100vh;">
+    <div class="row g-0">
+      <!-- Side Navbar -->
+      <div
+        class="col-xl-2 col-lg-3 col-md-4 col-12 bg-dark d-flex flex-column align-items-center py-4"
+        style="font-family: 'Poppins'; height: 100vh; justify-content: space-between; box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);"
+      >
+        <nav class="nav flex-column w-100 text-center text-white">
+          <a class="nav-link text-white py-2" [routerLink]="['/manager/home']">
+            <i class="bi bi-house fs-4"></i>
+            <span class="d-block">Home</span>
           </a>
+          <a class="nav-link text-white py-2" [routerLink]="['/manager/customers']">
+            <i class="bi bi-people fs-4"></i>
+            <span class="d-block">Customers</span>
+          </a>
+          <a class="nav-link text-white py-2" [routerLink]="['/manager/movies']">
+            <i class="bi bi-film fs-4"></i>
+            <span class="d-block">Movies</span>
+          </a>
+          <a class="nav-link text-white py-2" [routerLink]="['/manager/rentals']">
+            <i class="bi bi-clock-history fs-4"></i>
+            <span class="d-block">Rentals</span>
+          </a>
+          <a class="nav-link text-white py-2" [routerLink]="['/manager/inventory']">
+            <i class="bi bi-box-seam fs-4"></i>
+            <span class="d-block">Inventory</span>
+          </a>
+          <a class="nav-link text-white py-2" [routerLink]="['/manager/reports']">
+            <i class="bi bi-bar-chart fs-4"></i>
+            <span class="d-block">Reports</span>
+          </a>
+        </nav>
       </div>
-      <div class="collapse navbar-collapse" id="navbar-collapse">
-          <ul class="pull-left">
-              <li>
-                  <a href="#" onClick="return false;" class="sidemenu-collapse">
-                      <i data-feather="menu"></i>
-                  </a>
-              </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-              <!-- Full Screen Button -->
-              <li class="fullscreen">
-                  <a href="javascript:;" class="fullscreen-btn">
-                      <i class="fas fa-expand"></i>
-                  </a>
-              </li>
-              <!-- #END# Full Screen Button -->
-              <!-- #START# Notifications-->
-              <li class="dropdown">
-                  <a href="#" onClick="return false;" class="dropdown-toggle" data-bs-toggle="dropdown"
-                      role="button">
-                      <i class="far fa-bell"></i>
-                      <span class="notify"></span>
-                      <span class="heartbeat"></span>
-                  </a>
-                  <ul class="dropdown-menu pullDown">
-                      <li class="header">NOTIFICATIONS</li>
-                      <li class="body">
-                          <ul class="menu">
-                              <li>
-                                  <a href="#" onClick="return false;">
-                                      <span class="table-img msg-user">
-                                          <img src="assets/images/user/user1.jpg" alt="">
-                                      </span>
-                                      <span class="menu-info">
-                                          <span class="menu-title">Sarah Smith</span>
-                                          <span class="menu-desc">
-                                              <i class="material-icons">access_time</i> 14 mins ago
-                                          </span>
-                                          <span class="menu-desc">Please check your email.</span>
-                                      </span>
-                                  </a>
-                              </li>
-                              <li>
-                                  <a href="#" onClick="return false;">
-                                      <span class="table-img msg-user">
-                                          <img src="assets/images/user/user2.jpg" alt="">
-                                      </span>
-                                      <span class="menu-info">
-                                          <span class="menu-title">Airi Satou</span>
-                                          <span class="menu-desc">
-                                              <i class="material-icons">access_time</i> 22 mins ago
-                                          </span>
-                                          <span class="menu-desc">Please check your email.</span>
-                                      </span>
-                                  </a>
-                              </li>
-                              <li>
-                                  <a href="#" onClick="return false;">
-                                      <span class="table-img msg-user">
-                                          <img src="assets/images/user/user3.jpg" alt="">
-                                      </span>
-                                      <span class="menu-info">
-                                          <span class="menu-title">John Doe</span>
-                                          <span class="menu-desc">
-                                              <i class="material-icons">access_time</i> 3 hours ago
-                                          </span>
-                                          <span class="menu-desc">Please check your email.</span>
-                                      </span>
-                                  </a>
-                              </li>
-                              <li>
-                                  <a href="#" onClick="return false;">
-                                      <span class="table-img msg-user">
-                                          <img src="assets/images/user/user4.jpg" alt="">
-                                      </span>
-                                      <span class="menu-info">
-                                          <span class="menu-title">Ashton Cox</span>
-                                          <span class="menu-desc">
-                                              <i class="material-icons">access_time</i> 2 hours ago
-                                          </span>
-                                          <span class="menu-desc">Please check your email.</span>
-                                      </span>
-                                  </a>
-                              </li>
-                              <li>
-                                  <a href="#" onClick="return false;">
-                                      <span class="table-img msg-user">
-                                          <img src="assets/images/user/user5.jpg" alt="">
-                                      </span>
-                                      <span class="menu-info">
-                                          <span class="menu-title">Cara Stevens</span>
-                                          <span class="menu-desc">
-                                              <i class="material-icons">access_time</i> 4 hours ago
-                                          </span>
-                                          <span class="menu-desc">Please check your email.</span>
-                                      </span>
-                                  </a>
-                              </li>
-                              <li>
-                                  <a href="#" onClick="return false;">
-                                      <span class="table-img msg-user">
-                                          <img src="assets/images/user/user6.jpg" alt="">
-                                      </span>
-                                      <span class="menu-info">
-                                          <span class="menu-title">Charde Marshall</span>
-                                          <span class="menu-desc">
-                                              <i class="material-icons">access_time</i> 3 hours ago
-                                          </span>
-                                          <span class="menu-desc">Please check your email.</span>
-                                      </span>
-                                  </a>
-                              </li>
-                              <li>
-                                  <a href="#" onClick="return false;">
-                                      <span class="table-img msg-user">
-                                          <img src="assets/images/user/user7.jpg" alt="">
-                                      </span>
-                                      <span class="menu-info">
-                                          <span class="menu-title">John Doe</span>
-                                          <span class="menu-desc">
-                                              <i class="material-icons">access_time</i> Yesterday
-                                          </span>
-                                          <span class="menu-desc">Please check your email.</span>
-                                      </span>
-                                  </a>
-                              </li>
-                          </ul>
-                      </li>
-                      <li class="footer">
-                          <a href="#" onClick="return false;">View All Notifications</a>
-                      </li>
-                  </ul>
-              </li>
-              <!-- #END# Notifications-->
-              <li class="dropdown user_profile">
-                  <div class="dropdown-toggle" data-bs-toggle="dropdown">
-                      <img src="assets/images/user.jpg" alt="user">
-                  </div>
-                  <ul class="dropdown-menu pullDown">
-                      <li class="body">
-                          <ul class="user_dw_menu">
-                              <li>
-                                  <a href="#" onClick="return false;">
-                                      <i class="material-icons">person</i>Profile
-                                  </a>
-                              </li>
-                              <li>
-                                  <a href="#" onClick="return false;">
-                                      <i class="material-icons">feedback</i>Feedback
-                                  </a>
-                              </li>
-                              <li>
-                                  <a href="#" onClick="return false;">
-                                      <i class="material-icons">help</i>Help
-                                  </a>
-                              </li>
-                              <li>
-                                  <a href="#" onClick="return false;">
-                                      <i class="material-icons">power_settings_new</i>Logout
-                                  </a>
-                              </li>
-                          </ul>
-                      </li>
-                  </ul>
-              </li>
-              <!-- #END# Tasks -->
-              <li class="pull-right">
-                  <a href="#" onClick="return false;" class="js-right-sidebar" data-close="true">
-                      <i class="fas fa-cog"></i>
-                  </a>
-              </li>
-          </ul>
+  
+      <div class="col d-flex flex-column" style="height: 100vh; background-image: url(/Sliders/tv-series-bg.jpg);">
+  
+        <div
+          class="d-flex justify-content-between align-items-center px-4 py-3 border-bottom"
+          style="background-color: #ffffff; font-family: 'Roboto', sans-serif; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);"
+        >
+  
+          <a href="#" class="logo text-dark" style="font-size: 36px; font-weight: bold;">
+            <i class="bx bx-movie-play bx-tada text-danger"></i>
+            Fl<span class="text-danger">i</span>x
+          </a>
+          
+        
+          <div class="h5 text-dark">Welcome, Manager!</div>
+  
+  
+          <div class="d-flex align-items-center">
+            <i
+              class="bi bi-bell fs-4 me-3 text-danger"
+              style="cursor: pointer;"
+              title="Notifications"
+            ></i>
+            <div class="dropdown">
+              <img
+                src="/icons'/avatar.png"
+                class="rounded-circle"
+                alt="Profile"
+                width="40"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="cursor: pointer;"
+              />
+              <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="#">Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+  
+     
+        <router-outlet></router-outlet>
       </div>
+    </div>
   </div>
-</nav>
-</body>
+  

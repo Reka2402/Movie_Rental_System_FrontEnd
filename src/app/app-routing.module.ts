@@ -24,7 +24,6 @@ const routes: Routes = [
   {path:'movies',component:CollectionsComponent},
   {path:'customer',component:CustomerProfileComponent},
   {path:'customer/:id',component:CustomerProfileComponent},
- 
 
 
   {  
@@ -42,7 +41,7 @@ const routes: Routes = [
   },
   {
     path: 'customer', 
-    // component: CustomerProfileComponent,
+    component: CustomerProfileComponent,
     
     children: [
       { path: 'home', component:SummaryViewComponent },
