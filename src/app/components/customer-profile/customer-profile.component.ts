@@ -1,23 +1,34 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { Customer, CustomerService } from '../../services/customer.service';
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../../services/user.service';
+import { jwtDecode } from 'jwt-decode';
+
 declare var bootstrap: any;
 @Component({
   selector: 'app-customer-profile',
   templateUrl: './customer-profile.component.html',
   styleUrl: './customer-profile.component.css'
 })
-export class CustomerProfileComponent  {
+export class CustomerProfileComponent {
   selectedMovie: any = null;
-  customerId: number = 1; 
+  customerId: number = 1;
   showHistory = false;
   isSignedIn = true;
-   
-   @ViewChild('profileModal') profileModal!: ElementRef;
-   rentalHistory: any[] = [];
+  UID: string;
+  token: string = localStorage.getItem('token')!;
+  customer: any = jwtDecode(this.token);
+
+  constructor(private rout: ActivatedRoute,private userservice:UserService) {
+    this.UID = String(rout.snapshot.paramMap.get('Id'))
+  }
+
   
-   isCustomerSignedIn = false; // Set to true if logged in
-   rentalDays: number | null = null;
-    rentMovie(movie: any) {
+  @ViewChild('profileModal') profileModal!: ElementRef;
+  rentalHistory: any[] = [];
+
+  isCustomerSignedIn = false; // Set to true if logged in
+  rentalDays: number | null = null;
+  rentMovie(movie: any) {
     if (!this.isSignedIn) {
       alert('Please sign in to rent a movie.');
       return;
@@ -83,19 +94,7 @@ export class CustomerProfileComponent  {
     this.showHistory = true;
   }
 
- 
 
-  customer = {
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    phone: '+123456789',
-    address: '123 Street Name, City',
-    rentalHistory: [
-      { title: 'Movie A', rentedOn: '2024-11-01', returnedOn: '2024-11-03' },
-      { title: 'Movie B', rentedOn: '2024-11-05', returnedOn: '2024-11-10' },
-      { title: 'Movie C', rentedOn: '2024-11-12', returnedOn: '2024-11-15' }
-    ]
-  };
 
   openProfileModal(): void {
     const modalElement = this.profileModal.nativeElement;
@@ -103,7 +102,7 @@ export class CustomerProfileComponent  {
     bootstrapModal.show();
   }
   categories = [
-  
+
     {
       name: 'Series',
       items: [
@@ -187,7 +186,7 @@ export class CustomerProfileComponent  {
         //   cast: [{ id: 1, name: 'Jenna Ortega' }],
         //   images: ['/series/wednesday.jpg'],
         // },
-        
+
       ],
     },
     {
@@ -212,7 +211,7 @@ export class CustomerProfileComponent  {
           ],
           images: ['/movies/movie 39.webp'],
           pending: false,
-            rentPending: false,
+          rentPending: false,
         },
         // {
         //   id: 2,
@@ -229,7 +228,7 @@ export class CustomerProfileComponent  {
         //   images: ['/movies/movie 11.png'],
         // },
         {
-          
+
           id: 2,
           name: 'How to Train Your Dragon',
           genre: 'Adventure, Fantasy, Drama',
@@ -248,8 +247,8 @@ export class CustomerProfileComponent  {
           images: ['/movies/movie 34.jpg'],
           pending: false,
           rentPending: false,
-        
-      },
+
+        },
         {
           id: 4,
           name: 'Death on the Nile',
@@ -263,8 +262,8 @@ export class CustomerProfileComponent  {
           price: 16.99,
           cast: [{ id: 1, name: 'Gal Gadot' }, { id: 2, name: 'Kenneth Branagh' }],
           images: ['/movies/movie 12.png'],
-          pending : false,
-          rentPending : false
+          pending: false,
+          rentPending: false
         },
         {
           id: 2,
@@ -461,14 +460,14 @@ export class CustomerProfileComponent  {
 
   onRentalDaysChange() {
     console.log(`Selected rental days: ${this.rentalDays}`);
-   
+
   }
 
   // calculateRentalCost() {
   //   let costPerDay = 5; 
   //   let totalCost = this.rentalDays * costPerDay;
   //   console.log(`Total rental cost: $${totalCost}`);
-    
+
   // }
 
 
@@ -481,32 +480,32 @@ export class CustomerProfileComponent  {
   setSelectedMovie(movie: any): void {
     this.selectedMovie = movie;
   }
-  
-  
+
+
   // rentMovie() {
   //   console.log(`Renting movie: ${this.selectedMovie.name} for ${this.rentalDays} days`);
-    
+
   // }
-  
-  
+
+
   // addToFavorites() {
   //   console.log(`Added ${this.selectedMovie.name} to favorites`);
-    
+
   // }
   getStars(rating: number): number[] {
     return Array(Math.round(rating)).fill(0);
   }
-  
+
   @Output() movie = new EventEmitter();
-  
+
   AddMovie(movie: any) {
     this.movie.emit(movie);
   }
 
 
-  
 
- 
 
-  
+
+
+
 }

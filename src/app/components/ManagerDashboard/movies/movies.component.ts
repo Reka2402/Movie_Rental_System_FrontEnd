@@ -3,7 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import{ MovieService} from '../../../services/movie.service'
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Movie } from '../../Models/model';
+import { Movie, Movierequest } from '../../Models/model';
 
 
 @Component({
@@ -19,12 +19,13 @@ export class MoviesComponent implements OnInit {
   isAddMoviePopupOpen = false;
   
 
+  moviesadd: Movierequest[] = [];
   movies: Movie[] = [];
   constructor( private fb:FormBuilder, private movieService: MovieService ,private toastr: ToastrService, private router : Router) {
     this.movieForm = this.fb.group({
       movieName: ['', Validators.required],
       genreId: [null, Validators.required],
-      genreName: ['', Validators.required],
+      // genreName: ['', Validators.required],
       directorId: [null, Validators.required],
       directorName: ['', Validators.required],
       releaseDate: ['', Validators.required],
@@ -35,24 +36,27 @@ export class MoviesComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    this.loaddVD();
     this.movieService.getMovies().subscribe((data) => {
       this.movies = data;  
       console.log(this.movies);
       
     })
   }
-  onDelete(movieId: number) {
+  onDelete(movieId: string) {
     this.movieService.deleteMovie(movieId).subscribe(data => {
       alert("Movie deleted successfully.");
     })
   }
-  loadTasks() {
+  loaddVD() {
     this.movieService.getMovies().subscribe(data => {
       this.movies = data;
+      console.log(this.movies);
+      
     })
 
   }
-  onEdit(movieId: number) {
+  onEdit(movieId: string) {
     this.router.navigate(['/edit',movieId])
   }
 
@@ -72,6 +76,7 @@ export class MoviesComponent implements OnInit {
   openAddMoviePopup() {
     this.isAddMoviePopupOpen = true;
   }
+  
   
 
   

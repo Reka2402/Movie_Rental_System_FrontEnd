@@ -31,4 +31,27 @@
       overflow-x: auto;
     }
   }
+  .popup-overlay {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050; /* Ensure the popup appears above other elements */
+  }
+  
+  .popup-content {
+    position: relative;
+    max-width: 600px;
+    width: 100%;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
   

@@ -7,11 +7,12 @@ export interface Movie {
   price: number;
   description: string;
   imageUrl?: string; // Nullable string (optional in Angular)
-  genre?: Genre; // Assuming Genre is another interface
-  director?: Director; // Assuming Director is another interface
+  genre: Genre; // Assuming Genre is another interface
+  director: Director; // Assuming Director is another interface
   totalCopies: number;
 }
 export interface Movierequest {
+  id: string;
   movieName: string;
   genreId: number | null; 
   genreName: string | null; 
@@ -21,7 +22,7 @@ export interface Movierequest {
   price: number;
   description: string;
   imageUrl: string | null; // ImageUrl can be null in the backend
-  totalcopies: number;
+  // totalcopies: number;
 }
   export interface SignIn {
     email: string,
@@ -33,15 +34,15 @@ export interface Movierequest {
     password: string,
     role: number
   }
-  export interface Customer {
-    id: number;
-    name: string;
-    email: string;
-    phone: string;
-    address: string;
-    profilePicture: string;
-    rentalHistory: { title: string; date: string }[];
-  }
+  // export interface Customer {
+  //   id: number;
+  //   name: string;
+  //   email: string;
+  //   phone: string;
+  //   address: string;
+  //   profilePicture: string;
+  
+  // }
   
 
 export interface Genre {

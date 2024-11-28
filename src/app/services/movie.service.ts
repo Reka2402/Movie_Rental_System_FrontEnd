@@ -15,13 +15,15 @@ export class MovieService {
   createMovie(movie:Movierequest){
     return this.http.post('http://localhost:5273/api/Movie/AddDvd' , movie);
   }
-  deleteMovie(movieId:number){
+  deleteMovie(movieId:string){
     return this.http.delete('http://localhost:5057/api/Dvd' + movieId)
   }
-  getMovie(movieId:number){
-    return this.http.get<Movie>('http://localhost:5057/api/Dvd' + movieId)
+  getMovie(movieId:string
+
+  ){
+    return this.http.get<Movierequest>('http://localhost:5057/api/Dvd' + movieId)
   }
-  updateMovie(movie: Movie) {
+  updateMovie(movie: Movierequest) {
     return this.http.put('http://localhost:5057/api/Dvd' + movie.id, movie);
     
   }

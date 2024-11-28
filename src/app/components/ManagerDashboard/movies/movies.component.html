@@ -1,177 +1,182 @@
 <div class="container mt-5">
-    <div class="card shadow p-3 mb-5 bg-white rounded">
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <input
-          type="text"
-          class="form-control w-25"
-          placeholder="Search Movies..."
-          id="searchInput"
-          [(ngModel)]="searchText"
-        />
-        <button class="btn btn-danger btn-lg px-4" (click)="openAddMoviePopup()">+ Add Movie</button>
-      </div>
-      <div class="table-responsive">
-        <table class="table table-hover align-middle table-bordered">
-          <thead class="table-light">
-            <tr>
-              <th>Image</th>
-              <th>Movie</th>
-              <th>Genre</th>
-              <th>Director</th>
-              <th>Release Date</th>
-              <th>Price</th>
-              <th>Description</th>
-              <th>Total Copies</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let movie of movies">
-              <td>
-                <img *ngIf="movie.imageUrl" [src]="movie.imageUrl" alt="Movie Image" width="50" height="50"/>
-           
-                <img *ngIf="!movie.imageUrl" src="/movies/movie 1.jpg" alt="Default Image" width="50" height="50"/>
-              </td>
-              <!-- <td>{{ movie.movieName }}</td>
-              <td>{{ movie.genreName }}</td>
-              <td>{{ movie.directorName }}</td>
-              <td>{{ movie.releaseDate | date }}</td>
-              <td>{{ movie.price | currency }}</td>
-              <td>{{ movie.description }}</td>
-              <td>{{ movie.totalCopies }}</td> -->
-              <td>
-                <button
-                  class="btn btn-outline-primary btn-sm me-2"
-                 
-                >
-                  <i class="bi bi-pencil-square"></i>
-                </button>
-                <button
-                  class="btn btn-outline-danger btn-sm"
-              
-                >
-                  <i class="bi bi-trash"></i>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  <div class="card shadow p-3 mb-5 bg-white rounded">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <input
+        type="text"
+        class="form-control w-25"
+        placeholder="Search Movies..."
+        id="searchInput"
+        [(ngModel)]="searchText"
+      />
+      <button class="btn btn-danger btn-lg px-4" (click)="openAddMoviePopup()">+ Add Movie</button>
     </div>
+    <div class="table-responsive">
+      <table class="table table-hover align-middle table-bordered">
+        <thead class="table-light">
+          <tr>
+            <th>Image</th>
+            <th>Movie</th>
+            <th>Genre</th>
+            <th>Director</th>
+            <th>Release Date</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Total Copies</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let movie of movies">
+            <td>
+              <img
+                *ngIf="movie.imageUrl"
+                [src]="movie.imageUrl"
+                alt="Movie Image"
+                width="50"
+                height="50"
+              />
+              <img
+                *ngIf="!movie.imageUrl"
+                src="/movies/movie 12.png"
+                alt="Default Image"
+                width="50"
+                height="50"
+              />
+            </td>
+            <td>{{ movie.movieName }}</td>
+            <td>{{ movie.genre.name }}</td>
+            <td>{{ movie.director.name }}</td>
+            <td>{{ movie.releaseDate | date }}</td>
+            <td>{{ movie.price | currency }}</td>
+            <td>{{ movie.description }}</td>
+            <td>{{ movie.totalCopies }}</td>
+            <td>
+              <button
+                class="btn btn-outline-primary btn-sm me-2"
+                (click)="onEdit(movie.id)"
+              >
+                <i class="bi bi-pencil-square"></i>
+              </button>
+              <button
+                class="btn btn-outline-danger btn-sm"
+                (click)="onDelete(movie.id)"
+              >
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
-
 <!-- Add-Movie-Popup -->
-<div *ngIf="isAddMoviePopupOpen" class="container d-flex justify-content-center py-5">
-    <div class="card shadow-lg p-4 mb-5 bg-light rounded" style="max-width: 800px; border: 2px solid black;">
-      <form [formGroup]="movieForm">
-        <h4 class="mb-4 text-dark">Movie Details</h4>
-        <div class="row">
-          <div class="col-lg-6 mb-3">
-            <label for="movieName" class="form-label fw-bold">Title</label>
-            <input
-              type="text"
-              class="form-control border border-light"
-              id="movieName"
-              placeholder="Enter movie title"
-              formControlName="movieName"
-            />
-          </div>
-
-          <div class="col-lg-6 mb-3">
-            <label for="genreName" class="form-label fw-bold">Genre</label>
-            <input
-              type="text"
-              class="form-control border border-light"
-              id="genreName"
-              placeholder="Enter movie genre"
-              formControlName="genreName"
-            />
-          </div>
-
-          <div class="col-lg-6 mb-3">
-            <label for="directorName" class="form-label fw-bold">Director</label>
-            <input
-              type="text"
-              class="form-control border border-light"
-              id="directorName"
-              placeholder="Enter director's name"
-              formControlName="directorName"
-            />
-          </div>
-
-          <div class="col-lg-6 mb-3">
-            <label for="releaseDate" class="form-label fw-bold">Release Date</label>
-            <input
-              type="date"
-              class="form-control border border-light"
-              id="releaseDate"
-              formControlName="releaseDate"
-            />
-          </div>
-
-          <div class="col-lg-6 mb-3">
-            <label for="price" class="form-label fw-bold">Price</label>
-            <input
-              type="number"
-              class="form-control border border-light"
-              id="price"
-              placeholder="Enter price"
-              formControlName="price"
-            />
-          </div>
-
-          <div class="col-lg-6 mb-3">
-            <label for="totalCopies" class="form-label fw-bold">Total Copies</label>
-            <input
-              type="number"
-              class="form-control border border-light"
-              id="totalCopies"
-              placeholder="Enter total copies"
-              formControlName="totalCopies"
-            />
-          </div>
-
-          <div class="col-12 mb-3">
-            <label for="description" class="form-label fw-bold">Description</label>
-            <textarea
-              class="form-control border border-light"
-              id="description"
-              rows="3"
-              placeholder="Enter movie description"
-              formControlName="description"
-            ></textarea>
-          </div>
-
-          <div class="col-12 mb-3">
-            <label for="imageUrl" class="form-label fw-bold">Image URL</label>
-            <input
-              type="text"
-              class="form-control border border-light"
-              id="imageUrl"
-              placeholder="Enter image URL (optional)"
-              formControlName="imageUrl"
-            />
-          </div>
+<div
+  *ngIf="isAddMoviePopupOpen"
+  class="popup-overlay"
+>
+  <div class="popup-content card shadow-lg p-4 mb-5 bg-light rounded">
+    <form [formGroup]="movieForm">
+      <h4 class="mb-4 text-dark">Movie Details</h4>
+      <div class="row">
+        <div class="col-lg-6 mb-3">
+          <label for="movieName" class="form-label fw-bold">Title</label>
+          <input
+            type="text"
+            class="form-control border border-light"
+            id="movieName"
+            placeholder="Enter movie title"
+            formControlName="movieName"
+          />
         </div>
-
-        <div class="d-flex justify-content-between mt-3">
-          <button
-            type="submit"
-            class="btn btn-danger me-2 px-4 py-2"
-            [disabled]="movieForm.invalid"
-            (click)="onSubmit()"
-          >
-            Submit
-          </button>
-          <button
-            type="button"
-            class="btn btn-secondary px-4 py-2"
-            (click)="cancel()"
-          >
-            Cancel
-          </button>
+        <div class="col-lg-6 mb-3">
+          <label for="genreName" class="form-label fw-bold">Genre</label>
+          <input
+            type="text"
+            class="form-control border border-light"
+            id="genreName"
+            placeholder="Enter movie genre"
+            formControlName="genreName"
+          />
         </div>
-      </form>
-    </div>
+        <div class="col-lg-6 mb-3">
+          <label for="directorName" class="form-label fw-bold">Director</label>
+          <input
+            type="text"
+            class="form-control border border-light"
+            id="directorName"
+            placeholder="Enter director's name"
+            formControlName="directorName"
+          />
+        </div>
+        <div class="col-lg-6 mb-3">
+          <label for="releaseDate" class="form-label fw-bold">Release Date</label>
+          <input
+            type="date"
+            class="form-control border border-light"
+            id="releaseDate"
+            formControlName="releaseDate"
+          />
+        </div>
+        <div class="col-lg-6 mb-3">
+          <label for="price" class="form-label fw-bold">Price</label>
+          <input
+            type="number"
+            class="form-control border border-light"
+            id="price"
+            placeholder="Enter price"
+            formControlName="price"
+          />
+        </div>
+        <div class="col-lg-6 mb-3">
+          <label for="totalCopies" class="form-label fw-bold">Total Copies</label>
+          <input
+            type="number"
+            class="form-control border border-light"
+            id="totalCopies"
+            placeholder="Enter total copies"
+            formControlName="totalCopies"
+          />
+        </div>
+        <div class="col-12 mb-3">
+          <label for="description" class="form-label fw-bold">Description</label>
+          <textarea
+            class="form-control border border-light"
+            id="description"
+            rows="3"
+            placeholder="Enter movie description"
+            formControlName="description"
+          ></textarea>
+        </div>
+        <div class="col-12 mb-3">
+          <label for="imageUrl" class="form-label fw-bold">Image URL</label>
+          <input
+            type="text"
+            class="form-control border border-light"
+            id="imageUrl"
+            placeholder="Enter image URL (optional)"
+            formControlName="imageUrl"
+          />
+        </div>
+      </div>
+      <div class="d-flex justify-content-between mt-3">
+        <button
+          type="submit"
+          class="btn btn-danger me-2 px-4 py-2"
+          [disabled]="movieForm.invalid"
+          (click)="onSubmit()"
+        >
+          Submit
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary px-4 py-2"
+          (click)="cancel()"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
