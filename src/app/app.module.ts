@@ -23,6 +23,10 @@ import { ReportsComponent } from './components/ManagerDashboard/reports/reports.
 import { InventoryComponent } from './components/ManagerDashboard/inventory/inventory.component';
 import { CustomerProfileComponent } from './components/customer-profile/customer-profile.component';
 import { SummaryViewComponent } from './components/ManagerDashboard/summary-view/summary-view.component';
+import { ProfileComponent } from './components/customer-profile/profile/profile.component';
+import { RentalHistoryComponent } from './components/customer-profile/rental-history/rental-history.component';
+import { NotificationsComponent } from './components/customer-profile/notifications/notifications.component';
+import { RentalPageComponent } from './components/customer-profile/rental-page/rental-page.component';
 //import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
@@ -40,6 +44,10 @@ import { SummaryViewComponent } from './components/ManagerDashboard/summary-view
     InventoryComponent,
     CustomerProfileComponent,
     SummaryViewComponent,
+    ProfileComponent,
+    RentalHistoryComponent,
+    NotificationsComponent,
+    RentalPageComponent,
  
    
   ],

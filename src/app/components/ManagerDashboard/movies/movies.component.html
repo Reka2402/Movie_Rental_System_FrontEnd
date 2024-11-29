@@ -1,5 +1,5 @@
 <div class="container mt-5">
-  <div class="card shadow p-3 mb-5 bg-white rounded">
+  <div class="card shadow p-4 mb-5 bg-white rounded">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <input
         type="text"
@@ -7,13 +7,22 @@
         placeholder="Search Movies..."
         id="searchInput"
         [(ngModel)]="searchText"
+        style="border: 1px solid #ccc; border-radius: 8px; background-color: #f8f8f8;"
       />
-      <button class="btn btn-danger btn-lg px-4" (click)="openAddMoviePopup()">+ Add Movie</button>
+      <button
+        class="btn btn-dark px-4 py-2"
+        (click)="openAddMoviePopup()"
+        style="border-radius: 8px; background-color: black; color: white; border: none; transition: 0.3s;"
+        onmouseover="this.style.backgroundColor='gray'"
+        onmouseout="this.style.backgroundColor='black'"
+      >
+        + Add Movie
+      </button>
     </div>
     <div class="table-responsive">
       <table class="table table-hover align-middle table-bordered">
-        <thead class="table-light">
-          <tr>
+        <thead class="table-dark">
+          <tr style="background-color: #2e2e2e; color: white;">
             <th>Image</th>
             <th>Movie</th>
             <th>Genre</th>
@@ -26,7 +35,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let movie of movies">
+          <tr *ngFor="let movie of movies" style="background-color: #f9f9f9;">
             <td>
               <img
                 *ngIf="movie.imageUrl"
@@ -34,13 +43,15 @@
                 alt="Movie Image"
                 width="50"
                 height="50"
+                class="rounded shadow-sm"
               />
               <img
                 *ngIf="!movie.imageUrl"
-                src="/movies/movie 12.png"
+                src="/movies/movie12.png"
                 alt="Default Image"
                 width="50"
                 height="50"
+                class="rounded shadow-sm"
               />
             </td>
             <td>{{ movie.movieName }}</td>
@@ -52,14 +63,16 @@
             <td>{{ movie.totalCopies }}</td>
             <td>
               <button
-                class="btn btn-outline-primary btn-sm me-2"
+                class="btn btn-outline-dark btn-sm me-2"
                 (click)="onEdit(movie.id)"
+                style="border-radius: 6px;"
               >
                 <i class="bi bi-pencil-square"></i>
               </button>
               <button
                 class="btn btn-outline-danger btn-sm"
                 (click)="onDelete(movie.id)"
+                style="border-radius: 6px;"
               >
                 <i class="bi bi-trash"></i>
               </button>
@@ -75,16 +88,20 @@
 <div
   *ngIf="isAddMoviePopupOpen"
   class="popup-overlay"
+  style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; z-index: 1000;"
 >
-  <div class="popup-content card shadow-lg p-4 mb-5 bg-light rounded">
+  <div
+    class="popup-content card shadow-lg p-4 mb-5 bg-white rounded"
+    style="width: 50%; max-width: 600px;"
+  >
     <form [formGroup]="movieForm">
-      <h4 class="mb-4 text-dark">Movie Details</h4>
+      <h4 class="mb-4 text-dark text-center">Movie Details</h4>
       <div class="row">
         <div class="col-lg-6 mb-3">
           <label for="movieName" class="form-label fw-bold">Title</label>
           <input
             type="text"
-            class="form-control border border-light"
+            class="form-control border border-light rounded"
             id="movieName"
             placeholder="Enter movie title"
             formControlName="movieName"
@@ -94,7 +111,7 @@
           <label for="genreName" class="form-label fw-bold">Genre</label>
           <input
             type="text"
-            class="form-control border border-light"
+            class="form-control border border-light rounded"
             id="genreName"
             placeholder="Enter movie genre"
             formControlName="genreName"
@@ -104,7 +121,7 @@
           <label for="directorName" class="form-label fw-bold">Director</label>
           <input
             type="text"
-            class="form-control border border-light"
+            class="form-control border border-light rounded"
             id="directorName"
             placeholder="Enter director's name"
             formControlName="directorName"
@@ -114,7 +131,7 @@
           <label for="releaseDate" class="form-label fw-bold">Release Date</label>
           <input
             type="date"
-            class="form-control border border-light"
+            class="form-control border border-light rounded"
             id="releaseDate"
             formControlName="releaseDate"
           />
@@ -123,7 +140,7 @@
           <label for="price" class="form-label fw-bold">Price</label>
           <input
             type="number"
-            class="form-control border border-light"
+            class="form-control border border-light rounded"
             id="price"
             placeholder="Enter price"
             formControlName="price"
@@ -133,7 +150,7 @@
           <label for="totalCopies" class="form-label fw-bold">Total Copies</label>
           <input
             type="number"
-            class="form-control border border-light"
+            class="form-control border border-light rounded"
             id="totalCopies"
             placeholder="Enter total copies"
             formControlName="totalCopies"
@@ -142,7 +159,7 @@
         <div class="col-12 mb-3">
           <label for="description" class="form-label fw-bold">Description</label>
           <textarea
-            class="form-control border border-light"
+            class="form-control border border-light rounded"
             id="description"
             rows="3"
             placeholder="Enter movie description"
@@ -153,7 +170,7 @@
           <label for="imageUrl" class="form-label fw-bold">Image URL</label>
           <input
             type="text"
-            class="form-control border border-light"
+            class="form-control border border-light rounded"
             id="imageUrl"
             placeholder="Enter image URL (optional)"
             formControlName="imageUrl"
@@ -163,9 +180,10 @@
       <div class="d-flex justify-content-between mt-3">
         <button
           type="submit"
-          class="btn btn-danger me-2 px-4 py-2"
+          class="btn btn-dark px-4 py-2"
           [disabled]="movieForm.invalid"
           (click)="onSubmit()"
+          style="border-radius: 8px;"
         >
           Submit
         </button>
@@ -173,6 +191,7 @@
           type="button"
           class="btn btn-secondary px-4 py-2"
           (click)="cancel()"
+          style="border-radius: 8px;"
         >
           Cancel
         </button>

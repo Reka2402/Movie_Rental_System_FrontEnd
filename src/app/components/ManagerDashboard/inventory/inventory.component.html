@@ -1,1 +1,140 @@
-<p>inventory works!</p>
+<div class="container mt-5">
+    <div class="card shadow-lg p-3 mb-5 rounded" style="background-color: #f5f5f5; color: #333;">
+      <div class="card-body">
+        <div class="d-flex justify-content-between mb-3">
+          <div class="p-2 w-50">
+            <input 
+              type="text" 
+              class="form-control" 
+              [(ngModel)]="searchText" 
+              placeholder="Search Inventory..." 
+              style="background-color: #e0e0e0; color: #333; border: 1px solid #ccc;"
+            />
+          </div>
+          <div class="ml-auto p-2">
+            <button 
+              type="button" 
+              class="btn btn-dark btn-lg px-4" 
+              (click)="openAddInventoryPopup()" 
+              style="background-color: black; color: white;"
+            >
+              + Add New DVD
+            </button>
+          </div>
+        </div>
+  
+        <table class="table table-hover align-middle table-bordered" style="background-color: #fff;">
+          <thead style="background-color: #333; color: #fff;">
+            <tr>
+              <th scope="col">DVD Name</th>
+              <th scope="col">Total Copies</th>
+              <th scope="col">Available Copies</th>
+              <th scope="col">Overdue DVDs</th>
+              <th scope="col">Pending DVDs</th>
+              <th scope="col">Rented DVDs</th>
+              <th scope="col">Returned DVDs</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let dvd of inventory " style="color: #333;">
+              <td>{{ dvd.dvdName }}</td>
+              <td>{{ dvd.totalCopies }}</td>
+              <td><span [ngClass]="getBadgeClass(dvd.availableCopies)">{{ dvd.availableCopies }}</span></td>
+              <td><span class="badge bg-danger">{{ dvd.overdueDvds }}</span></td>
+              <td><span class="badge bg-warning text-dark">{{ dvd.pendingDvds }}</span></td>
+              <td>{{ dvd.rentedDvds }}</td>
+              <td>{{ dvd.returnedDvds }}</td>
+              <td>
+                <button 
+                  class="btn btn-outline-dark btn-sm me-2" 
+                  (click)="onEdit(dvd.id)" 
+                  style="border-radius: 4px;"
+                >
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+                <button 
+                  class="btn btn-outline-secondary btn-sm" 
+                  (click)="onView(dvd.id)" 
+                  style="border-radius: 4px;"
+                >
+                  <i class="bi bi-eye"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <!-- Add Inventory Popup -->
+    <div *ngIf="isAddInventoryPopupOpen" class="popup-overlay">
+      <div class="popup-content card shadow-lg p-4" style="background-color: #f5f5f5;">
+        <h4 class="mb-4">Add New DVD</h4>
+        <form>
+          <div class="mb-3">
+            <label for="dvdName" class="form-label">DVD Name</label>
+            <input 
+              type="text" 
+              id="dvdName" 
+              class="form-control" 
+              [(ngModel)]="newDvd.dvdName" 
+              name="dvdName" 
+              style="background-color: #e0e0e0; color: #333;"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="totalCopies" class="form-label">Total Copies</label>
+            <input 
+              type="number" 
+              id="totalCopies" 
+              class="form-control" 
+              [(ngModel)]="newDvd.totalCopies" 
+              name="totalCopies" 
+              style="background-color: #e0e0e0; color: #333;"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="availableCopies" class="form-label">Available Copies</label>
+            <input 
+              type="number" 
+              id="availableCopies" 
+              class="form-control" 
+              [(ngModel)]="newDvd.availableCopies" 
+              name="availableCopies" 
+              style="background-color: #e0e0e0; color: #333;"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="overdueDvds" class="form-label">Overdue DVDs</label>
+            <input 
+              type="number" 
+              id="overdueDvds" 
+              class="form-control" 
+              [(ngModel)]="newDvd.overdueDvds" 
+              name="overdueDvds" 
+              style="background-color: #e0e0e0; color: #333;"
+            />
+          </div>
+          <div class="d-flex justify-content-end">
+            <button 
+              type="button" 
+              class="btn btn-secondary me-2" 
+              (click)="closeAddInventoryPopup()"
+            >
+              Cancel
+            </button>
+            <button 
+              type="button" 
+              class="btn btn-dark" 
+              (click)="addInventory()"
+              style="background-color: black; color: white;"
+            >
+              Add DVD
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

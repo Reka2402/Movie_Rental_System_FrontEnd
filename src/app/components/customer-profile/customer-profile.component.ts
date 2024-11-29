@@ -26,39 +26,9 @@ export class CustomerProfileComponent {
   @ViewChild('profileModal') profileModal!: ElementRef;
   rentalHistory: any[] = [];
 
-  isCustomerSignedIn = false; // Set to true if logged in
-  rentalDays: number | null = null;
-  rentMovie(movie: any) {
-    if (!this.isSignedIn) {
-      alert('Please sign in to rent a movie.');
-      return;
-    }
+ 
 
-    if (movie.availableCopies <= 0) {
-      alert('This DVD is not available.');
-      return;
-    }
-
-    // Example condition: Check if rental days are selected
-    const rentalDays = prompt('Enter rental days (e.g., 1, 3, 7):');
-    if (!rentalDays || +rentalDays <= 0) {
-      alert('Please select valid rental days.');
-      return;
-    }
-
-    // Update movie status
-    movie.rentPending = true;
-
-    // Add to rental history
-    this.rentalHistory.push({
-      name: movie.name,
-      status: 'Pending',
-      rentalDays: rentalDays,
-    });
-
-    // Toast message
-    alert('Wait for the confirmation of your rental and collect your DVD.');
-  }
+    // Add to rental histo
   //  rentMovie(item: any): void {
   //   if (!this.isCustomerSignedIn) {
   //     alert('Please sign in to rent a movie.');
@@ -458,10 +428,7 @@ export class CustomerProfileComponent {
   ];
 
 
-  onRentalDaysChange() {
-    console.log(`Selected rental days: ${this.rentalDays}`);
-
-  }
+  
 
   // calculateRentalCost() {
   //   let costPerDay = 5; 
