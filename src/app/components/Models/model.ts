@@ -1,28 +1,27 @@
 export interface Movie {
-  id: string; // Guid in C# is typically represented as a string in JavaScript
+  id: string;
   genreId: number;
   directorId: number;
   movieName: string;
-  releaseDate: string; // DateTime in C# is usually handled as a string in JavaScript (ISO 8601 format)
+  releaseDate: string;
   price: number;
   description: string;
-  imageUrl?: string; // Nullable string (optional in Angular)
-  genre: Genre; // Assuming Genre is another interface
-  director: Director; // Assuming Director is another interface
+  imageUrl?: string;
+  genre: Genre;
+  director: Director;
   totalCopies: number;
 }
+
 export interface Movierequest {
   id: string;
   movieName: string;
-  genreId: number | null; 
-  genreName: string | null; 
-  directorId: number | null; 
-  directorName: string | null; 
-  releaseDate: string; 
+  genreId: number | null;
+  directorId: number | null;
+  releaseDate: string;
   price: number;
   description: string;
-  imageUrl: string | null; // ImageUrl can be null in the backend
-  // totalcopies: number;
+  imageUrl: string | null;
+  totalCopies: number;
 }
   export interface SignIn {
     email: string,

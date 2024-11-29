@@ -13,37 +13,46 @@
       </p>
     </header>
 
-    <div *ngFor="let category of categories" style="font-family: 'Montserrat';">
-      <h3 class="text-center text-uppercase text-danger mt-3" style="font-family: 'Roboto';">
+    <div *ngFor="let movie of movies" style="font-family: 'Montserrat';">
+      <!-- <h3 class="text-center text-uppercase text-danger mt-3" style="font-family: 'Roboto';">
         {{ category.name }}
-      </h3>
+      </h3> -->
       <div class="row justify-content-center">
         <div
           class="col-lg-3 col-md-4 col-sm-6 col-12 mt-4"
-          *ngFor="let item of category.items"
+          *ngFor="let movie of movies"
         >
           <div class="movie-card position-relative overflow-hidden shadow-lg">
             <img
-              [src]="item.images[0]"
+            *ngIf="movie.imageUrl"
+            [src]="movie.imageUrl"
               class="movie-image"
-              alt="{{ item.name }}"
+              alt="{{ movie.movieName }}"
             />
+            <img
+            *ngIf="!movie.imageUrl"
+            src="/movies/movie12.png"
+            alt="Default Image"
+            width="50"
+            height="50"
+            class="rounded shadow-sm"
+          />
             <div class="movie-title bg-danger">
-              {{ item.name }}
+              {{ movie.movieName }}
             </div>
             <div class="movie-details text-center text-light d-flex flex-column justify-content-center">
-              <p class="mb-1 text-light">{{ item.genre }}</p>
-              <p>
+              <p class="mb-1 text-light">{{  movie.genre.name }}</p>
+              <!-- <p>
                 <ng-container *ngFor="let star of getStars(selectedMovie?.rating)">
                   <i class="bi bi-star-fill text-warning"></i>
                 </ng-container>
-              </p>
+              </p> -->
               <p class="fw-bold text-success mb-2">
-                Price: {{ item.price | currency: 'USD' }}
+                Price: {{ movie.price | currency: 'USD' }}
               </p>
               <button
                 class="btn btn-danger btn-sm mb-1"
-                *ngIf="item.availableCopies > 0"
+                *ngIf="movie.totalCopies > 0"
                 [routerLink]="'/login'"
               >
                 Rent Now
@@ -52,7 +61,7 @@
                 class="btn btn-outline-light btn-sm"
                 data-bs-toggle="modal"
                 data-bs-target="#viewMoreModal"
-                (click)="selectedMovie = item"
+                (click)="selectedMovie = movie"
               >
                 View More
               </button>

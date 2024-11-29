@@ -43,7 +43,7 @@ export class LoginComponent {
         } else if (decode.Role == "Customer") {
           this.rout.navigate(['/customer']);
         }
-       // ,decode.Id
+       
       },complete:()=>{
 
         

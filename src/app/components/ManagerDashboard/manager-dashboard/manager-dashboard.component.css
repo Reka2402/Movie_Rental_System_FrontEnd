@@ -86,3 +86,34 @@ header {
   height: 100%;
   width: 100%;
 }
+
+
+
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+.hover\:bg-dark:hover {
+  background-color: #343a40 !important;
+}
+
+.hover\:bg-opacity-80:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Sidebar expanded state */
+.sidebar-expanded {
+  width: 250px;
+  transition: width 0.3s ease-in-out;
+}
+
+/* Sidebar collapsed state */
+.sidebar-collapsed {
+  width: 80px;
+  transition: width 0.3s ease-in-out;
+}
+
+/* Sidebar link visibility when collapsed */
+.sidebar-collapsed .nav-link span {
+  display: none;
+}

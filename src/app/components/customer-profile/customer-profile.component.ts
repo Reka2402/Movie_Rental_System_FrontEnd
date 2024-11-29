@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { jwtDecode } from 'jwt-decode';
 
@@ -18,7 +18,14 @@ export class CustomerProfileComponent {
   token: string = localStorage.getItem('token')!;
   customer: any = jwtDecode(this.token);
 
-  constructor(private rout: ActivatedRoute,private userservice:UserService) {
+ 
+  rentalDays: number = 1;
+  quantity: number = 1;
+  rentButtonText: string = 'Rent Now';  // Text for the Rent button
+  rentButtonClass: string = 'btn-danger';  // Initial button class
+  isPending: boolean = false;
+
+  constructor(private rout: ActivatedRoute,private router: Router,private userservice:UserService) {
     this.UID = String(rout.snapshot.paramMap.get('Id'))
   }
 
@@ -27,34 +34,25 @@ export class CustomerProfileComponent {
   rentalHistory: any[] = [];
 
  
+  openRentModal() {
+    // Open the rent modal
+    const rentModal = new bootstrap.Modal(document.getElementById('rentModal'));
+    rentModal.show();
+  }
+  rentMovie() {
+    // Perform rental logic here (e.g., update the backend with rental details)
+    console.log('Renting movie:', this.selectedMovie.name);
+    console.log('Rental Days:', this.rentalDays);
+    console.log('Quantity:', this.quantity);
 
-    // Add to rental histo
-  //  rentMovie(item: any): void {
-  //   if (!this.isCustomerSignedIn) {
-  //     alert('Please sign in to rent a movie.');
-  //     return;
-  //   }
-  //   if (item.availableCopies <= 0) {
-  //     alert('This DVD is not available.');
-  //     return;
-  //   }
-  //   if (!this.rentalDays) {
-  //     alert('Please select rental days.');
-  //     return;
-  //   }
+    // Change Rent Now button to Pending state
+    this.rentButtonText = 'Pending';
+    this.rentButtonClass = 'btn-warning';
 
-  //   // Update item state to pending
-  //   item.pending = true;
-
-  //   // Add to rental history
-  //   this.rentalHistory.push({
-  //     ...item,
-  //     status: 'Pending',
-  //   });
-
-  //   // Show toaster message
-  //   alert('Wait for confirmation of your rental and collect your DVD.');
-  // }
+    // Close the modal after renting
+    const rentModal = new bootstrap.Modal(document.getElementById('rentModal'));
+    rentModal.hide();
+  }
 
   viewRentalHistory(): void {
     // This can include logic for navigating or displaying the rental history tab
@@ -63,7 +61,9 @@ export class CustomerProfileComponent {
   showRentalHistory() {
     this.showHistory = true;
   }
-
+  rentNow(movieName: string) {
+    this.router.navigate(['/customer/rent', movieName]);
+  }
 
 
   openProfileModal(): void {

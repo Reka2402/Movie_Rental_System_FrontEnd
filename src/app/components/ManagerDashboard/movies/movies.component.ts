@@ -1,84 +1,93 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import{ MovieService} from '../../../services/movie.service'
+import { MovieService } from '../../../services/movie.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Movie, Movierequest } from '../../Models/model';
-
+import { Movie, Genre, Director, Movierequest } from '../../Models/model';
 
 @Component({
   selector: 'app-movies',
-
   templateUrl: './movies.component.html',
-  styleUrl: './movies.component.css'
+  styleUrls: ['./movies.component.css'],
 })
 export class MoviesComponent implements OnInit {
-  [x: string]: any;
   searchText: string = '';
-  movieForm:FormGroup;
+  movieForm: FormGroup;
   isAddMoviePopupOpen = false;
-  
 
-  moviesadd: Movierequest[] = [];
   movies: Movie[] = [];
-  constructor( private fb:FormBuilder, private movieService: MovieService ,private toastr: ToastrService, private router : Router) {
+  genres: Genre[] = []; 
+  directors: Director[] = []; 
+
+  constructor(
+    private fb: FormBuilder,
+    private movieService: MovieService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {
     this.movieForm = this.fb.group({
       movieName: ['', Validators.required],
       genreId: [null, Validators.required],
-      // genreName: ['', Validators.required],
       directorId: [null, Validators.required],
-      directorName: ['', Validators.required],
       releaseDate: ['', Validators.required],
       price: [0, [Validators.required, Validators.min(0)]],
       description: ['', Validators.required],
       imageUrl: [null],
-      totalCopies: [0, [Validators.required, Validators.min(1)]]
+      totalCopies: [0, [Validators.required, Validators.min(1)]],
     });
   }
-  ngOnInit(): void {
-    this.loaddVD();
-    this.movieService.getMovies().subscribe((data) => {
-      this.movies = data;  
-      console.log(this.movies);
-      
-    })
-  }
-  onDelete(movieId: string) {
-    this.movieService.deleteMovie(movieId).subscribe(data => {
-      alert("Movie deleted successfully.");
-    })
-  }
-  loaddVD() {
-    this.movieService.getMovies().subscribe(data => {
-      this.movies = data;
-      console.log(this.movies);
-      
-    })
 
+  ngOnInit(): void {
+    this.loadGenres();
+    this.loadDirectors();
+    this.loadMovies();
   }
+
+  // Fetch genres from backend
+  loadGenres() {
+    this.movieService.getGenres().subscribe((data: Genre[]) => {
+      this.genres = data;
+    });
+  }
+
+  
+  loadDirectors() {
+    this.movieService.getDirectors().subscribe((data: Director[]) => {
+      this.directors = data;
+    });
+  }
+
+ 
+  loadMovies() {
+    this.movieService.getMovies().subscribe((data: Movie[]) => {
+      this.movies = data;
+    });
+  }
+
+  onDelete(movieId: string) {
+    this.movieService.deleteMovie(movieId).subscribe((data) => {
+      alert('Movie deleted successfully.');
+    });
+  }
+
   onEdit(movieId: string) {
-    this.router.navigate(['/edit',movieId])
+    this.router.navigate(['/edit', movieId]);
   }
 
   onSubmit() {
     if (this.movieForm.valid) {
       const newMovie = this.movieForm.value;
-      this.movies.push(newMovie); 
-
-      this.movieForm.reset(); 
+      this.movies.push(newMovie);
+      this.movieForm.reset();
     }
   }
-  cancel(){
+
+  cancel() {
     this.movieForm.reset();
     this.isAddMoviePopupOpen = false;
   }
-  
+
   openAddMoviePopup() {
     this.isAddMoviePopupOpen = true;
   }
-  
-  
-
-  
-
 }

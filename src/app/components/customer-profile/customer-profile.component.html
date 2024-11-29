@@ -85,7 +85,7 @@
         <button class="btn btn-outline-danger px-4 py-2 hover-effect">Anime</button>
         <button class="btn btn-outline-danger px-4 py-2 hover-effect">Cartoons</button>
       </div>
-      <!-- Movie Collections -->
+      Movie Collections
       <div *ngFor="let category of categories" style="font-family: 'Montserrat';">
         <h3 class="text-center text-uppercase text-danger mt-3" style="font-family: 'Roboto';">
           {{ category.name }}
@@ -124,49 +124,93 @@
         </div>
       </div>
 
-      <!-- Movie Popup- -->
-      <div class="modal fade" id="viewMoreModal" tabindex="-1" aria-labelledby="viewMoreModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content bg-dark text-white">
-            <div class="modal-header">
-              <h5 class="modal-title" id="viewMoreModalLabel">{{selectedMovie?.name}}</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+     <!-- Movie Popup -->
+<div class="modal fade" id="viewMoreModal" tabindex="-1" aria-labelledby="viewMoreModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h5 class="modal-title" id="viewMoreModalLabel">{{selectedMovie?.name}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <img [src]="selectedMovie?.images[0]" class="img-fluid" alt="{{selectedMovie?.name}}">
+          </div>
+          <div class="col-md-6">
+            <p><strong>Genre:</strong> {{selectedMovie?.genre}}</p>
+            <p><strong>Release Date:</strong> {{selectedMovie?.releaseDate | date}}</p>
+            <p><strong>Director:</strong> {{selectedMovie?.director}}</p>
+            <p><strong>Rating:</strong> {{selectedMovie?.rating}}</p>
+            <p><strong>Description:</strong> {{selectedMovie?.description}}</p>
+            <p><strong>Cast:</strong></p>
+            <ul>
+              <li *ngFor="let actor of selectedMovie?.cast">{{actor.name}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn" [ngClass]="rentButtonClass" (click)="openRentModal()" [disabled]="rentButtonText === 'Pending'">
+          {{ rentButtonText }}
+        </button>
+        <button type="button" class="btn btn-outline-danger">Add to Favorites</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Rent Popup -->
+<div class="modal fade" id="rentModal" tabindex="-1" aria-labelledby="rentModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h5 class="modal-title" id="rentModalLabel">Rent {{selectedMovie?.name}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <img [src]="selectedMovie?.images[0]" class="img-fluid" alt="{{selectedMovie?.name}}">
+          </div>
+          <div class="col-md-6">
+            <p><strong>Price:</strong> ${{selectedMovie?.price}}</p>
+
+            <!-- Rental Days -->
+            <div class="mb-3">
+              <label for="rentalDays" class="form-label">Select Rental Days</label>
+              <select id="rentalDays" class="form-select" [(ngModel)]="rentalDays">
+                <option value="1">1 Day</option>
+                <option value="3">3 Days</option>
+                <option value="7">1 Week</option>
+                <option value="14">2 Weeks</option>
+                <option value="30">1 Month</option>
+              </select>
             </div>
-            <div class="modal-body">
-              <div class="row">
-                <div class="col-md-6">
-                  <img [src]="selectedMovie?.images[0]" class="img-fluid" alt="{{selectedMovie?.name}}">
-                </div>
-                <div class="col-md-6">
-                  <p><strong>Genre:</strong> {{selectedMovie?.genre}}</p>
-                  <p><strong>Release Date:</strong> {{selectedMovie?.releaseDate | date}}</p>
-                  <p><strong>Director:</strong> {{selectedMovie?.director}}</p>
-                  <p><strong>Rating:</strong> {{selectedMovie?.rating}}</p>
-                  <p><strong>Description:</strong> {{selectedMovie?.description}}</p>
-                  <p><strong>Cast:</strong></p>
-                  <ul>
-                    <li *ngFor="let actor of selectedMovie?.cast">{{actor.name}}</li>
-                  </ul>
-                  <div class="mb-3">
-                    <label for="rentalDays" class="form-label">Select Rental Days</label>
-                    <select id="rentalDays" class="form-select">
-                      <option value="1">1 Day</option>
-                      <option value="3">3 Days</option>
-                      <option value="7">1 Week</option>
-                      <option value="14">2 Weeks</option>
-                      <option value="30">1 Month</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger">Rent Now</button>
-              <button type="button" class="btn btn-outline-danger">Add to Favorites</button>
+
+            <!-- Quantity -->
+            <div class="mb-3">
+              <label for="quantity" class="form-label">Quantity</label>
+              <input type="number" id="quantity" class="form-control" [(ngModel)]="quantity" min="1" />
             </div>
           </div>
         </div>
       </div>
+      <div class="modal-footer">
+        <button 
+          type="button" 
+          class="btn" 
+          [ngClass]="rentButtonClass" 
+          (click)="rentMovie()" 
+          [disabled]="isPending">
+          {{ rentButtonText }}
+        </button>
+        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
       <!-- CustomerProfilePopup -->
       <div class="modal fade" #profileModal tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">

@@ -9,5 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManagerDashboardComponent  {
 
+  isSidebarExpanded = true;
 
+  toggleSidebar() {
+    this.isSidebarExpanded = !this.isSidebarExpanded;
+  }
 }

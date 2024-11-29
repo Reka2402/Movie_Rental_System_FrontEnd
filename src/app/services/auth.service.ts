@@ -10,7 +10,9 @@ export class AuthService {
   constructor(private http: HttpClient) { }
   UserURL: string = 'http://localhost:5273/api/User'
   UserSignUp(UserSignUp: SignUp) {
-    return this.http.post(this.UserURL, UserSignUp)
+    return this.http.post(this.UserURL, UserSignUp,{
+      responseType: 'text'
+    })
   }
   UserSignIn(UserSignIn: SignIn) {
     return this.http.post(this.UserURL + '/login', UserSignIn, {
