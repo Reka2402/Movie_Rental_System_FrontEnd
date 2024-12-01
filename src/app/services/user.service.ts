@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { User } from '../components/Models/model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,10 +34,4 @@ export class UserService {
 }
 
 
-export interface User {
-  id:string;
-  name: string,
-  email: string,
-  password: string,
-  role: number
-}
+

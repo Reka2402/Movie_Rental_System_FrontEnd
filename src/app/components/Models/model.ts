@@ -42,7 +42,13 @@ export interface Movierequest {
   //   profilePicture: string;
   
   // }
-  
+  export interface User {
+   id:number;
+    name: string,
+    email: string,
+    password: string,
+    role: number
+  } 
 
 export interface Genre {
   id: number;

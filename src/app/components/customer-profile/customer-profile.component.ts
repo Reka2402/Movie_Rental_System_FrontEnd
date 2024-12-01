@@ -21,8 +21,8 @@ export class CustomerProfileComponent {
  
   rentalDays: number = 1;
   quantity: number = 1;
-  rentButtonText: string = 'Rent Now';  // Text for the Rent button
-  rentButtonClass: string = 'btn-danger';  // Initial button class
+  rentButtonText: string = 'Rent Now';  
+  rentButtonClass: string = 'btn-danger';  
   isPending: boolean = false;
 
   constructor(private rout: ActivatedRoute,private router: Router,private userservice:UserService) {
@@ -35,27 +35,25 @@ export class CustomerProfileComponent {
 
  
   openRentModal() {
-    // Open the rent modal
+ 
     const rentModal = new bootstrap.Modal(document.getElementById('rentModal'));
     rentModal.show();
   }
   rentMovie() {
-    // Perform rental logic here (e.g., update the backend with rental details)
+  
     console.log('Renting movie:', this.selectedMovie.name);
     console.log('Rental Days:', this.rentalDays);
     console.log('Quantity:', this.quantity);
 
-    // Change Rent Now button to Pending state
+  
     this.rentButtonText = 'Pending';
     this.rentButtonClass = 'btn-warning';
-
-    // Close the modal after renting
     const rentModal = new bootstrap.Modal(document.getElementById('rentModal'));
     rentModal.hide();
   }
 
   viewRentalHistory(): void {
-    // This can include logic for navigating or displaying the rental history tab
+ 
     console.log('Rental History:', this.rentalHistory);
   }
   showRentalHistory() {
@@ -88,7 +86,7 @@ export class CustomerProfileComponent {
           rating: 4.5,
           price: 22.99,
           cast: [{ id: 1, name: 'Eliza Taylor' }],
-          images: ['/series/the 100.jpg'],
+          images: ['/series/movie9.webp'],
           pending: false,
           rentPending: false,
         },
