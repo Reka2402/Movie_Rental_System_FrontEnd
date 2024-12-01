@@ -1,154 +1,38 @@
-<!-- <div class="container-fluid p-0" style="height: 100vh;">
-  <div class="row g-0">
-
-    <div
-      class="col-xl-2 col-lg-3 col-md-4 col-12 bg-black d-flex flex-column align-items-center py-4"
-      style="font-family: 'Poppins', sans-serif; height: 100vh; justify-content: space-between; box-shadow: 2px 0 10px rgba(0, 0, 0, 0.15);"
-    >
-      <nav class="nav flex-column w-100 text-center text-white">
-        <a
-          class="nav-link text-white py-3 mb-2 rounded"
-          [routerLink]="['/manager/home']"
-          style="background-color: #2f2f2f; border-radius: 8px; transition: 0.3s;"
-          onmouseover="this.style.backgroundColor='#3f3f3f'"
-          onmouseout="this.style.backgroundColor='#2f2f2f'"
-        >
-          <i class="bi bi-house fs-5"></i>
-          <span class="d-block mt-1">Home</span>
-        </a>
-        <a
-          class="nav-link text-white py-3 mb-2 rounded"
-          [routerLink]="['/manager/customers']"
-          style="background-color: #2f2f2f; border-radius: 8px; transition: 0.3s;"
-          onmouseover="this.style.backgroundColor='#3f3f3f'"
-          onmouseout="this.style.backgroundColor='#2f2f2f'"
-        >
-          <i class="bi bi-people fs-5"></i>
-          <span class="d-block mt-1">Customers</span>
-        </a>
-        <a
-          class="nav-link text-white py-3 mb-2 rounded"
-          [routerLink]="['/manager/movies']"
-          style="background-color: #2f2f2f; border-radius: 8px; transition: 0.3s;"
-          onmouseover="this.style.backgroundColor='#3f3f3f'"
-          onmouseout="this.style.backgroundColor='#2f2f2f'"
-        >
-          <i class="bi bi-film fs-5"></i>
-          <span class="d-block mt-1">Movies</span>
-        </a>
-        <a
-          class="nav-link text-white py-3 mb-2 rounded"
-          [routerLink]="['/manager/rentals']"
-          style="background-color: #2f2f2f; border-radius: 8px; transition: 0.3s;"
-          onmouseover="this.style.backgroundColor='#3f3f3f'"
-          onmouseout="this.style.backgroundColor='#2f2f2f'"
-        >
-          <i class="bi bi-clock-history fs-5"></i>
-          <span class="d-block mt-1">Rentals</span>
-        </a>
-        <a
-          class="nav-link text-white py-3 mb-2 rounded"
-          [routerLink]="['/manager/inventory']"
-          style="background-color: #2f2f2f; border-radius: 8px; transition: 0.3s;"
-          onmouseover="this.style.backgroundColor='#3f3f3f'"
-          onmouseout="this.style.backgroundColor='#2f2f2f'"
-        >
-          <i class="bi bi-box-seam fs-5"></i>
-          <span class="d-block mt-1">Inventory</span>
-        </a>
-        <a
-          class="nav-link text-white py-3 mb-2 rounded"
-          [routerLink]="['/manager/reports']"
-          style="background-color: #2f2f2f; border-radius: 8px; transition: 0.3s;"
-          onmouseover="this.style.backgroundColor='#3f3f3f'"
-          onmouseout="this.style.backgroundColor='#2f2f2f'"
-        >
-          <i class="bi bi-bar-chart fs-5"></i>
-          <span class="d-block mt-1">Reports</span>
-        </a>
-      </nav>
-    </div>
-
-
-    <div class="col d-flex flex-column" style="height: 100vh; background-color: #f5f5f5;">
-
-      <div
-        class="d-flex justify-content-between align-items-center px-4 py-3 border-bottom"
-        style="background-color: #ffffff; font-family: 'Roboto', sans-serif; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);"
-      >
-        <a href="#" class="logo text-black" style="font-size: 28px; font-weight: bold;">
-          <i class="bi bi-film fs-4 me-2"></i> Flix Manager
-        </a>
-
-        <div class="h6 text-black">Welcome, Manager!</div>
-
-        <div class="d-flex align-items-center">
-          <i
-            class="bi bi-bell fs-5 me-3 text-black"
-            style="cursor: pointer;"
-            title="Notifications"
-          ></i>
-          <div class="dropdown">
-            <img
-              src="/icons/avatar.png"
-              class="rounded-circle"
-              alt="Profile"
-              width="40"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              style="cursor: pointer; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);"
-            />
-            <ul class="dropdown-menu dropdown-menu-end shadow-sm">
-              <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li><a class="dropdown-item" href="#">Logout</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-</div> -->
-
-
-
-<div class="container-fluid p-0" style="height: 100vh;">
+<div class="container-fluid p-0" style="height: 100vh; margin: 0;">
   <div class="row g-0">
 
     <!-- Sidebar -->
-    <div class="col-xl-2 col-lg-3 col-md-4 col-12 bg-dark d-flex flex-column align-items-center py-4"
-      style="font-family: 'Poppins', sans-serif;width: 150px;height: 100vh; justify-content: space-between; box-shadow: 2px 0 15px rgba(0, 0, 0, 0.2);">
+    <div class="col-xl-2 col-lg-3 col-md-4 col-12 d-flex flex-column align-items-center py-4"
+      style="font-family: 'Poppins', sans-serif; width: 150px; height: 100vh; justify-content: space-between; box-shadow: 2px 0 15px rgba(0, 0, 0, 0.2); background-color: transparent;">
       <nav class="nav flex-column w-100 text-center text-white">
         <!-- Navigation links with hover effect -->
-        <a class="nav-link text-white py-3 mb-2 rounded transition-all duration-300 hover:bg-dark hover:bg-opacity-80"
-          [routerLink]="['/manager/home']">
+        <a class="nav-link text-white py-3 mb-2 rounded transition-all duration-300 hover:bg-opacity-80"
+          style="background-color: #2C3E50;" [routerLink]="['/manager/home']">
           <i class="bi bi-house fs-5"></i>
           <span class="d-block mt-1">Home</span>
         </a>
-        <a class="nav-link text-white py-3 mb-2 rounded transition-all duration-300 hover:bg-dark hover:bg-opacity-80"
-          [routerLink]="['/manager/customers']">
+        <a class="nav-link text-white py-3 mb-2 rounded transition-all duration-300 hover:bg-opacity-80"
+          style="background-color: #2C3E50;" [routerLink]="['/manager/customers']">
           <i class="bi bi-people fs-5"></i>
           <span class="d-block mt-1">Customers</span>
         </a>
-        <a class="nav-link text-white py-3 mb-2 rounded transition-all duration-300 hover:bg-dark hover:bg-opacity-80"
-          [routerLink]="['/manager/movies']">
+        <a class="nav-link text-white py-3 mb-2 rounded transition-all duration-300 hover:bg-opacity-80"
+          style="background-color: #2C3E50;" [routerLink]="['/manager/movies']">
           <i class="bi bi-film fs-5"></i>
           <span class="d-block mt-1">Movies</span>
         </a>
-        <a class="nav-link text-white py-3 mb-2 rounded transition-all duration-300 hover:bg-dark hover:bg-opacity-80"
-          [routerLink]="['/manager/rentals']">
+        <a class="nav-link text-white py-3 mb-2 rounded transition-all duration-300 hover:bg-opacity-80"
+          style="background-color: #2C3E50;" [routerLink]="['/manager/rentals']">
           <i class="bi bi-clock-history fs-5"></i>
           <span class="d-block mt-1">Rentals</span>
         </a>
-        <a class="nav-link text-white py-3 mb-2 rounded transition-all duration-300 hover:bg-dark hover:bg-opacity-80"
-          [routerLink]="['/manager/inventory']">
+        <a class="nav-link text-white py-3 mb-2 rounded transition-all duration-300 hover:bg-opacity-80"
+          style="background-color: #2C3E50;" [routerLink]="['/manager/inventory']">
           <i class="bi bi-box-seam fs-5"></i>
           <span class="d-block mt-1">Inventory</span>
         </a>
-        <a class="nav-link text-white py-3 mb-2 rounded transition-all duration-300 hover:bg-dark hover:bg-opacity-80"
-          [routerLink]="['/manager/reports']">
+        <a class="nav-link text-white py-3 mb-2 rounded transition-all duration-300 hover:bg-opacity-80"
+          style="background-color: #2C3E50;" [routerLink]="['/manager/reports']">
           <i class="bi bi-bar-chart fs-5"></i>
           <span class="d-block mt-1">Reports</span>
         </a>
@@ -156,19 +40,18 @@
     </div>
 
     <!-- Main Content -->
-    <div class="col d-flex flex-column" style="height: 100vh; background-color: #f8f9fa;">
-
+    <div class="col d-flex flex-column" style="height: 100vh; background-color: #f8f9fa; padding-top: 0;">
+      
       <!-- Header -->
       <div class="d-flex justify-content-between align-items-center px-4 py-3 border-bottom"
         style="background-color: #ffffff; font-family: 'Roboto', sans-serif; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
         <a href="#" class="logo text-black" style="font-size: 30px; font-weight: bold; text-transform: uppercase;">
-          <i class="bi bi-film fs-4 me-2"></i> Flix Manager
+          <i class="bi bi-film fs-4 me-2" style="color: #2C3E50;"></i> Flix Manager
         </a>
         <!-- Sidebar Toggle Button -->
-        <button class="btn text-black d-lg-none" (click)="toggleSidebar()">
+        <button class="btn text-black d-lg-none" (click)="toggleSidebar()" style="color: #1ABC9C;">
           <i class="bi" [ngClass]="isSidebarExpanded ? 'bi-chevron-left' : 'bi-list'"></i>
         </button>
-
 
         <!-- Welcome message -->
         <div class="h6 text-black">Welcome, Manager!</div>
@@ -186,7 +69,6 @@
           </div>
         </div>
       </div>
-
 
       <!-- Main content -->
       <router-outlet></router-outlet>

@@ -18,6 +18,7 @@ export class MoviesComponent implements OnInit {
   movies: Movie[] = [];
   genres: Genre[] = []; 
   directors: Director[] = []; 
+  
 
   constructor(
     private fb: FormBuilder,

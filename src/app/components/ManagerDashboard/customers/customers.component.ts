@@ -18,6 +18,7 @@ export interface User {
 export class CustomersComponent {
   searchText: string = '';
   isAddUserPopupOpen = false;
+  hoverBtn: boolean = false; 
   newUser: User = { id: '', name: '', email: '', password: '', role: '' };
 
   users: User[] = [

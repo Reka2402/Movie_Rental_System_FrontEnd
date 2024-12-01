@@ -1,5 +1,5 @@
 <div class="container mt-5">
-  <div class="card shadow-lg p-3 mb-5 rounded" style="background-color: #f5f5f5; color: #333;">
+  <div class="card shadow-lg p-3 mb-5 rounded" style="background-color: #34495E; color: #FFF;">
     <div class="card-body">
       <div class="d-flex justify-content-between mb-3">
         <div class="p-2 w-50">
@@ -8,7 +8,7 @@
             class="form-control" 
             [(ngModel)]="searchText" 
             placeholder="Search User..." 
-            style="background-color: #e0e0e0; color: #333; border: 1px solid #ccc;"
+            style="background-color: #2C3E50; color: #FFF; border: 1px solid #1ABC9C; font-size: 14px;"
           />
         </div>
         <div class="ml-auto p-2">
@@ -16,15 +16,17 @@
             type="button" 
             class="btn btn-dark btn-lg px-4" 
             (click)="openAddUserPopup()"
-            style="background-color: black; color: white; border-radius: 6px;"
+            style="background-color: #27AE60; color: white; border-radius: 6px; font-size: 14px; padding: 8px 16px; transition: 0.3s ease;"
+            (mouseover)="hoverBtn = true" 
+            (mouseleave)="hoverBtn = false"
           >
             New User
           </button>
         </div>
       </div>
 
-      <table class="table table-hover align-middle table-bordered" style="background-color: #fff;">
-        <thead style="background-color: #333; color: #fff;">
+      <table class="table table-hover align-middle table-bordered" style="background-color: #2C3E50; font-size: 14px;">
+        <thead style="background-color: #1ABC9C; color: #FFF;">
           <tr>
             <th scope="col">Id</th>
             <th scope="col">Full Name</th>
@@ -35,7 +37,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let user of users" style="color: #333;">
+          <tr *ngFor="let user of users" style="color: #FFF;">
             <th scope="row">{{ user.id }}</th>
             <td>{{ user.name }}</td>
             <td>{{ user.email }}</td>
@@ -43,16 +45,16 @@
             <td>{{ user.role }}</td>
             <td>
               <button 
-                class="btn btn-outline-dark btn-sm me-2" 
+                class="btn btn-outline-light btn-sm me-2" 
                 (click)="onEdit(user.id)" 
-                style="border-radius: 4px;"
+                style="border-radius: 4px; font-size: 14px; transition: 0.3s ease;"
               >
                 <i class="bi bi-pencil-square"></i>
               </button>
               <button 
                 class="btn btn-outline-danger btn-sm" 
                 (click)="onDelete(user.id)" 
-                style="border-radius: 4px;"
+                style="border-radius: 4px; font-size: 14px; transition: 0.3s ease;"
               >
                 <i class="bi bi-trash"></i>
               </button>
@@ -67,56 +69,56 @@
   <div 
     *ngIf="isAddUserPopupOpen" 
     class="popup-overlay d-flex align-items-center justify-content-center" 
-    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);"
+    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7);"
   >
     <div 
       class="popup-content card shadow-lg p-4" 
-      style="width: 400px; background-color: #f5f5f5; border-radius: 8px; color: #333;"
+      style="width: 400px; background-color: #34495E; border-radius: 8px; color: #FFF; font-size: 14px;"
     >
-      <h4 class="mb-4 text-center">Add New User</h4>
+      <h4 class="mb-4 text-center" style="font-size: 16px;">Add New User</h4>
       <form>
         <div class="mb-3">
-          <label for="userName" class="form-label">Full Name</label>
+          <label for="userName" class="form-label" style="color: #1ABC9C; font-size: 14px;">Full Name</label>
           <input 
             type="text" 
             id="userName" 
             class="form-control" 
             [(ngModel)]="newUser.name" 
             name="name" 
-            style="background-color: #e0e0e0; color: #333; border: 1px solid #ccc;"
+            style="background-color: #2C3E50; color: #FFF; border: 1px solid #1ABC9C; font-size: 14px;"
           />
         </div>
         <div class="mb-3">
-          <label for="userEmail" class="form-label">Email</label>
+          <label for="userEmail" class="form-label" style="color: #1ABC9C; font-size: 14px;">Email</label>
           <input 
             type="email" 
             id="userEmail" 
             class="form-control" 
             [(ngModel)]="newUser.email" 
             name="email" 
-            style="background-color: #e0e0e0; color: #333; border: 1px solid #ccc;"
+            style="background-color: #2C3E50; color: #FFF; border: 1px solid #1ABC9C; font-size: 14px;"
           />
         </div>
         <div class="mb-3">
-          <label for="userPassword" class="form-label">Password</label>
+          <label for="userPassword" class="form-label" style="color: #1ABC9C; font-size: 14px;">Password</label>
           <input 
             type="password" 
             id="userPassword" 
             class="form-control" 
             [(ngModel)]="newUser.password" 
             name="password" 
-            style="background-color: #e0e0e0; color: #333; border: 1px solid #ccc;"
+            style="background-color: #2C3E50; color: #FFF; border: 1px solid #1ABC9C; font-size: 14px;"
           />
         </div>
         <div class="mb-3">
-          <label for="userRole" class="form-label">Role</label>
+          <label for="userRole" class="form-label" style="color: #1ABC9C; font-size: 14px;">Role</label>
           <input 
             type="text" 
             id="userRole" 
             class="form-control" 
             [(ngModel)]="newUser.role" 
             name="role" 
-            style="background-color: #e0e0e0; color: #333; border: 1px solid #ccc;"
+            style="background-color: #2C3E50; color: #FFF; border: 1px solid #1ABC9C; font-size: 14px;"
           />
         </div>
         <div class="d-flex justify-content-end">
@@ -124,7 +126,7 @@
             type="button" 
             class="btn btn-secondary me-2" 
             (click)="closeAddUserPopup()" 
-            style="border-radius: 6px;"
+            style="border-radius: 6px; background-color: #34495E; color: #FFF; font-size: 14px;"
           >
             Cancel
           </button>
@@ -132,7 +134,7 @@
             type="button" 
             class="btn btn-dark" 
             (click)="addUser()" 
-            style="background-color: black; color: white; border-radius: 6px;"
+            style="background-color: #27AE60; color: white; border-radius: 6px; font-size: 14px;"
           >
             Add
           </button>

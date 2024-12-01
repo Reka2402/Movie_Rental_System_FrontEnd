@@ -23,7 +23,7 @@ import { authCustomerGuard } from './Guard/auth-customer.guard';
 
 const routes: Routes = [
 { path: 'login' , component: LoginComponent,
-//canActivate:[authCustomerGuard]
+//:[authCustomerGuard]
 },
   { path: 'register',component:RegisterComponent},
 

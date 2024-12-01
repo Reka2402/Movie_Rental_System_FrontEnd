@@ -53,5 +53,52 @@
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
+  button:hover {
+    background-color: #1ABC9C !important;
+    transition: background-color 0.3s ease;
+  }
+  
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .popup-content {
+    width: 400px;
+    background-color: #34495E;
+    color: #FFF;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+  /* General font size */
+body, .form-label, .table th, .table td, .btn {
+  font-size: 14px !important;
+}
+
+/* Heading font size */
+h4 {
+  font-size: 16px !important;
+}
+
+/* Adjust button size */
+button {
+  font-size: 14px !important;
+  padding: 8px 16px;
+}
+
+/* Input fields */
+input.form-control {
+  font-size: 14px !important;
+}
+
+/* Table styling */
+.table th, .table td {
+  font-size: 14px !important;
+}
+
   
   
