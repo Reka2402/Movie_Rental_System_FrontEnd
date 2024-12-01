@@ -2,6 +2,8 @@ import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { jwtDecode } from 'jwt-decode';
+import { Movie, Movierequest } from '../Models/model';
+import { MovieService } from '../../services/movie.service';
 
 declare var bootstrap: any;
 @Component({
@@ -18,14 +20,17 @@ export class CustomerProfileComponent {
   token: string = localStorage.getItem('token')!;
   customer: any = jwtDecode(this.token);
 
+  moviesadd: Movierequest[] = [];
+  movies: Movie[] = [];
+  movieForm: any;
  
   rentalDays: number = 1;
   quantity: number = 1;
-  rentButtonText: string = 'Rent Now';  
-  rentButtonClass: string = 'btn-danger';  
+  rentButtonText: string = 'Rent Now'; 
+  rentButtonClass: string = 'btn-danger'; 
   isPending: boolean = false;
 
-  constructor(private rout: ActivatedRoute,private router: Router,private userservice:UserService) {
+  constructor(private rout: ActivatedRoute,private router: Router,private userservice:UserService,private movieService: MovieService) {
     this.UID = String(rout.snapshot.paramMap.get('Id'))
   }
 
@@ -48,10 +53,34 @@ export class CustomerProfileComponent {
   
     this.rentButtonText = 'Pending';
     this.rentButtonClass = 'btn-warning';
+
+
     const rentModal = new bootstrap.Modal(document.getElementById('rentModal'));
     rentModal.hide();
   }
-
+  ngOnInit(): void {
+    this.loaddVD();
+    this.movieService.getMovies().subscribe((data) => {
+      this.movies = data;  
+      console.log(this.movies);
+      
+    })
+    
+  }
+  loaddVD() {
+    this.movieService.getMovies().subscribe(data => {
+      this.movies = data;
+      console.log(this.movies);
+      
+    })
+  }
+  getStars(rating: number): number[] {
+    return Array(Math.round(rating)).fill(0);
+  }
+  
+  setSelectedMovie(movie: any): void {
+    this.selectedMovie = movie;
+  }
   viewRentalHistory(): void {
  
     console.log('Rental History:', this.rentalHistory);
@@ -63,192 +92,195 @@ export class CustomerProfileComponent {
     this.router.navigate(['/customer/rent', movieName]);
   }
 
-
   openProfileModal(): void {
     const modalElement = this.profileModal.nativeElement;
     const bootstrapModal = new bootstrap.Modal(modalElement);
     bootstrapModal.show();
   }
-  categories = [
+  @Output() movie = new EventEmitter();
 
-    {
-      name: 'Series',
-      items: [
-        {
-          id: 1,
-          name: 'The 100',
-          genre: 'Drama, Sci-Fi, Adventure',
-          releaseDate: '2014-03-19',
-          review: 4.5,
-          availableCopies: 30,
-          description: '100 juvenile delinquents are sent to Earth to see if it is habitable.',
-          director: 'Jason Rothenberg',
-          rating: 4.5,
-          price: 22.99,
-          cast: [{ id: 1, name: 'Eliza Taylor' }],
-          images: ['/series/movie9.webp'],
-          pending: false,
-          rentPending: false,
-        },
-        {
-          id: 2,
-          name: 'Stranger Things',
-          genre: 'Sci-Fi, Horror, Thriller',
-          releaseDate: '2016-07-15',
-          review: 4.5,
-          availableCopies: 30,
-          description: 'Supernatural occurrences in a small town. A group of kids discover the mysteries behind their town.',
-          director: 'The Duffer Brothers',
-          rating: 4.5,
-          price: 15.99,
-          cast: [
-            { id: 1, name: 'Winona Ryder' },
-            { id: 2, name: 'David Harbour' },
-            { id: 3, name: 'Finn Wolfhard' },
-          ],
-          images: ['/series/stranger-thing.jpg'],
-          pending: false,
-          rentPending: false,
-        },
-        {
-          id: 3,
-          name: 'Money Heist',
-          genre: 'Crime, Thriller',
-          releaseDate: '2017-05-02',
-          review: 4.7,
-          availableCopies: 25,
-          description: 'A criminal mastermind plans the biggest heist in recorded history.',
-          director: 'Álex Pina',
-          rating: 4.7,
-          price: 16.99,
-          cast: [{ id: 1, name: 'Álvaro Morte' }, { id: 2, name: 'Úrsula Corberó' }],
-          images: ['/movies/movie 20.png'],
-        },
-        {
-          id: 4,
-          name: 'Hunger Games',
-          genre: 'Action, Drama, Sci-Fi',
-          releaseDate: '2012-03-23',
-          review: 4.6,
-          availableCopies: 25,
-          description: 'Katniss Everdeen fights for survival in a deadly televised competition.',
-          director: 'Gary Ross',
-          rating: 4.6,
-          price: 21.99,
-          cast: [{ id: 1, name: 'Jennifer Lawrence' }],
-          images: ['/series/Hungergames.jpg'],
-          pending: false,
-          rentPending: false,
-        },
-        // {
-        //   id: 5,
-        //   name: 'Wednesday',
-        //   genre: 'Comedy, Horror',
-        //   releaseDate: '2022-11-23',
-        //   review: 4.8,
-        //   availableCopies: 35,
-        //   description: 'Wednesday Addams investigates mysteries at Nevermore Academy.',
-        //   director: 'Tim Burton',
-        //   rating: 4.8,
-        //   price: 23.99,
-        //   cast: [{ id: 1, name: 'Jenna Ortega' }],
-        //   images: ['/series/wednesday.jpg'],
-        // },
+  AddMovie(movie: any) {
+    this.movie.emit(movie);
+  }
+  // categories = [
+  //   {
+  //     name: 'Series',
+  //     items: [
+  //       {
+  //         id: 1,
+  //         name: 'The 100',
+  //         genre: 'Drama, Sci-Fi, Adventure',
+  //         releaseDate: '2014-03-19',
+  //         review: 4.5,
+  //         availableCopies: 30,
+  //         description: '100 juvenile delinquents are sent to Earth to see if it is habitable.',
+  //         director: 'Jason Rothenberg',
+  //         rating: 4.5,
+  //         price: 22.99,
+  //         cast: [{ id: 1, name: 'Eliza Taylor' }],
+  //         images: ['/series/the 100.jpg'],
+  //         pending: false,
+  //         rentPending: false,
+  //       },
+  //       {
+  //         id: 2,
+  //         name: 'Stranger Things',
+  //         genre: 'Sci-Fi, Horror, Thriller',
+  //         releaseDate: '2016-07-15',
+  //         review: 4.5,
+  //         availableCopies: 30,
+  //         description: 'Supernatural occurrences in a small town. A group of kids discover the mysteries behind their town.',
+  //         director: 'The Duffer Brothers',
+  //         rating: 4.5,
+  //         price: 15.99,
+  //         cast: [
+  //           { id: 1, name: 'Winona Ryder' },
+  //           { id: 2, name: 'David Harbour' },
+  //           { id: 3, name: 'Finn Wolfhard' },
+  //         ],
+  //         images: ['/series/stranger-thing.jpg'],
+  //         pending: false,
+  //         rentPending: false,
+  //       },
+  //       {
+  //         id: 3,
+  //         name: 'Money Heist',
+  //         genre: 'Crime, Thriller',
+  //         releaseDate: '2017-05-02',
+  //         review: 4.7,
+  //         availableCopies: 25,
+  //         description: 'A criminal mastermind plans the biggest heist in recorded history.',
+  //         director: 'Álex Pina',
+  //         rating: 4.7,
+  //         price: 16.99,
+  //         cast: [{ id: 1, name: 'Álvaro Morte' }, { id: 2, name: 'Úrsula Corberó' }],
+  //         images: ['/movies/movie 20.png'],
+  //       },
+  //       {
+  //         id: 4,
+  //         name: 'Hunger Games',
+  //         genre: 'Action, Drama, Sci-Fi',
+  //         releaseDate: '2012-03-23',
+  //         review: 4.6,
+  //         availableCopies: 25,
+  //         description: 'Katniss Everdeen fights for survival in a deadly televised competition.',
+  //         director: 'Gary Ross',
+  //         rating: 4.6,
+  //         price: 21.99,
+  //         cast: [{ id: 1, name: 'Jennifer Lawrence' }],
+  //         images: ['/series/Hungergames.jpg'],
+  //         pending: false,
+  //         rentPending: false,
+  //       },
+  //       // {
+  //       //   id: 5,
+  //       //   name: 'Wednesday',
+  //       //   genre: 'Comedy, Horror',
+  //       //   releaseDate: '2022-11-23',
+  //       //   review: 4.8,
+  //       //   availableCopies: 35,
+  //       //   description: 'Wednesday Addams investigates mysteries at Nevermore Academy.',
+  //       //   director: 'Tim Burton',
+  //       //   rating: 4.8,
+  //       //   price: 23.99,
+  //       //   cast: [{ id: 1, name: 'Jenna Ortega' }],
+  //       //   images: ['/series/wednesday.jpg'],
+  //       // },
 
-      ],
-    },
-    {
-      name: 'Movies',
-      items: [
-        {
-          id: 3,
-          name: 'Interstellar',
-          genre: 'Adventure, Sci-Fi, Drama',
-          releaseDate: '2014-11-07',
-          review: 4.9,
-          availableCopies: 40,
-          description: 'A group of explorers travel through a wormhole in space to ensure humanity’s survival in a breathtaking journey across time and dimensions.',
-          director: 'Christopher Nolan',
-          rating: 4.9,
-          price: 14.99,
-          cast: [
-            { id: 1, name: 'Matthew McConaughey' },
-            { id: 2, name: 'Anne Hathaway' },
-            { id: 3, name: 'Jessica Chastain' },
-            { id: 4, name: 'Michael Caine' }
-          ],
-          images: ['/movies/movie 39.webp'],
-          pending: false,
-          rentPending: false,
-        },
-        // {
-        //   id: 2,
-        //   name: 'Uncharted',
-        //   genre: 'Action, Adventure',
-        //   releaseDate: '2022-02-18',
-        //   review: 4.2,
-        //   availableCopies: 40,
-        //   description: 'A treasure-hunting adventure inspired by the video game series.',
-        //   director: 'Ruben Fleischer',
-        //   rating: 4.2,
-        //   price: 14.99,
-        //   cast: [{ id: 1, name: 'Tom Holland' }, { id: 2, name: 'Mark Wahlberg' }],
-        //   images: ['/movies/movie 11.png'],
-        // },
-        {
+  //     ],
+  //   },
+  //   {
+  //     name: 'Movies',
+  //     items: [
+  //       {
+  //         id: 3,
+  //         name: 'Interstellar',
+  //         genre: 'Adventure, Sci-Fi, Drama',
+  //         releaseDate: '2014-11-07',
+  //         review: 4.9,
+  //         availableCopies: 40,
+  //         description: 'A group of explorers travel through a wormhole in space to ensure humanity’s survival in a breathtaking journey across time and dimensions.',
+  //         director: 'Christopher Nolan',
+  //         rating: 4.9,
+  //         price: 14.99,
+  //         cast: [
+  //           { id: 1, name: 'Matthew McConaughey' },
+  //           { id: 2, name: 'Anne Hathaway' },
+  //           { id: 3, name: 'Jessica Chastain' },
+  //           { id: 4, name: 'Michael Caine' }
+  //         ],
+  //         images: ['/movies/movie 39.webp'],
+  //         pending: false,
+  //         rentPending: false,
+  //       },
+  //       // {
+  //       //   id: 2,
+  //       //   name: 'Uncharted',
+  //       //   genre: 'Action, Adventure',
+  //       //   releaseDate: '2022-02-18',
+  //       //   review: 4.2,
+  //       //   availableCopies: 40,
+  //       //   description: 'A treasure-hunting adventure inspired by the video game series.',
+  //       //   director: 'Ruben Fleischer',
+  //       //   rating: 4.2,
+  //       //   price: 14.99,
+  //       //   cast: [{ id: 1, name: 'Tom Holland' }, { id: 2, name: 'Mark Wahlberg' }],
+  //       //   images: ['/movies/movie 11.png'],
+  //       // },
+  //       {
 
-          id: 2,
-          name: 'How to Train Your Dragon',
-          genre: 'Adventure, Fantasy, Drama',
-          releaseDate: '2025-06-14',
-          review: 4.7,
-          availableCopies: 0,
-          description: 'Experience the beloved tale of Hiccup and Toothless in a stunning live-action adaptation that explores the bonds of friendship and bravery.',
-          director: 'Dean DeBlois',
-          rating: 4.7,
-          price: 24.99,
-          cast: [
-            { id: 1, name: 'Jay Baruchel' },
-            { id: 2, name: 'America Ferrera' },
-            { id: 3, name: 'Gerard Butler' }
-          ],
-          images: ['/movies/movie 34.jpg'],
-          pending: false,
-          rentPending: false,
+  //         id: 2,
+  //         name: 'How to Train Your Dragon',
+  //         genre: 'Adventure, Fantasy, Drama',
+  //         releaseDate: '2025-06-14',
+  //         review: 4.7,
+  //         availableCopies: 0,
+  //         description: 'Experience the beloved tale of Hiccup and Toothless in a stunning live-action adaptation that explores the bonds of friendship and bravery.',
+  //         director: 'Dean DeBlois',
+  //         rating: 4.7,
+  //         price: 24.99,
+  //         cast: [
+  //           { id: 1, name: 'Jay Baruchel' },
+  //           { id: 2, name: 'America Ferrera' },
+  //           { id: 3, name: 'Gerard Butler' }
+  //         ],
+  //         images: ['/movies/movie 34.jpg'],
+  //         pending: false,
+  //         rentPending: false,
 
-        },
-        {
-          id: 4,
-          name: 'Death on the Nile',
-          genre: 'Mystery, Thriller',
-          releaseDate: '2022-02-11',
-          review: 4.2,
-          availableCopies: 25,
-          description: 'Hercule Poirot investigates a murder on a luxury cruise ship.',
-          director: 'Kenneth Branagh',
-          rating: 4.2,
-          price: 16.99,
-          cast: [{ id: 1, name: 'Gal Gadot' }, { id: 2, name: 'Kenneth Branagh' }],
-          images: ['/movies/movie 12.png'],
-          pending: false,
-          rentPending: false
-        },
-        {
-          id: 2,
-          name: 'Wanda',
-          genre: 'Drama',
-          releaseDate: '1970-02-10',
-          review: 4.0,
-          availableCopies: 15,
-          description: 'A woman drifts through life in search of purpose.',
-          director: 'Barbara Loden',
-          rating: 4.0,
-          price: 12.99,
-          cast: [{ id: 1, name: 'Barbara Loden' }],
-          images: ['/series/wanda.png'],
-          pending: false,
-          rentPending: false
-        },
+  //       },
+  //       {
+  //         id: 4,
+  //         name: 'Death on the Nile',
+  //         genre: 'Mystery, Thriller',
+  //         releaseDate: '2022-02-11',
+  //         review: 4.2,
+  //         availableCopies: 25,
+  //         description: 'Hercule Poirot investigates a murder on a luxury cruise ship.',
+  //         director: 'Kenneth Branagh',
+  //         rating: 4.2,
+  //         price: 16.99,
+  //         cast: [{ id: 1, name: 'Gal Gadot' }, { id: 2, name: 'Kenneth Branagh' }],
+  //         images: ['/movies/movie 12.png'],
+  //         pending: false,
+  //         rentPending: false
+  //       },
+  //       {
+  //         id: 2,
+  //         name: 'Wanda',
+  //         genre: 'Drama',
+  //         releaseDate: '1970-02-10',
+  //         review: 4.0,
+  //         availableCopies: 15,
+  //         description: 'A woman drifts through life in search of purpose.',
+  //         director: 'Barbara Loden',
+  //         rating: 4.0,
+  //         price: 12.99,
+  //         cast: [{ id: 1, name: 'Barbara Loden' }],
+  //         images: ['/series/wanda.png'],
+  //         pending: false,
+  //         rentPending: false
+  //       },
         // {
         //   id: 5,
         //   name: 'Free Guy',
@@ -263,8 +295,8 @@ export class CustomerProfileComponent {
         //   cast: [{ id: 1, name: 'Ryan Reynolds' }],
         //   images: ['/movies/freeguy.jpg'],
         // },
-      ],
-    },
+    //   ],
+    // },
     // {
     //   name: 'Cartoons',
     //   items: [
@@ -423,7 +455,7 @@ export class CustomerProfileComponent {
     //     // },
     //   ],
     // },
-  ];
+  // ];
 
 
   
@@ -442,9 +474,9 @@ export class CustomerProfileComponent {
 
 
 
-  setSelectedMovie(movie: any): void {
-    this.selectedMovie = movie;
-  }
+  // setSelectedMovie(movie: any): void {
+  //   this.selectedMovie = movie;
+  // }
 
 
   // rentMovie() {
@@ -457,20 +489,9 @@ export class CustomerProfileComponent {
   //   console.log(`Added ${this.selectedMovie.name} to favorites`);
 
   // }
-  getStars(rating: number): number[] {
-    return Array(Math.round(rating)).fill(0);
-  }
-
-  @Output() movie = new EventEmitter();
-
-  AddMovie(movie: any) {
-    this.movie.emit(movie);
-  }
-
-
-
-
-
+  // getStars(rating: number): number[] {
+  //   return Array(Math.round(rating)).fill(0);
+  // }
 
 
 }

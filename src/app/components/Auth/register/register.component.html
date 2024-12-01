@@ -1,7 +1,7 @@
-<div class="d-flex justify-content-center align-items-center vh-100 bg-black"
+<div class="d-flex justify-content-center align-items-center vh-100 bg-black" 
      style="background-image: url(/Sliders/movie-detail-bg.png);">
-  <div class="row shadow-lg rounded-3 overflow-hidden"
-       style="width: 40rem; background-color: #000;">
+  <div class="row shadow-lg rounded-4 overflow-hidden"
+       style="width: 55rem; height: 45rem; background: rgba(30, 30, 30, 0.95); backdrop-filter: blur(10px);">
 
     <!-- Image Section -->
     <div class="col-md-5 p-0">
@@ -9,93 +9,121 @@
            style="background-image: url('/Sliders/slider\ 11.jpg'); 
                   background-size: cover; 
                   background-position: center; 
-                  min-height: 20rem;">
+                  filter: brightness(0.8) saturate(0.9);">
       </div>
     </div>
 
     <!-- Register Form Section -->
-    <div class="col-md-7 p-3 d-flex align-items-center">
-      <div class="card p-2 border-0 bg-transparent text-white w-100">
-        <h3 class="text-center mb-3 text-danger">Register Now</h3>
+    <div class="col-md-7 p-5 d-flex align-items-center">
+      <div class="card p-4 border-0 bg-transparent text-white w-100">
+        <h3 class="text-center mb-4 text-danger fw-bold">Create Your Account</h3>
         <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
 
-          <div class="mb-2">
-            <div class="input-group">
-              <span class="input-group-text bg-black text-white"><i class="bi bi-person"></i></span>
-              <input type="text" formControlName="fullname" class="form-control bg-dark text-white border-0" 
-                     placeholder="John Doe" />
+          <!-- Full Name -->
+          <div class="mb-3">
+            <label for="fullname" class="form-label text-light">Full Name</label>
+            <div class="input-group shadow-sm">
+              <span class="input-group-text bg-secondary text-white border-secondary">
+                <i class="bi bi-person"></i>
+              </span>
+              <input type="text" formControlName="fullname" id="fullname" 
+                     class="form-control bg-dark text-white border-secondary rounded-3" 
+                     placeholder="Enter your full name" />
             </div>
-            <div class="form-text text-danger" *ngIf="signupForm.get('fullname')?.touched && signupForm.get('fullname')?.invalid">
+            <div class="form-text text-danger mt-1" *ngIf="signupForm.get('fullname')?.touched && signupForm.get('fullname')?.invalid">
               Full Name is required
             </div>
           </div>
 
-          <div class="mb-2">
-            <div class="input-group">
-              <span class="input-group-text bg-black text-white"><i class="bi bi-envelope"></i></span>
-              <input type="email" formControlName="email" class="form-control bg-dark text-white border-0" 
-                     placeholder="Your Email" />
+          <!-- Email -->
+          <div class="mb-3">
+            <label for="email" class="form-label text-light">Email Address</label>
+            <div class="input-group shadow-sm">
+              <span class="input-group-text bg-secondary text-white border-secondary">
+                <i class="bi bi-envelope"></i>
+              </span>
+              <input type="email" formControlName="email" id="email" 
+                     class="form-control bg-dark text-white border-secondary rounded-3" 
+                     placeholder="Enter your email address" />
             </div>
-            <div class="form-text text-danger" *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid">
+            <div class="form-text text-danger mt-1" *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid">
               Valid email is required
             </div>
           </div>
 
-          <div class="mb-2">
-            <div class="input-group">
-              <span class="input-group-text bg-black text-white"><i class="bi bi-lock"></i></span>
-              <input type="password" formControlName="password" class="form-control bg-dark text-white border-0" 
-                     placeholder="Password" />
+          <!-- Password -->
+          <div class="mb-3">
+            <label for="password" class="form-label text-light">Password</label>
+            <div class="input-group shadow-sm">
+              <span class="input-group-text bg-secondary text-white border-secondary">
+                <i class="bi bi-lock"></i>
+              </span>
+              <input type="password" formControlName="password" id="password" 
+                     class="form-control bg-dark text-white border-secondary rounded-3" 
+                     placeholder="Create a password" />
             </div>
-            <div class="form-text text-danger" *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.invalid">
+            <div class="form-text text-danger mt-1" *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.invalid">
               Password must be at least 6 characters long
             </div>
           </div>
 
-          <div class="mb-2">
-            <div class="input-group">
-              <span class="input-group-text bg-black text-white"><i class="bi bi-lock-fill"></i></span>
-              <input type="password" formControlName="confirmPassword" class="form-control bg-dark text-white border-0" 
-                     placeholder="Confirm Password" />
+          <!-- Confirm Password -->
+          <div class="mb-3">
+            <label for="confirmPassword" class="form-label text-light">Confirm Password</label>
+            <div class="input-group shadow-sm">
+              <span class="input-group-text bg-secondary text-white border-secondary">
+                <i class="bi bi-lock-fill"></i>
+              </span>
+              <input type="password" formControlName="confirmPassword" id="confirmPassword" 
+                     class="form-control bg-dark text-white border-secondary rounded-3" 
+                     placeholder="Confirm your password" />
             </div>
-            <div class="form-text text-danger" *ngIf="signupForm.get('confirmPassword')?.touched && signupForm.get('confirmPassword')?.invalid">
+            <div class="form-text text-danger mt-1" *ngIf="signupForm.get('confirmPassword')?.touched && signupForm.get('confirmPassword')?.invalid">
               Passwords must match
             </div>
           </div>
 
-          <div class="mb-2">
-            <div class="input-group">
-              <span class="input-group-text bg-black text-white"><i class="bi bi-person-badge"></i></span>
-              <select formControlName="role" class="form-select bg-dark text-white border-0" aria-label="Select Role">
-                <option value="" disabled>Select Role</option>
+          <!-- Role -->
+          <div class="mb-3">
+            <label for="role" class="form-label text-light">Select Role</label>
+            <div class="input-group shadow-sm">
+              <span class="input-group-text bg-secondary text-white border-secondary">
+                <i class="bi bi-person-badge"></i>
+              </span>
+              <select formControlName="role" id="role" 
+                      class="form-select bg-dark text-white border-secondary rounded-3">
+                <option value="" disabled>Select your role</option>
                 <option value="1">Admin</option>
                 <option value="2">Customer</option>
               </select>
             </div>
-            <div class="form-text text-danger" *ngIf="signupForm.get('role')?.touched && signupForm.get('role')?.invalid">
+            <div class="form-text text-danger mt-1" *ngIf="signupForm.get('role')?.touched && signupForm.get('role')?.invalid">
               Role is required
             </div>
           </div>
 
-          <div class="mb-2 form-check">
-            <input type="checkbox" formControlName="terms" class="form-check-input" id="termsCheck" />
-            <label class="form-check-label text-white" for="termsCheck">
-              I agree to all statements in <a href="#" class="text-danger">Terms of service</a>
+          <!-- Terms and Conditions -->
+          <div class="mb-4 form-check">
+            <input type="checkbox" formControlName="terms" class="form-check-input border-secondary" id="termsCheck" />
+            <label class="form-check-label text-light" for="termsCheck">
+              I agree to all statements in <a href="#" class="text-danger text-decoration-none">Terms of service</a>
             </label>
-            <div class="form-text text-danger" *ngIf="signupForm.get('terms')?.touched && signupForm.get('terms')?.invalid">
+            <div class="form-text text-danger mt-1" *ngIf="signupForm.get('terms')?.touched && signupForm.get('terms')?.invalid">
               You must agree to the terms
             </div>
           </div>
 
+          <!-- Submit Button -->
           <div class="d-grid">
-            <button type="submit" class="btn btn-danger btn-sm" [disabled]="signupForm.invalid">
+            <button type="submit" class="btn btn-danger btn-lg shadow rounded-pill" [disabled]="signupForm.invalid">
               Register
             </button>
           </div>
 
-          <div class="text-center mt-2">
+          <!-- Login Redirect -->
+          <div class="text-center mt-4">
             <p class="text-white">
-              Already have an account? <a href="/login" class="text-danger">Login</a>
+              Already have an account? <a href="/login" class="text-danger text-decoration-none fw-bold">Login</a>
             </p>
           </div>
         </form>

@@ -23,23 +23,10 @@
           *ngFor="let movie of movies"
         >
           <div class="movie-card position-relative overflow-hidden shadow-lg">
-            <img
-            *ngIf="movie.imageUrl"
-            [src]="movie.imageUrl"
-              class="movie-image"
-              alt="{{ movie.movieName }}"
-            />
-            <img
-            *ngIf="!movie.imageUrl"
-            src="/movies/movie12.png"
-            alt="Default Image"
-            width="50"
-            height="50"
-            class="rounded shadow-sm"
-          />
-            <div class="movie-title bg-danger">
-              {{ movie.movieName }}
-            </div>
+            <img [src]="movie.imageUrl" class="movie-image" alt="{{ movie.movieName }}" />
+              <div class="movie-title bg-danger">
+                {{ movie.movieName }}
+              </div>
             <div class="movie-details text-center text-light d-flex flex-column justify-content-center">
               <p class="mb-1 text-light">{{  movie.genre.name }}</p>
               <!-- <p>
@@ -83,29 +70,29 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-md-4">
-            <img [src]="selectedMovie?.images[0]" class="img-fluid rounded" alt="{{ selectedMovie?.name }}">
+            <img [src]="selectedMovie?.imageUrl" class="img-fluid rounded" alt="{{ selectedMovie?.name }}">
           </div>
           <div class="col-md-8">
-            <p><strong>Genre:</strong> {{ selectedMovie?.genre }}</p>
+            <p><strong>Genre:</strong> {{ selectedMovie?.genre.name }}</p>
             <p><strong>Release Date:</strong> {{ selectedMovie?.releaseDate | date }}</p>
-            <p><strong>Director:</strong> {{ selectedMovie?.director }}</p>
-            <p><strong>Cast:</strong> <span *ngFor="let actor of selectedMovie?.cast; let last = last">{{ actor.name }}<span *ngIf="!last">,</span></span></p>
+            <p><strong>Director:</strong> {{ selectedMovie?.director.name }}</p>
+            <!-- <p><strong>Cast:</strong> <span *ngFor="let actor of selectedMovie?.cast; let last = last">{{ actor.name }}<span *ngIf="!last">,</span></span></p> -->
           
-            <p>
+            <!-- <p>
               <strong>Rating:</strong>
               <ng-container *ngFor="let star of getStars(selectedMovie?.rating)">
                 <i class="bi bi-star-fill text-warning"></i>
               </ng-container>
-            </p>
+            </p> -->
             
             <p><strong>Description:</strong> {{ selectedMovie?.description }}</p>
             <p><strong>Price:</strong> {{ selectedMovie?.price | currency: 'USD' }}</p>
-            <p><strong>Available Copies:</strong> {{ selectedMovie?.availableCopies }}</p>
+            <p><strong>Available Copies:</strong> {{ selectedMovie?.totalCopies }}</p>
           </div>
         </div>
       </div>
      
-        <button type="button" *ngIf="selectedMovie?.availableCopies > 0" [routerLink]="'/login'" class="btn btn-danger">
+        <button type="button" *ngIf="selectedMovie?.totalCopies > 0" [routerLink]="'/login'" class="btn btn-danger">
           Sign In to Rent
         </button>
     </div>

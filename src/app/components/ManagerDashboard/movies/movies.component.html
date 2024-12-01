@@ -1,14 +1,29 @@
 <div class="container mt-5">
-  <div class="card shadow p-4 mb-5 bg-dark text-white rounded">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <input
-        type="text"
-        class="form-control w-25"
-        placeholder="Search Movies..."
-        id="searchInput"
-        [(ngModel)]="searchText"
-        style="border: 1px solid #1ABC9C; border-radius: 8px; background-color: #2C3E50; color: white; font-size: 14px;"
-      />
+  <div class="card shadow-lg p-3 mb-5 rounded" style="background-color: #34495E; color: #FFF;">
+    <div class="card-body">
+      <div class="d-flex justify-content-between mb-3">
+        <div class="d-flex align-items-center position-relative w-50">
+        <input
+          type="text"
+          class="form-control px-4 py-2 shadow-sm"
+         
+          placeholder="🔍 Search Movies..."
+          id="searchInput"
+          [(ngModel)]="searchText"
+          style="
+            border: none;
+            border-radius: 30px;
+            background-color: #FFF;
+            color: #2C3E50;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            outline: none;
+          "
+          onfocus="this.style.boxShadow='0 4px 10px rgba(0,0,0,0.3)'"
+          onblur="this.style.boxShadow='none'"
+        />
+      </div>
+      
       <button
         class="btn btn-dark px-4 py-2"
         (click)="openAddMoviePopup()"
@@ -144,3 +159,5 @@
     </form>
   </div>
 </div>
+</div>
+

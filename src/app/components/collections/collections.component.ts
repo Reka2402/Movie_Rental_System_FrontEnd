@@ -11,25 +11,25 @@ import { Movierequest, Movie } from '../Models/model';
   styleUrl: './collections.component.css'
 })
 export class CollectionsComponent {
-  selectedMovie: any = null;
+  selectedMovie: any;
 
 
   moviesadd: Movierequest[] = [];
   movies: Movie[] = [];
   movieForm: any;
   constructor( private fb:FormBuilder, private movieService: MovieService ,private toastr: ToastrService, private router : Router) {
-    this.movieForm = this.fb.group({
-      movieName: ['', Validators.required],
-      genreId: [null, Validators.required],
-      // genreName: ['', Validators.required],
-      directorId: [null, Validators.required],
-      directorName: ['', Validators.required],
-      releaseDate: ['', Validators.required],
-      price: [0, [Validators.required, Validators.min(0)]],
-      description: ['', Validators.required],
-      imageUrl: [null],
-      totalCopies: [0, [Validators.required, Validators.min(1)]]
-    });
+    // this.movieForm = this.fb.group({
+    //   movieName: ['', Validators.required],
+    //   genreId: [null, Validators.required],
+    //   // genreName: ['', Validators.required],
+    //   directorId: [null, Validators.required],
+    //   directorName: ['', Validators.required],
+    //   releaseDate: ['', Validators.required],
+    //   price: [0, [Validators.required, Validators.min(0)]],
+    //   description: ['', Validators.required],
+    //   imageUrl: [null],
+    //   totalCopies: [0, [Validators.required, Validators.min(1)]]
+    // });
   }
   ngOnInit(): void {
     this.loaddVD();
