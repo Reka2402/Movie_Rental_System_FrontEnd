@@ -1,43 +1,26 @@
-<head>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-</head>
 <div class="container-fluid p-0 bg-black text-white" style="height: max-content;">
   <div class="row g-0">
     <div class="col-lg-2 col-md-3 col-sm-4 col-12 bg-dark d-flex flex-column align-items-center py-5"
       style="font-family: 'Poppins'; width:100px; justify-content: space-between; margin-right: 100px;">
 
-      <!-- <a href="#" class="logo text-white">
-          <i class="bx bx-movie-play bx-tada text-danger"></i>
-          Fl<span class="text-danger">i</span>x
-        </a> -->
       <nav class="nav flex-column w-20 text-center" style="height: 100vh;margin-top: 3rem;">
         <a class="nav-link text-white pt-4" href="#" title="Home">
           <i class="bi bi-house fs-2"></i>
-          <!-- <span class="d-block">Home</span> -->
         </a>
         <a class="nav-link text-white pt-4" href="#" title="Rental History" (click)="showRentalHistory()">
           <i class="bi bi-clock-history fs-2"></i>
         </a>
         <a class="nav-link  text-white pt-4" href="#" title="Favorites">
           <i class="bi bi-heart fs-2"></i>
-          <!-- <span class="d-block">Favorites</span> -->
         </a>
-        <!-- <a class="nav-link py-3 text-white" href="#" title="Library">
-            <i class="bi bi-collection-play fs-4"></i>
-            <span class="d-block">Library</span>
-          </a> -->
         <a class="nav-link py-3 text-white pt-4" href="#" title="Notifications">
           <i class="bi bi-bell fs-2"></i>
-          <!-- <span class="d-block">Notifications</span> -->
         </a>
         <a class="nav-link py-3 text-white pt-4" href="#" title="Profile">
           <i class="bi bi-person fs-2"></i>
-          <!-- <span class="d-block">Profile</span> -->
         </a>
         <a class="nav-link py-3 text-white pt-4" href="#" title="Password Update">
           <i class="bi bi-shield-lock fs-2"></i>
-          <!-- <span class="d-block">Password Update</span> -->
         </a>
       </nav>
 
@@ -83,11 +66,8 @@
         <button class="btn btn-outline-danger px-4 py-2 hover-effect">Anime</button>
         <button class="btn btn-outline-danger px-4 py-2 hover-effect">Cartoons</button>
       </div>
-  
+
       <div *ngFor="let movie of movies" style="font-family: 'Montserrat';">
-        <!-- <h3 class="text-center text-uppercase text-danger mt-3" style="font-family: 'Roboto';">
-          {{ movie.movieName }}
-        </h3> -->
         <div class="row justify-content-center">
           <div class="col-lg-3 col-md-4 col-sm-6 col-12 mt-4" *ngFor="let movie of movies">
             <div class="movie-card position-relative overflow-hidden shadow-lg">
@@ -122,91 +102,103 @@
         </div>
       </div>
 
-     <!-- Movie Popup -->
-<div class="modal fade" id="viewMoreModal" tabindex="-1" aria-labelledby="viewMoreModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content bg-dark text-white">
-      <div class="modal-header">
-        <h5 class="modal-title" id="viewMoreModalLabel">{{selectedMovie?.name}}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-md-6">
-            <img [src]="selectedMovie?.images[0]" class="img-fluid" alt="{{selectedMovie?.name}}">
-          </div>
-          <div class="col-md-6">
-            <p><strong>Genre:</strong> {{selectedMovie?.genre}}</p>
-            <p><strong>Release Date:</strong> {{selectedMovie?.releaseDate | date}}</p>
-            <p><strong>Director:</strong> {{selectedMovie?.director}}</p>
-            <p><strong>Rating:</strong> {{selectedMovie?.rating}}</p>
-            <p><strong>Description:</strong> {{selectedMovie?.description}}</p>
-            <p><strong>Cast:</strong></p>
-            <ul>
-              <li *ngFor="let actor of selectedMovie?.cast">{{actor.name}}</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn" [ngClass]="rentButtonClass" (click)="openRentModal()" [disabled]="rentButtonText === 'Pending'">
-          {{ rentButtonText }}
-        </button>
-        <button type="button" class="btn btn-outline-danger">Add to Favorites</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Rent Popup -->
-<div class="modal fade" id="rentModal" tabindex="-1" aria-labelledby="rentModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content bg-dark text-white">
-      <div class="modal-header">
-        <h5 class="modal-title" id="rentModalLabel">Rent {{selectedMovie?.name}}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-md-6">
-            <img [src]="selectedMovie?.images[0]" class="img-fluid" alt="{{selectedMovie?.name}}">
-          </div>
-          <div class="col-md-6">
-            <p><strong>Price:</strong> ${{selectedMovie?.price}}</p>
-
-            <!-- Rental Days -->
-            <div class="mb-3">
-              <label for="rentalDays" class="form-label">Select Rental Days</label>
-              <select id="rentalDays" class="form-select" [(ngModel)]="rentalDays">
-                <option value="1">1 Day</option>
-                <option value="3">3 Days</option>
-                <option value="7">1 Week</option>
-                <option value="14">2 Weeks</option>
-                <option value="30">1 Month</option>
-              </select>
+      <!-- Movie Popup -->
+      <div class="modal fade" id="viewMoreModal" tabindex="-1" aria-labelledby="viewMoreModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content bg-dark text-white">
+            <div class="modal-header">
+              <h5 class="modal-title" id="viewMoreModalLabel">{{selectedMovie?.movieName}}</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-
-            <!-- Quantity -->
-            <div class="mb-3">
-              <label for="quantity" class="form-label">Quantity</label>
-              <input type="number" id="quantity" class="form-control" [(ngModel)]="quantity" min="1" />
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <img [src]="selectedMovie?.imageUrl" class="img-fluid" alt="{{selectedMovie?.movieName}}">
+                </div>
+                <div class="col-md-6">
+                  <p><strong>Genre:</strong> {{selectedMovie?.genre.name}}</p>
+                  <p><strong>Release Date:</strong> {{selectedMovie?.releaseDate | date}}</p>
+                  <p><strong>Director:</strong> {{selectedMovie?.director.name}}</p>
+                  <p><strong>Rating:</strong> {{selectedMovie?.rating}}</p>
+                  <p><strong>Description:</strong> {{selectedMovie?.description}}</p>
+                  <p><strong>Cast:</strong></p>
+                  <ul>
+                    <li *ngFor="let actor of selectedMovie?.cast">{{actor.name}}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn" [ngClass]="rentButtonClass" (click)="openRentModal()"
+                [disabled]="rentButtonText === 'Pending'">
+                {{ rentButtonText }}
+              </button>
+              <button type="button" class="btn btn-outline-danger">Add to Favorites</button>
             </div>
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button 
-          type="button" 
-          class="btn" 
-          [ngClass]="rentButtonClass" 
-          (click)="rentMovie()" 
-          [disabled]="isPending">
-          {{ rentButtonText }}
-        </button>
-        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+      <!-- Rent Popup -->
+      <div class="modal fade" id="rentModal" tabindex="-1" aria-labelledby="rentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content bg-dark text-white">
+            <div class="modal-header">
+              <h5 class="modal-title" id="rentModalLabel">Rent {{selectedMovie?.movieName}}</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <img [src]="selectedMovie?.imageUrl" class="img-fluid" alt="{{selectedMovie?.movieName}}">
+                </div>
+                <div class="col-md-6">
+                  <p><strong>Base Price:</strong> ${{selectedMovie?.price}}</p>
+
+                  <!-- Rental Days -->
+                  <div class="mb-3">
+                    <label for="rentalDays" class="form-label">Select Rental Days</label>
+                    <select id="rentalDays" class="form-select" [(ngModel)]="rentalDays" (change)="calculatePrice()">
+                      <option value="1">1 Day</option>
+                      <option value="3">3 Days</option>
+                      <option value="7">1 Week</option>
+                      <option value="14">2 Weeks</option>
+                      <option value="30">1 Month</option>
+                    </select>
+                  </div>
+
+                  <!-- Additional Options -->
+                  <div class="mb-3">
+                    <label class="form-label">Select Additional Content</label>
+                    <div>
+                      <input type="checkbox" id="option1" [(ngModel)]="option1" (change)="calculatePrice()">
+                      <label for="option1">Option 1: HD Quality</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" id="option2" [(ngModel)]="option2" (change)="calculatePrice()">
+                      <label for="option2">Option 2: Bonus Features</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" id="option3" [(ngModel)]="option3" (change)="calculatePrice()">
+                      <label for="option3">Option 3: Extended Cut</label>
+                    </div>
+                  </div>
+
+                  <!-- Calculated Total Price -->
+                  <p><strong>Total Price:</strong> ${{totalPrice}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn" [ngClass]="rentButtonClass" (click)="rentMovie()"
+                [disabled]="isPending || totalPrice === 0">
+                {{ rentButtonText }}
+              </button>
+              <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
+
 
 
       <!-- CustomerProfilePopup -->
@@ -239,77 +231,7 @@
           </div>
         </div>
       </div>
-      <!-- <div class="container-fluid p-0 bg-black text-white" style="height: max-content;">
-  <div class="row g-0">
-    <div class="col-lg-2 col-md-3 col-sm-4 col-12 bg-dark d-flex flex-column align-items-center py-5">
-      <nav class="nav flex-column w-20 text-center" style="height: 100vh; margin-top: 3rem;">
-        <a class="nav-link text-white" href="#" title="Rental History" (click)="viewRentalHistory()">
-          <i class="bi bi-clock-history fs-2"></i>
-        </a>
-      </nav>
-    </div> -->
-      <!-- <div class="col-xl-10 col-lg-10 col-md-9 col-sm-8 col-12">
-      <div *ngFor="let category of categories">
-        <h3 class="text-center text-uppercase text-danger mt-3">{{ category.name }}</h3>
-        <div class="row justify-content-center">
-          <div class="col-lg-3 col-md-4 col-sm-6 col-12 mt-4" *ngFor="let item of category.items">
-            <div class="movie-card position-relative overflow-hidden shadow-lg">
-              <img [src]="item.images[0]" class="movie-image" alt="{{ item.name }}" />
-              <div class="movie-title bg-danger">{{ item.name }}</div>
-              <div class="movie-details text-center text-light d-flex flex-column justify-content-center">
-                <p class="mb-1 text-light">{{ item.genre }}</p>
-                <p>
-                  <ng-container *ngFor="let star of getStars(item.rating)">
-                    <i class="bi bi-star-fill text-warning"></i>
-                  </ng-container>
-                </p>
-                <p class="fw-bold text-success mb-2">Price: {{ item.price | currency: 'USD' }}</p>
-                <button
-                  class="btn btn-danger btn-sm mb-1"
-                  *ngIf="item.availableCopies > 0 && !item.pending"
-                  (click)="rentMovie(item)"
-                >
-                  Rent Now
-                </button>
-                <button
-                  class="btn btn-secondary btn-sm"
-                  *ngIf="item.pending"
-                  disabled
-                >
-                  Pending
-                </button>
-                <button
-                  class="btn btn-outline-light btn-sm"
-                  data-bs-toggle="modal"
-                  data-bs-target="#viewMoreModal"
-                  (click)="selectedMovie = item"
-                >
-                  View More
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="rental-history mt-5" *ngIf="rentalHistory.length > 0">
-        <h3 class="text-danger text-center">Rental History</h3>
-        <div class="row justify-content-center">
-          <div class="col-lg-3 col-md-4 col-sm-6 col-12 mt-4" *ngFor="let rental of rentalHistory">
-            <div class="movie-card position-relative overflow-hidden shadow-lg">
-              <img [src]="rental.images[0]" class="movie-image" alt="{{ rental.name }}" />
-              <div class="movie-title bg-danger">{{ rental.name }}</div>
-              <div class="movie-details text-center text-light">
-                <p>{{ rental.genre }}</p>
-                <p>Status: <span class="text-warning">{{ rental.status }}</span></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
 
 
 

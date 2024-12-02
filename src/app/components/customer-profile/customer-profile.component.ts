@@ -12,6 +12,12 @@ declare var bootstrap: any;
   styleUrl: './customer-profile.component.css'
 })
 export class CustomerProfileComponent {
+  rentalDays: number = 1;
+  option1: boolean = false;
+  option2: boolean = false;
+  option3: boolean = false;
+  totalPrice: number = 0;
+
   selectedMovie: any = null;
   customerId: number = 1;
   showHistory = false;
@@ -24,7 +30,11 @@ export class CustomerProfileComponent {
   movies: Movie[] = [];
   movieForm: any;
  
-  rentalDays: number = 1;
+  option1Price: number = 2;  // HD Quality
+  option2Price: number = 3;  // Bonus Features
+  option3Price: number = 4;  // Extended Cut
+
+
   quantity: number = 1;
   rentButtonText: string = 'Rent Now'; 
   rentButtonClass: string = 'btn-danger'; 
@@ -101,6 +111,22 @@ export class CustomerProfileComponent {
 
   AddMovie(movie: any) {
     this.movie.emit(movie);
+  }
+  calculatePrice() {
+    // Base price calculation
+    let basePrice = this.selectedMovie.price;
+
+    // Price based on rental days
+    let rentalPrice = basePrice * this.rentalDays;
+
+    // Additional options
+    let additionalPrice = 0;
+    if (this.option1) additionalPrice += this.option1Price;
+    if (this.option2) additionalPrice += this.option2Price;
+    if (this.option3) additionalPrice += this.option3Price;
+
+    // Calculate total price
+    this.totalPrice = rentalPrice + additionalPrice;
   }
   // categories = [
   //   {

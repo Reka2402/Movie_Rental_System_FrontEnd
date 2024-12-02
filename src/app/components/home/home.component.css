@@ -1,74 +1,79 @@
-:root {
-  --main-color: #c0392b;
-  --body-bg: #181616;
-  --box-bg: #221f1f;
-  --text-color: #ffffff;
-
-  --nav-height: 60px;
-  --space-top: 30px;
-}
-/* General Styles for About Us and Contact Us */
-#about-us, #contact-us {
-  background-color: #333; /* Dark background for both sections */
-  color: #fff;
-  padding-top: 50px;
-  padding-bottom: 50px;
+/* Common Section Styling */
+.about-us-section, .contact-us-section {
+  background-color: #181616;
+  color: #ffffff;
+  padding: 4rem 0;
 }
 
-#about-us h2, #contact-us h2 {
-  color: #c0392b; /* Red text for headings */
+.about-us-section h2, .contact-us-section h2 {
+  font-size: 2.5rem;
   font-weight: bold;
 }
 
-#about-us h4, #contact-us h4 {
+.about-us-section p, .contact-us-section label {
+  color: #e0e0e0;
+}
+
+/* Buttons */
+.btn-custom {
+  background-color: #c0392b;
   color: #fff;
-  font-weight: bold;
-}
-
-#about-us p, #contact-us p {
-  color: #ccc; /* Light text color for general paragraphs */
-}
-
-#about-us .col-md-6, #contact-us .col-md-6 {
-  margin-bottom: 30px;
-}
-
-#about-us .list-unstyled li, #contact-us .list-unstyled li {
-  color: #ccc;
-  margin-bottom: 10px;
-}
-
-#contact-us .form-control {
   border-radius: 8px;
-  padding: 10px;
-  border: 1px solid #555;
+  padding: 12px 30px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-custom:hover {
+  background-color: #a12824;
+  transform: scale(1.05);
+}
+
+/* Contact Us Form */
+#contact-us .form-control {
   background-color: #444;
   color: #fff;
+  border-radius: 8px;
+  border: 1px solid #555;
+  padding: 12px;
+  transition: border-color 0.3s ease;
 }
 
 #contact-us .form-control:focus {
   border-color: #c0392b;
   background-color: #555;
-  color: #fff;
 }
 
-#contact-us .btn-custom {
-  background-color: #c0392b;
-  color: #fff;
-  border-radius: 8px;
-  padding: 12px 20px;
-  border: none;
+#contact-us .form-label {
+  font-size: 1rem;
 }
 
-#contact-us .btn-custom:hover {
-  background-color: #e74c3c;
-  color: #fff;
+/* About Us Image Styling */
+.about-us-section div[style*="background: url"] {
+
+  transition: transform 0.3s ease;
 }
 
-#contact-us i, #about-us i {
-  color: #c0392b;
-  margin-right: 10px;
+.about-us-section div[style*="background: url"]:hover {
+  transform: scale(1.05);
 }
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .about-us-section h2, .contact-us-section h2 {
+    font-size: 2rem;
+  }
+
+  .about-us-section p {
+    font-size: 1rem;
+  }
+
+  .btn-custom {
+    padding: 10px 20px;
+  }
+}
+
 
 @media (max-width: 767px) {
   #about-us h2, #contact-us h2 {
@@ -479,3 +484,160 @@ a.movie-item:hover {
     transform: translateY(0);
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/* //addictional */
+ body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #300000;
+    color: #fff;
+  }
+
+  .nav-wrapper {
+    background: #1a1a1a;
+    padding: 10px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .logo {
+    color: #e50914;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .nav-menu li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+
+  .nav-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s;
+  }
+
+  .nav-menu a:hover {
+    color: #e50914;
+  }
+
+  .btn-hover {
+    color: #fff;
+    background-color: #e50914;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    transition: 0.3s;
+  }
+
+  .btn-hover:hover {
+    background: #d40813;
+  }
+
+  /* Carousel */
+  .carousel {
+    position: relative;
+  }
+
+  .carousel-inner {
+    width: 100%;
+    height: 100vh;
+  }
+
+  .carousel-item {
+    display: none;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .carousel-item.active {
+    display: block;
+  }
+
+  .carousel-caption {
+    position: absolute;
+    bottom: 15%;
+    left: 5%;
+    text-align: left;
+    z-index: 10;
+  }
+
+  .carousel-caption h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .carousel-caption p {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+
+  .carousel-caption .btn-custom {
+    background-color: #e50914;
+    color: #fff;
+    padding: 10px 25px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    transition: 0.3s;
+  }
+
+  .carousel-caption .btn-custom:hover {
+    background-color: #d40813;
+    transform: scale(1.05);
+  }
+
+  /* Indicators */
+  .carousel-indicators button {
+    background-color: #fff;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    opacity: 0.7;
+    transition: 0.3s;
+  }
+
+  .carousel-indicators .active {
+    background-color: #e50914;
+  }
+
+  /* Controls */
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    filter: brightness(0) invert(1);
+  }
+
+  /* Slide Background Overlay */
+  .slide-container {
+    position: relative;
+    height: 100vh;
+  }
+
+  .slide-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  }

@@ -1,43 +1,57 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CustomerService } from '../../services/customer.service';
+import { ContactUs } from '../Models/model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  contactForm!: FormGroup;
+ 
+  constructor(private fb: FormBuilder, private contactUsService: CustomerService, private toastr: ToastrService,)  {}
 
+
+  ngOnInit(): void {
+    this.contactForm = this.fb.group({
+      FullName: ['', [Validators.required, Validators.minLength(3)]],
+      EmailAddress: ['', [Validators.required, Validators.email]],
+      Message: ['', [Validators.required, Validators.minLength(10)]],
+    });
+  }
+  onSubmit(): void {
+    if (this.contactForm.valid) {
+      const message: ContactUs = {
+        ContactId: 0,
+        FullName: this.contactForm.value.FullName,
+        EmailAddress: this.contactForm.value.EmailAddress,
+        Message: this.contactForm.value.Message,
+        SubmittedOn: new Date().toISOString(),
+      };
+
+      this.contactUsService.addMessage(message).subscribe({
+        next: (response) => {
+          this.toastr.success('Message submitted successfully!', 'Success');
+          this.contactForm.reset();
+        },
+        error: (error) => {
+          console.error('Error submitting message:', error);
+          this.toastr.error('An error occurred. Please try again.', 'Error');
+        },
+      });
+    }
+  }
+  scrollToContact() {
+    const element = document.getElementById('contact-us');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
   
-    // slides = [
-    //   {
-    //     title: 'Stranger Things',
-    //     description: 'Experience the thrills of Hawkins, where supernatural forces collide. Join the adventure and uncover the mysteries of the Upside Down!',
-    //     badge: '9.5',
-    //     details: '4 Seasons | HD | 16+',
-    //     imageUrl: '/Sliders/slider 10.jpg'
-    //   },
-    //   {
-    //     title: 'Frozen 2',
-    //     description: 'Join Elsa, Anna, and friends on a magical journey beyond Arendelle to uncover the secrets of their past and save their kingdom.',
-    //     badge: '9.5',
-    //     details: '140 mins | HD | 16+',
-    //     imageUrl: '/Sliders/Slider 1.jpg'
-    //   },
-    //   {
-    //     title: 'WandaVision',
-    //     description: 'Step into the surreal world of Wanda and Vision as they navigate mysterious realities, blending classic sitcom charm with Marvel\'s thrilling twists.',
-    //     badge: '9.5',
-    //     details: '120 mins | HD | 16+',
-    //     imageUrl: '/Sliders/slider 11.jpg'
-    //   },
-    //   {
-    //     title: 'Moana 2',
-    //     description: 'Set sail once more with Moana as she embarks on a new ocean adventure.',
-    //     badge: '9.5',
-    //     details: '200 mins | HD | 16+',
-    //     imageUrl: '/Sliders/slider 5.jpeg'
-    //   }
-    // ];
+  
   }
   
 

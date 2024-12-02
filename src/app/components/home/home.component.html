@@ -11,8 +11,8 @@
       <ul class="nav-menu" id="nav-menu">
         <li><a routerLink="/Home" href="#">Home</a></li>
         <li><a routerLink="/movies" href="#">Collections</a></li>
-        <li><a routerLink="#" href="#">Contact Us</a></li>
-        <li><a href="#">About</a></li>
+        <li><a (click)="scrollToContact()">Contact Us</a></li>
+        <li><a href="#about-us">About</a></li>
         <li>
           <a routerLink="/login" href="#" class="btn btn-hover siginin">
             <span>Sign in</span>
@@ -24,7 +24,7 @@
 </div>
 
 <div id="movieCarousel" class="carousel slide" data-bs-ride="carousel">
-  <!-- Indicators -->
+ 
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#movieCarousel" data-bs-slide-to="0" class="active" aria-current="true"
       aria-label="Slide 1"></button>
@@ -33,7 +33,7 @@
     <button type="button" data-bs-target="#movieCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
   </div>
 
-  <!-- Slides -->
+
   <div class="carousel-inner">
     <!-- Slide 1 -->
     <div class="carousel-item active">
@@ -116,5 +116,57 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-<div class="container py-5">
+
+<!-- About Us Section -->
+<div id="about-us" class="about-us-section py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- About Us Text -->
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <h2 class="text-danger mb-4">About Us</h2>
+        <p class="text-light" style="font-size: 1.2rem; line-height: 1.8;">
+          Welcome to <strong>Fl<span class="text-danger">i</span>x</strong>, your ultimate destination for movie rentals! We bring an extensive collection of blockbusters, classics, and trending series to your screens.
+        </p>
+        <p class="text-light" style="font-size: 1.2rem; line-height: 1.8;">
+          Whether you're into action, romance, thrillers, or family-friendly animations, we've got you covered. Explore, watch, and enjoy—because every great movie night starts with us!
+        </p>
+        <a href="#contact-us" class="btn btn-custom mt-3">Contact Us</a>
+      </div>
+      <!-- About Us Image -->
+      <div class="col-lg-6">
+        <div style="
+            background: url('/Sliders/about.jpg') no-repeat center/cover;
+            height: 350px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px;
+          "></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Contact Us Section -->
+<div id="contact-us" class="contact-us-section py-5">
+  <div class="container">
+    <h2 class="text-center mb-4 text-danger" >Contact Us</h2>
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="fullname" class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="fullname" formControlName="FullName" placeholder="Enter your full name" required />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" formControlName="EmailAddress" placeholder="Enter your email" required />
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="message" class="form-label">Message</label>
+        <textarea class="form-control" id="message" formControlName="Message" rows="4" placeholder="Write your message" required></textarea>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-custom" [disabled]="!contactForm.valid">Submit</button>
+      </div>
+    </form>
+  </div>
 </div>

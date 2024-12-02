@@ -33,15 +33,6 @@ export interface Movierequest {
     password: string,
     role: number
   }
-  // export interface Customer {
-  //   id: number;
-  //   name: string;
-  //   email: string;
-  //   phone: string;
-  //   address: string;
-  //   profilePicture: string;
-  
-  // }
   export interface User {
    id:number;
     name: string,
@@ -58,4 +49,11 @@ export interface Genre {
 export interface Director {
   id: number;
   name: string;
+}
+export interface ContactUs {
+  ContactId: number;
+  FullName: string;
+  EmailAddress: string;
+  Message: string;
+  SubmittedOn: string;
 }

@@ -1,27 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ContactUs } from '../components/Models/model';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
-  private apiUrl = 'https://api.example.com/customers'; 
+  private apiUrl = 'http://localhost:5273/api/ContactUs';
 
   constructor(private http: HttpClient) {}
 
-  getCustomerDetails(customerId: number): Observable<Customer> {
-    return this.http.get<Customer> (`${this.apiUrl}/${customerId}`);
+  addMessage(message: ContactUs): Observable<any> {
+    return this.http.post(this.apiUrl, message);
   }
-}
-export interface Customer {
-  id: number;
-  name: string;
-  email: string;
-  phone: string;
-  address: string;
-  profilePicture: string;
-  rentalHistory: { title: string; date: string }[];
+  getMessages(): Observable<ContactUs[]> {
+    return this.http.get<ContactUs[]>(this.apiUrl);
+  }
+
 }
 

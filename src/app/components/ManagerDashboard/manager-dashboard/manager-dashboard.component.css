@@ -1,3 +1,130 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  background-color: #34495E;
+  height: 100vh;
+  min-width: 200px;
+  max-width: 200px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar .nav-link {
+  color: white;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+  text-align: center;
+  padding: 15px;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #2C3E50;
+  border-radius: 5px;
+}
+
+.sidebar .nav-link .bi {
+  font-size: 1.2rem;
+}
+
+.header {
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.header .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #34495E;
+  text-decoration: none;
+}
+
+.header .btn {
+  color: #1ABC9C;
+}
+
+.header .btn:hover {
+  color: #17A589;
+}
+
+.profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.main-content {
+  overflow-y: auto;
+  height: calc(100vh - 65px);
+  padding: 20px;
+}
+
+.main-content h1 {
+  color: #34495E;
+}
+
+.card {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-title {
+  color: #2C3E50;
+  font-size: 1.2rem;
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  color: #1ABC9C;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Custom Styling for Professional Look */
 body {
   font-family: 'Roboto', sans-serif;
