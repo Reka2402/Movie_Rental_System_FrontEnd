@@ -21,21 +21,6 @@ export const authManagerGuard: CanActivateFn = (route, state) => {
     router.navigate(['/login']);
     return false;
   }
-  // const authService = inject(AuthService);
-  // const router = inject(Router);  // Inject the router correctly
-
-  // if (authService.isLoggedIn()) {
-  //   const role = localStorage.getItem("Role");
-
-  //   // Check the user's role and redirect them to the appropriate page
-  //   if (role === "Admin") {
-  //     return true;  // Allow admin to access
-  //   } else if (role === "Customer") {
-  //     return true;  // Allow customer to access
-  //   }
-  // }
-
-  // router.navigate(['/login']);
-  // return false; // If not logged in, navigate to login page
+  
 };
 

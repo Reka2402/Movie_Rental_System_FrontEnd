@@ -13,6 +13,16 @@
 .about-us-section p, .contact-us-section label {
   color: #e0e0e0;
 }
+.social-icon i {
+  font-size: 2rem; /* Adjust size */
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.social-icon i:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
 
 /* Buttons */
 .btn-custom {
@@ -485,6 +495,57 @@ a.movie-item:hover {
   }
 }
 
+
+
+
+/* Footer Styling */
+.footer-section {
+  background-color: #181616;
+  color: #ffffff;
+}
+
+.footer-section h4 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.footer-section ul {
+  padding: 0;
+  list-style: none;
+}
+
+.footer-section ul li {
+  margin-bottom: 8px;
+}
+
+.footer-section ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-section .social-icon {
+  font-size: 1.8rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.footer-section .social-icon:hover {
+  color: #c0392b;
+  transform: scale(1.1);
+}
+
+.footer-section .btn-custom {
+  background-color: #c0392b;
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.footer-section .btn-custom:hover {
+  background-color: #a12824;
+  transform: scale(1.05);
+}
 
 
 

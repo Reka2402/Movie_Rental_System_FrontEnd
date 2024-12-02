@@ -25,8 +25,7 @@ const routes: Routes = [
 { path: 'login' , component: LoginComponent,
 //:[authCustomerGuard]
 },
-  { path: 'register',component:RegisterComponent},
-
+{ path: 'register',component:RegisterComponent},
   {path:'movies',component:CollectionsComponent},
   {path:'customer',component:CustomerProfileComponent},
   {path:'customer/:id',component:CustomerProfileComponent},
@@ -50,8 +49,7 @@ const routes: Routes = [
     component: CustomerProfileComponent,
     children: [
       { path: 'home', component:HomeComponent },
-      { path: 'rentalHistory', component: RentalHistoryComponent},
- 
+      { path: 'rentalHistory', component: RentalHistoryComponent}, 
       { path: 'notifications', component: NotificationsComponent },
       { path: 'rent/:movieName', component: RentalPageComponent },
     ],
