@@ -1,20 +1,21 @@
-<div class="d-flex justify-content-center align-items-center vh-100 bg-black" 
+<div class="d-flex justify-content-center align-items-center vh-100 bg-black " 
      style="background-image: url(/Sliders/movie-detail-bg.png);">
-  <div class="row shadow-lg rounded-4 overflow-hidden"
+  <div class="row shadow-lg rounded-4 overflow-hidden rounded-4 overflow-hidden bg-dark "
        style="width: 50rem; height: 35rem; background: rgba(30, 30, 30, 0.95); backdrop-filter: blur(10px);">
 
     <!-- Image Section -->
     <div class="col-md-6 p-0">
       <div class="h-100"
-           style="background-image: url('/Sliders/slider\ 14.jpg'); 
+           style="background-image: url('/Sliders/login.jpg'); 
                   background-size: cover; 
-                  background-position: center;">
+                  background-position: center;
+                  ">
       </div>
     </div>
 
     <!-- Login Form Section -->
     <div class="col-md-6 p-4 d-flex align-items-center">
-      <div class="card p-4 border-0 bg-transparent text-white w-100">
+      <div class="card p-4 border-0 bg-dark text-white w-100">
         <h3 class="mb-4 text-center text-danger fw-bold">Welcome Back!</h3>
         <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
 

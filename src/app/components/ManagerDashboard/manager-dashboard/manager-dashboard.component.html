@@ -3,7 +3,7 @@
 
     <!-- Sidebar -->
     <div class="col-2 d-flex flex-column align-items-center py-4"
-      style="font-family: 'Poppins', sans-serif; min-width: 200px; max-width: 200px; height: 100vh; justify-content: space-between; box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); background-color: #34495E;">
+      style="font-family: 'Poppins', sans-serif; min-width: 200px; max-width: 200px; position: fixed; top: 0; left: 0; height: 100vh; justify-content: space-between; box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); background-color: #34495E;">
       <nav class="nav flex-column w-100 text-center text-white">
         <a class="nav-link text-white py-3 mb-2 rounded"
           style="transition: 0.3s; background-color: #2C3E50;" [routerLink]="['/manager/home']">
@@ -39,7 +39,7 @@
     </div>
 
     <!-- Main Content -->
-    <div class="col d-flex flex-column" style="height: 100vh; background-color: #f8f9fa;">
+    <div class="col d-flex flex-column" style="height: 100vh; background-color: #f8f9fa; margin-left: 200px; padding-left: 20px; padding-right: 20px;">
 
       <!-- Header -->
       <div class="d-flex justify-content-between align-items-center px-4 py-3 border-bottom"
