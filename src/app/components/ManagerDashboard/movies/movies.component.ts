@@ -44,7 +44,7 @@ export class MoviesComponent implements OnInit {
     this.loadMovies();
   }
 
-  // Fetch genres from backend
+
   loadGenres() {
     this.movieService.getGenres().subscribe((data: Genre[]) => {
       this.genres = data;
@@ -72,7 +72,7 @@ export class MoviesComponent implements OnInit {
   }
 
   onEdit(movieId: string) {
-    this.router.navigate(['/edit', movieId]);
+    this.router.navigate(['/add', movieId]);
   }
 
   onSubmit() {

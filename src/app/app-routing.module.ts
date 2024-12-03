@@ -23,7 +23,8 @@ import { authCustomerGuard } from './Guard/auth-customer.guard';
 
 const routes: Routes = [
 { path: 'login' , component: LoginComponent,
-//:[authCustomerGuard]
+//canActivate:[authCustomerGuard],
+
 },
 { path: 'register',component:RegisterComponent},
   {path:'movies',component:CollectionsComponent},
@@ -33,7 +34,7 @@ const routes: Routes = [
 
   {  
     path: 'manager', 
-   // canActivate:[authManagerGuard],
+   ///canActivate:[authManagerGuard],
     component: ManagerDashboardComponent,
     children: [
       { path: 'home', component:SummaryViewComponent },

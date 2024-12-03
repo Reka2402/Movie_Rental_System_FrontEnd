@@ -90,34 +90,6 @@ export class RegisterComponent {
     this.passwordsMatch = password === confirmPassword;
   }
 
-
-
-
-  // user = {
-  //   fullname: '',
-  //   emailAddress: '',
-  //   password: '',
-  //   confirmPassword: '',
-  //   role: '',
-  //   agreed: '',
-
-  // };
-  // onRegister(RegisterForm: any) {
-  //   console.log(RegisterForm.value)
-  // }
-  // passwordsMatch = true;
-
-  // checkPasswords() {
-  //   this.passwordsMatch = this.user.password === this.user.confirmPassword;
-  // }
-  // onRegister(form: NgForm) {
-  //   if (form.invalid) {
-  //       form.control.markAllAsTouched();
-  //       return;
-  //   }
-  
-
-
 }
 
 
