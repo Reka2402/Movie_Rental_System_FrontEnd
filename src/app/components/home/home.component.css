@@ -1,4 +1,4 @@
-/* Common Section Styling */
+
 .about-us-section, .contact-us-section {
   background-color: #181616;
   color: #ffffff;
@@ -14,7 +14,7 @@
   color: #e0e0e0;
 }
 .social-icon i {
-  font-size: 2rem; /* Adjust size */
+  font-size: 2rem;
   transition: transform 0.3s, filter 0.3s;
 }
 
@@ -94,26 +94,6 @@
       margin-bottom: 30px;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 * {
   padding: 0;
   margin: 0;
@@ -215,7 +195,6 @@ a.logo:hover,
 a.movie-item:hover {
   color: unset;
 }
-
 .btn {
   color: #ffffff;
   padding: 0.25rem 1.5rem;
@@ -252,7 +231,8 @@ a.movie-item:hover {
   margin-right: 1rem;
 }
 
-.hamburger-menu {
+
+/* .hamburger-menu {
   --size: 30px;
   height: var(--size);
   width: var(--size);
@@ -415,10 +395,10 @@ a.movie-item:hover {
   bottom:30px;
 
  
-}
+} */
 
 /* General Carousel Styling */
-.carousel-inner {
+/* .carousel-inner {
   position: relative;
 }
 
@@ -455,22 +435,9 @@ a.movie-item:hover {
 .carousel-caption p {
   font-size: 1.25rem;
   animation: fadeInUp 1.2s;
-}
+} */
 
-.btn-custom {
-  background-color: #c0392b;
-  color: #fff;
-  padding: 10px 30px;
-  border-radius: 30px;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  transition: transform 0.2s ease;
-}
 
-.btn-custom:hover {
-  background-color: #a12824;
-  transform: scale(1.1);
-}
 
 /* Keyframes */
 @keyframes fadeInDown {
@@ -543,18 +510,9 @@ a.movie-item:hover {
 }
 
 .footer-section .btn-custom:hover {
-  background-color: #a12824;
+  background-color: #c0392b;
   transform: scale(1.05);
 }
-
-
-
-
-
-
-
-
-
 
 
 /* //addictional */
@@ -572,7 +530,7 @@ a.movie-item:hover {
   }
 
   .logo {
-    color: #e50914;
+    color: #c0392b;
     font-size: 1.8rem;
     text-transform: uppercase;
     font-weight: bold;
@@ -593,21 +551,9 @@ a.movie-item:hover {
   }
 
   .nav-menu a:hover {
-    color: #e50914;
+    color: #c0392b;
   }
 
-  .btn-hover {
-    color: #fff;
-    background-color: #e50914;
-    padding: 10px 20px;
-    text-transform: uppercase;
-    border-radius: 5px;
-    transition: 0.3s;
-  }
-
-  .btn-hover:hover {
-    background: #d40813;
-  }
 
   /* Carousel */
   .carousel {
@@ -645,28 +591,59 @@ a.movie-item:hover {
     font-weight: bold;
     text-transform: uppercase;
     margin-bottom: 20px;
+    font-family: 'Roboto';
   }
 
   .carousel-caption p {
     font-size: 1.2rem;
     margin-bottom: 15px;
+     font-family: 'Open Sans';
   }
 
   .carousel-caption .btn-custom {
-    background-color: #e50914;
-    color: #fff;
-    padding: 10px 25px;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 5px;
-    transition: 0.3s;
+    color: #ffffff; 
+    padding: 0.25rem 1.5rem; 
+    text-transform: uppercase; 
+    font-size: 1.25rem; 
+    font-weight: 700; 
+    display: inline-flex; 
+    position: relative; 
+    align-items: center;
+    justify-content: center; 
+    background-color: transparent; 
+    border: none; 
+    border-radius: 5px; 
+    overflow: hidden; 
+    cursor: pointer;
+    z-index: 1; 
+    transition: color 0.3s ease-in-out; 
   }
-
+  
+  .carousel-caption .btn-custom::before {
+    content: ""; 
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 50%; 
+    height: 100%; 
+    background-color: #c0392b; 
+    z-index: 0; 
+    transition: width 0.3s ease-in-out; 
+     font-family: 'Inter';
+  }
+  
+  .carousel-caption .btn-custom:hover::before {
+    width: 100%; 
+  }
+  
   .carousel-caption .btn-custom:hover {
-    background-color: #d40813;
-    transform: scale(1.05);
+    color: #ffffff; 
   }
-
+  
+  .carousel-caption .btn-custom span {
+    z-index: 1; 
+    position: relative; 
+  }
   /* Indicators */
   .carousel-indicators button {
     background-color: #fff;
@@ -678,7 +655,7 @@ a.movie-item:hover {
   }
 
   .carousel-indicators .active {
-    background-color: #e50914;
+    background-color: #c0392b;
   }
 
   /* Controls */

@@ -14,9 +14,10 @@
         <li><a (click)="scrollToContact()">Contact Us</a></li>
         <li><a href="#about-us">About</a></li>
         <li>
-          <a routerLink="/login" href="#" class="btn btn-hover siginin">
+          <a routerLink="/login" href="#" class="btn btn-hover">
             <span>Sign in</span>
-          </a>
+        </a>
+          
         </li>
       </ul>
     </div>
@@ -24,7 +25,7 @@
 </div>
 
 <div id="movieCarousel" class="carousel slide" data-bs-ride="carousel">
- 
+
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#movieCarousel" data-bs-slide-to="0" class="active" aria-current="true"
       aria-label="Slide 1"></button>
@@ -38,217 +39,245 @@
     <!-- Slide 1 -->
     <div class="carousel-item active">
       <div class="slide-container" style="background: url('/Sliders/slider 10.jpg') no-repeat center/cover;">
-        <!-- <div class="dark-overlay"></div> -->
         <div class="carousel-caption text-start">
           <h1 class="display-3 fw-bold">Stranger Things</h1>
-          <p class="lead mb-4">Experience the thrills of Hawkins, where supernatural forces collide. Join the adventure
-            and uncover the mysteries of the Upside Down!</p>
+          <p class="lead mb-4">Dive into the world of Hawkins, where friendships are tested, and mysteries unfold.
+            Experience the supernatural like never before.</p>
           <p>
-            <span class="badge bg-danger me-3">9.5</span>
+            <span class="rating-display fw-bold text-white px-3 py-2 rounded-pill"
+              style="background-color: #34495E; font-size: 1.2rem;">
+              ★ 9.2
+            </span>
+
             <span>4 Seasons</span> <span class="mx-2">|</span>
             <span>HD</span> <span class="mx-2">|</span>
-            <span>16+</span>
+            <span>Netflix Original</span>
           </p>
-          <a href="#" class="btn btn-lg btn-custom">WATCH NOW</a>
+          <a href="#" class="btn btn-hover btn-custom">
+            <span>WATCH NOW</span>
+          </a>
+          
         </div>
       </div>
     </div>
     <!-- Slide 2 -->
     <div class="carousel-item">
       <div class="slide-container" style="background: url('/Sliders/Slider 1.jpg') no-repeat center/cover;">
-        <!-- <div class="dark-overlay"></div> -->
         <div class="carousel-caption text-start">
           <h1 class="display-3 fw-bold">Frozen 2</h1>
-          <p class="lead mb-4">Join Elsa, Anna, and friends on a magical journey beyond Arendelle to uncover the secrets
-            of their past and save their kingdom.</p>
+          <p class="lead mb-4">Embark on a magical journey beyond Arendelle to discover secrets of the past and embrace
+            the unknown.</p>
           <p>
-            <span class="badge bg-danger me-3">9.5</span>
+            <span class="rating-display fw-bold text-white px-3 py-2 rounded-pill"
+              style="background-color: #34495E; font-size: 1.2rem;">
+              ★ 8.9
+            </span>
+
             <span>140 mins</span> <span class="mx-2">|</span>
             <span>HD</span> <span class="mx-2">|</span>
-            <span>16+</span>
+            <span>Walt Disney Animation Studios</span>
           </p>
-          <a href="#" class="btn btn-lg btn-custom">WATCH NOW</a>
+          <a href="#" class="btn btn-hover btn-custom">
+            <span>WATCH NOW</span>
+          </a>
         </div>
       </div>
     </div>
-
+    <!-- Slide 3 -->
     <div class="carousel-item">
       <div class="slide-container" style="background: url('/Sliders/slider\ 5.jpeg') no-repeat center/cover;">
-        <!-- <div class="dark-overlay"></div> -->
         <div class="carousel-caption text-start">
           <h1 class="display-3 fw-bold">Moana 2</h1>
-          <p class="lead mb-4">Set sail once more with Moana as she embarks on a new ocean adventure</p>
+          <p class="lead mb-4">Set sail with Moana on a breathtaking new adventure across uncharted waters and
+            heartwarming discoveries.</p>
           <p>
-            <span class="badge bg-danger me-3">9.5</span>
+            <span class="rating-display fw-bold text-white px-3 py-2 rounded-pill"
+              style="background-color: #34495E; font-size: 1.2rem;">
+              ★ 9.5
+            </span>
+
             <span>140 mins</span> <span class="mx-2">|</span>
             <span>HD</span> <span class="mx-2">|</span>
-            <span>16+</span>
+            <span>Disney Classics</span>
           </p>
-          <a href="#" class="btn btn-lg btn-custom">WATCH NOW</a>
+          <a href="#" class="btn btn-hover btn-custom">
+            <span>WATCH NOW</span>
+          </a>
         </div>
       </div>
     </div>
-
+    <!-- Slide 4 -->
     <div class="carousel-item">
       <div class="slide-container" style="background: url('/Sliders/slider\ 14.jpg') no-repeat center/cover;">
-        <!-- <div class="dark-overlay"></div> -->
         <div class="carousel-caption text-start">
           <h1 class="display-3 fw-bold">How to Train Your Dragon</h1>
-          <p class="lead mb-4">Join Hiccup and Toothless on an epic journey of friendship and adventure.</p>
+          <p class="lead mb-4">Join Hiccup and Toothless in a heartwarming tale of courage, friendship, and incredible
+            adventures.</p>
           <p>
-            <span class="badge bg-danger me-3">9.2</span>
+            <span class="rating-display fw-bold text-white px-3 py-2 rounded-pill"
+              style="background-color: #34495E; font-size: 1.2rem;">
+              ★ 9.8
+            </span>
+
             <span>98 mins</span> <span class="mx-2">|</span>
             <span>HD</span> <span class="mx-2">|</span>
-            <span>10+</span>
+            <span>DreamWorks Animation</span>
           </p>
-          <a href="#" class="btn btn-lg btn-custom">WATCH NOW</a>
+          <a href="#" class="btn btn-hover btn-custom">
+            <span>WATCH NOW</span>
+          </a>
         </div>
       </div>
     </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#movieCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#movieCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
   <!-- Controls -->
-  <button class="carousel-control-prev" type="button" data-bs-target="#movieCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#movieCarousel" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
 
-<!-- About Us Section -->
-<div id="about-us" class="about-us-section py-5">
-  <div class="container">
-    <div class="row align-items-center">
-      <!-- About Us Text -->
-      <div class="col-lg-6 mb-4 mb-lg-0">
-        <h2 class="text-danger mb-4">About Us</h2>
-        <p class="text-light" style="font-size: 1.2rem; line-height: 1.8;">
-          Welcome to <strong>Fl<span class="text-danger">i</span>x</strong>, your ultimate destination for movie rentals! We bring an extensive collection of blockbusters, classics, and trending series to your screens.
-        </p>
-        <p class="text-light" style="font-size: 1.2rem; line-height: 1.8;">
-          Whether you're into action, romance, thrillers, or family-friendly animations, we've got you covered. Explore, watch, and enjoy—because every great movie night starts with us!
-        </p>
-        <a href="#contact-us" class="btn btn-custom mt-3">Contact Us</a>
-      </div>
-      <!-- About Us Image -->
-      <div class="col-lg-6">
-        <div style="
+
+
+  <!-- About Us Section -->
+  <div id="about-us" class="about-us-section py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <!-- About Us Text -->
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <h2 class="text-danger mb-4">About Us</h2>
+          <p class="text-light" style="font-size: 1.2rem; line-height: 1.8;">
+            Welcome to <strong>Fl<span class="text-danger">i</span>x</strong>, your ultimate destination for movie
+            rentals! We bring an extensive collection of blockbusters, classics, and trending series to your screens.
+          </p>
+          <p class="text-light" style="font-size: 1.2rem; line-height: 1.8;">
+            Whether you're into action, romance, thrillers, or family-friendly animations, we've got you covered.
+            Explore, watch, and enjoy—because every great movie night starts with us!
+          </p>
+          <a href="#contact-us" class="btn btn-custom mt-3">Contact Us</a>
+        </div>
+        <!-- About Us Image -->
+        <div class="col-lg-6">
+          <div style="
             background: url('/Sliders/pic\ 5.jpg') no-repeat center/cover;
             height: 350px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
           "></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Contact Us Section -->
-<div id="contact-us" class="contact-us-section py-5">
-  <div class="container">
-    <div class="row align-items-center">
-      <!-- Contact Us Image -->
-      <div class="col-lg-6 mb-4 mb-lg-0">
-        <div style="
-            background: url('/Sliders/pic\ 7.jpg') no-repeat center/cover;
-            height: 350px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-          "></div>
-      </div>
-      <!-- Contact Us Form -->
-      <div class="col-lg-6">
-        <h2 class="text-danger mb-4 text-center">Contact Us</h2>
-        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="fullname" class="form-label">Full Name</label>
-              <input type="text" class="form-control" id="fullname" formControlName="FullName" placeholder="Enter your full name" required />
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" formControlName="EmailAddress" placeholder="Enter your email" required />
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="message" class="form-label">Message</label>
-            <textarea class="form-control" id="message" formControlName="Message" rows="4" placeholder="Write your message" required></textarea>
-          </div>
-          <div class="text-center">
-            <button type="submit" class="btn btn-custom" [disabled]="!contactForm.valid">Submit</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Footer Section -->
-<footer class="footer-section py-5">
-  <div class="container">
-    <div class="row gy-4">
-      <!-- About Section -->
-      <div class="col-lg-4 col-md-6">
-        <h4 class="text-danger mb-4">Our Services</h4>
-        <p style="font-size: 0.9rem; line-height: 1.6; color: #e0e0e0;">
-          Fl<span class="text-danger">i</span>x is your ultimate movie destination. From trending shows to timeless classics, we provide the best DVD rental experience with unmatched quality.
-        </p>
-        <p class="mt-3">
-          <a href="#" class="btn btn-custom btn-sm">Learn More</a>
-        </p>
-      </div>
-      <!-- FAQ Section -->
-      <div class="col-lg-4 col-md-6">
-        <h4 class="text-danger mb-4">FAQs</h4>
-        <ul class="list-unstyled" style="font-size: 0.9rem; line-height: 1.8;">
-          <li>
-            <i class="bx bx-help-circle text-danger me-2"></i>
-            <a href="#" style="color: #e0e0e0; text-decoration: none;">How can I rent a DVD?</a>
-          </li>
-          <li>
-            <i class="bx bx-help-circle text-danger me-2"></i>
-            <a href="#" style="color: #e0e0e0; text-decoration: none;">What payment methods are accepted?</a>
-          </li>
-          <li>
-            <i class="bx bx-help-circle text-danger me-2"></i>
-            <a href="#" style="color: #e0e0e0; text-decoration: none;">Can I cancel my rental?</a>
-          </li>
-          <li>
-            <i class="bx bx-help-circle text-danger me-2"></i>
-            <a href="#" style="color: #e0e0e0; text-decoration: none;">How do I contact support?</a>
-          </li>
-        </ul>
-      </div>
-      <!-- Social Media Section -->
-      <div class="col-lg-4 col-md-12">
-        <h4 class="text-danger mb-4">Follow Us</h4>
-        <p style="font-size: 0.9rem; line-height: 1.6; color: #e0e0e0;">
-          Stay connected and get the latest updates on your favorite movies.
-        </p>
-        <div class="d-flex mt-3">
-          <a href="#" class="social-icon me-3">
-            <i class="bx bxl-facebook-circle" style="color: #3b5998;"></i>
-          </a>
-          <a href="#" class="social-icon me-3">
-            <i class="bx bxl-twitter" style="color: #1da1f2;"></i>
-          </a>
-          <a href="#" class="social-icon me-3">
-            <i class="bx bxl-instagram" style="color: #e4405f;"></i>
-          </a>
-          <a href="#" class="social-icon">
-            <i class="bx bxl-youtube" style="color: #ff0000;"></i>
-          </a>
         </div>
-        
       </div>
     </div>
-    <div class="mt-4 pt-3 border-top" style="border-color: #444;">
-      <p class="text-center" style="font-size: 0.9rem; color: #e0e0e0;">
-        &copy; 2024 Fl<span class="text-danger">i</span>x. All Rights Reserved.
-      </p>
+  </div>
+
+  <!-- Contact Us Section -->
+  <div id="contact-us" class="contact-us-section py-5">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+        <!-- Contact Us Image -->
+        <div class="col-lg-6">
+          <div class="contact-image" style="
+              background: url('/Sliders/pic\ 7.jpg') no-repeat center/cover;
+              height: 350px;
+              border-radius: 10px;
+              box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            ">
+          </div>
+        </div>
+        <!-- Contact Us Form -->
+        <div class="col-lg-6">
+          <h2 class="text-danger text-center mb-4">Contact Us</h2>
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="fullname" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="fullname" formControlName="FullName" placeholder="Enter your full name" required />
+              </div>
+              <div class="col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" formControlName="EmailAddress" placeholder="Enter your email" required />
+              </div>
+            </div>
+            <div class="my-4">
+              <label for="message" class="form-label">Message</label>
+              <textarea class="form-control" id="message" formControlName="Message" rows="4" placeholder="Write your message" required></textarea>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-custom px-5 py-2" [disabled]="!contactForm.valid">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
-</footer>
+  
 
+  <!-- Footer Section -->
+  <footer class="footer-section py-5">
+    <div class="container">
+      <div class="row gy-4">
+        <!-- About Section -->
+        <div class="col-lg-4 col-md-6">
+          <h4 class="text-danger mb-4">Our Services</h4>
+          <p style="font-size: 0.9rem; line-height: 1.6; color: #e0e0e0;">
+            Fl<span class="text-danger">i</span>x is your ultimate movie destination. From trending shows to timeless
+            classics, we provide the best DVD rental experience with unmatched quality.
+          </p>
+          <p class="mt-3">
+            <a href="#" class="btn btn-custom btn-sm">Learn More</a>
+          </p>
+        </div>
+        <!-- FAQ Section -->
+        <div class="col-lg-4 col-md-6">
+          <h4 class="text-danger mb-4">FAQs</h4>
+          <ul class="list-unstyled" style="font-size: 0.9rem; line-height: 1.8;">
+            <li>
+              <i class="bx bx-help-circle text-danger me-2"></i>
+              <a href="#" style="color: #e0e0e0; text-decoration: none;">How can I rent a DVD?</a>
+            </li>
+            <li>
+              <i class="bx bx-help-circle text-danger me-2"></i>
+              <a href="#" style="color: #e0e0e0; text-decoration: none;">What payment methods are accepted?</a>
+            </li>
+            <li>
+              <i class="bx bx-help-circle text-danger me-2"></i>
+              <a href="#" style="color: #e0e0e0; text-decoration: none;">Can I cancel my rental?</a>
+            </li>
+            <li>
+              <i class="bx bx-help-circle text-danger me-2"></i>
+              <a href="#" style="color: #e0e0e0; text-decoration: none;">How do I contact support?</a>
+            </li>
+          </ul>
+        </div>
+        <!-- Social Media Section -->
+        <div class="col-lg-4 col-md-12">
+          <h4 class="text-danger mb-4">Follow Us</h4>
+          <p style="font-size: 0.9rem; line-height: 1.6; color: #e0e0e0;">
+            Stay connected and get the latest updates on your favorite movies.
+          </p>
+          <div class="d-flex mt-3">
+            <a href="#" class="social-icon me-3">
+              <i class="bx bxl-facebook-circle" style="color: #3b5998;"></i>
+            </a>
+            <a href="#" class="social-icon me-3">
+              <i class="bx bxl-twitter" style="color: #1da1f2;"></i>
+            </a>
+            <a href="#" class="social-icon me-3">
+              <i class="bx bxl-instagram" style="color: #e4405f;"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="bx bxl-youtube" style="color: #ff0000;"></i>
+            </a>
+          </div>
+
+        </div>
+      </div>
+      <div class="mt-4 pt-3 border-top" style="border-color: #444;">
+        <p class="text-center" style="font-size: 0.9rem; color: #e0e0e0;">
+          &copy; 2024 Fl<span class="text-danger">i</span>x. All Rights Reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
