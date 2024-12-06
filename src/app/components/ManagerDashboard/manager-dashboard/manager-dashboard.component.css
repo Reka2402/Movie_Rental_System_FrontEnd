@@ -6,33 +6,20 @@ body {
   overflow: hidden;
 }
 
-.sidebar {
-  background-color: #34495E;
-  height: 100vh;
-  min-width: 200px;
-  max-width: 200px;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.logo {
+  font-size: 28px; /* Adjust the font size */
+  font-weight: bold; /* Make the font bold */
+  font-family: 'Arial', sans-serif; /* Change font to a professional one */
+  text-transform: uppercase; /* Ensure uppercase text */
 }
 
-.sidebar .nav-link {
-  color: white;
-  font-size: 0.9rem;
-  transition: background-color 0.3s;
-  text-align: center;
-  padding: 15px;
+.main-color {
+  color: #E74C3C; /* Red color for the "I" */
 }
 
-.sidebar .nav-link:hover {
-  background-color: #2C3E50;
-  border-radius: 5px;
-}
-
-.sidebar .nav-link .bi {
-  font-size: 1.2rem;
+.logo i {
+  font-size: 32px; /* Icon size slightly larger */
+  animation: tada 1s infinite; /* Add a bouncing/tada effect */
 }
 
 .header {
@@ -45,12 +32,6 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-.header .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #34495E;
-  text-decoration: none;
-}
 
 .header .btn {
   color: #1ABC9C;
@@ -152,9 +133,7 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.logo i {
-  font-size: 40px;
-}
+
 
 .header-icons i {
   margin-right: 20px;

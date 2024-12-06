@@ -1,1 +1,62 @@
-<p>summary-view works!</p>
+<div class="summary-view">
+
+    <!-- Summary Metrics -->
+    <div class="row g-4 mb-4">
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card text-center shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">Total Customers</h5>
+                    <p class="fs-2 text-primary mb-0">1,235</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card text-center shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">Total Movies</h5>
+                    <p class="fs-2 text-success mb-0">523</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card text-center shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">Total Rentals</h5>
+                    <p class="fs-2 text-warning mb-0">845</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card text-center shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">Inventory Items</h5>
+                    <p class="fs-2 text-danger mb-0">1,025</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Graphs Section -->
+    <div class="row g-4">
+        <!-- Rentals Over Time -->
+        <div class="col-12 col-lg-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">Rentals Over Time</h5>
+                    <canvas id="rentalsChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <!-- Top Genres -->
+        <div class="col-12 col-lg-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">Top Genres</h5>
+                    <canvas id="genresChart" class="small-chart"></canvas>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

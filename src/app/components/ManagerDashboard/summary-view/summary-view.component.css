@@ -1,0 +1,14 @@
+.summary-view .card {
+    border-radius: 12px;
+  }
+  .summary-view .card h5 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+  }
+  .small-chart {
+    max-width: 500px;
+    max-height: 500px;
+    margin: 0 auto; 
+    display: block;
+  }
+  

@@ -24,15 +24,18 @@
         />
       </div>
       
-      <button
-        class="btn btn-dark px-4 py-2"
-        (click)="openAddMoviePopup()"
-        style="border-radius: 8px; background-color: #27AE60; color: white; border: none; font-size: 14px; transition: 0.3s;"
-        onmouseover="this.style.backgroundColor='#2C3E50'"
-        onmouseout="this.style.backgroundColor='#27AE60'"
-      >
-        + Add Movie
-      </button>
+      <div class="ml-auto p-2">
+        <button 
+          type="button" 
+          class="btn btn-dark btn-lg px-4" 
+          (click)="openAddMoviePopup()"
+          style="background-color: #1ABC9C; color: white; border-radius: 6px; font-size: 14px; padding: 8px 16px; transition: 0.3s ease;"
+          (mouseover)="hoverBtn = true" 
+          (mouseleave)="hoverBtn = false"
+        >
+          Add +
+        </button>
+      </div>
     </div>
     <div class="table-responsive">
       <table class="table table-hover align-middle table-bordered" style="background-color: #2C3E50; font-size: 14px;">

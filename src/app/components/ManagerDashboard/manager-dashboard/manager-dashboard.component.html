@@ -1,57 +1,58 @@
-<div class="container-fluid p-0" style="height: 100vh; margin: 0;">
+<div class="container-fluid p-0" style="height: 100vh;">
   <div class="row g-0">
-
     <!-- Sidebar -->
-    <div class="col-2 d-flex flex-column align-items-center py-4"
-      style="font-family: 'Poppins', sans-serif; min-width: 200px; max-width: 200px; position: fixed; top: 0; left: 0; height: 100vh; justify-content: space-between; box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); background-color: #34495E;">
-      <nav class="nav flex-column w-100 text-center text-white">
-        <a class="nav-link text-white py-3 mb-2 rounded"
-          style="transition: 0.3s; background-color: #2C3E50;" [routerLink]="['/manager/home']">
-          <i class="bi bi-house fs-5"></i>
-          <span class="d-block mt-1">Home</span>
+    <div class="sidebar d-flex flex-column align-items-center py-4"
+      style="font-family: 'Nunito', sans-serif; position: fixed; top: 0; left: 0; height: 100vh; width: 220px; background-color: #2C3E50; box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);">
+      
+      <!-- Logo -->
+      <a href="#" class="logo text-white text-decoration-none d-flex align-items-center">
+        <i class="bi bi-film main-color me-2"></i>
+        Fl<span class="main-color">i</span>x
+      </a>
+      
+     
+
+      <!-- Navigation Links -->
+      <nav class="nav flex-column w-100">
+        <a class="nav-link text-white py-2 px-3 mb-1 rounded d-flex align-items-center"
+          style="transition: 0.3s; background-color: #34495E;" [routerLink]="['/manager/home']">
+          <i class="bi bi-house fs-5 me-3"></i>
+          <span>Home</span>
         </a>
-        <a class="nav-link text-white py-3 mb-2 rounded"
-          style="transition: 0.3s; background-color: #2C3E50;" [routerLink]="['/manager/customers']">
-          <i class="bi bi-people fs-5"></i>
-          <span class="d-block mt-1">Customers</span>
+        <a class="nav-link text-white py-2 px-3 mb-1 rounded d-flex align-items-center"
+          style="transition: 0.3s;" [routerLink]="['/manager/customers']">
+          <i class="bi bi-people fs-5 me-3"></i>
+          <span>Customers</span>
         </a>
-        <a class="nav-link text-white py-3 mb-2 rounded"
-          style="transition: 0.3s; background-color: #2C3E50;" [routerLink]="['/manager/movies']">
-          <i class="bi bi-film fs-5"></i>
-          <span class="d-block mt-1">Movies</span>
+        <a class="nav-link text-white py-2 px-3 mb-1 rounded d-flex align-items-center"
+          style="transition: 0.3s;" [routerLink]="['/manager/movies']">
+          <i class="bi bi-film fs-5 me-3"></i>
+          <span>Movies</span>
         </a>
-        <a class="nav-link text-white py-3 mb-2 rounded"
-          style="transition: 0.3s; background-color: #2C3E50;" [routerLink]="['/manager/rentals']">
-          <i class="bi bi-clock-history fs-5"></i>
-          <span class="d-block mt-1">Rentals</span>
+        <a class="nav-link text-white py-2 px-3 mb-1 rounded d-flex align-items-center"
+          style="transition: 0.3s;" [routerLink]="['/manager/rentals']">
+          <i class="bi bi-clock-history fs-5 me-3"></i>
+          <span>Rentals</span>
         </a>
-        <a class="nav-link text-white py-3 mb-2 rounded"
-          style="transition: 0.3s; background-color: #2C3E50;" [routerLink]="['/manager/inventory']">
-          <i class="bi bi-box-seam fs-5"></i>
-          <span class="d-block mt-1">Inventory</span>
+        <a class="nav-link text-white py-2 px-3 mb-1 rounded d-flex align-items-center"
+          style="transition: 0.3s;" [routerLink]="['/manager/inventory']">
+          <i class="bi bi-box-seam fs-5 me-3"></i>
+          <span>Inventory</span>
         </a>
-        <a class="nav-link text-white py-3 mb-2 rounded"
-          style="transition: 0.3s; background-color: #2C3E50;" [routerLink]="['/manager/reports']">
-          <i class="bi bi-bar-chart fs-5"></i>
-          <span class="d-block mt-1">Reports</span>
+        <a class="nav-link text-white py-2 px-3 mb-1 rounded d-flex align-items-center"
+          style="transition: 0.3s;" [routerLink]="['/manager/reports']">
+          <i class="bi bi-bar-chart fs-5 me-3"></i>
+          <span>Reports</span>
         </a>
       </nav>
     </div>
 
     <!-- Main Content -->
-    <div class="col d-flex flex-column" style="height: 100vh; background-color: #f8f9fa; margin-left: 200px; padding-left: 20px; padding-right: 20px;">
-
+    <div class="col" style="margin-left: 220px;">
       <!-- Header -->
       <div class="d-flex justify-content-between align-items-center px-4 py-3 border-bottom"
-        style="background-color: #ffffff; font-family: 'Roboto', sans-serif; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
-        <a href="#" class="logo text-dark" style="font-size: 28px; font-weight: 700;">
-          <i class="bi bi-film fs-4 me-2" style="color: #34495E;"></i> Flix Manager
-        </a>
-        <!-- Sidebar Toggle Button -->
-        <button class="btn" (click)="toggleSidebar()" style="color: #1ABC9C;">
-          <i class="bi" [ngClass]="isSidebarExpanded ? 'bi-chevron-left' : 'bi-list'"></i>
-        </button>
-
+        style="background-color: #ffffff; font-family: 'Nunito', sans-serif; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+        
         <!-- Welcome message -->
         <div class="text-muted">Welcome, Manager!</div>
 
