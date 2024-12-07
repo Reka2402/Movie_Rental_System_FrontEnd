@@ -39,9 +39,9 @@ export class LoginComponent {
           timeOut:4000
         });
         if(decode.Role == "Admin") {
-          this.rout.navigate(['/manager/home']);
+          this.rout.navigate(['/Manager/home']);
         } else if (decode.Role == "Customer") {
-          this.rout.navigate(['/customer']);
+          this.rout.navigate(['/Customer']);
         }
        
       },complete:()=>{
