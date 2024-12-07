@@ -19,7 +19,6 @@ export class CustomerProfileComponent {
   totalPrice: number = 0;
 
   selectedMovie: any = null;
-  customerId: number = 1;
   showHistory = false;
   isSignedIn = true;
   UID: string;

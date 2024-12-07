@@ -57,3 +57,34 @@ export interface ContactUs {
   Message: string;
   SubmittedOn: string;
 }
+
+
+export interface RentalRequestModel {
+  userId: string;
+  movieId: string;
+  requestedDate: string;
+  approvedDate: string;
+  rentalDate: string;
+  returnDate: string;
+  rentalDays: number;
+  totalAmount: number;
+  isOverdue: boolean;
+  status: string;
+}
+
+export interface RentalResponseModel {
+  id: string;
+  userId: string;
+  movieId: string;
+  requestedDate: string;
+  approvedDate: string;
+  rentalDate: string;
+  returnDate: string;
+  rentalDays: number;
+  totalAmount: number;
+  isOverdue: boolean;
+  status: string;
+  initialPrice: number;
+}
+
+
