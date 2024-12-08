@@ -17,6 +17,99 @@ export class RentalsComponent {
     { id: 4, customerName: 'Bob Green', nic: '45678-9012345-6', rentedDvd: 'The Dark Knight', rentalStatus: 'Returned' }
   ];
 
+  // returnRental(rentalId: number) {
+  //   this.adminservice.returnRental(rentalId).subscribe(
+  //       (response) => {
+  //           console.log('Rental returned successfully', response);
+  //           this.toastr.success('DVD returned successfully');
+  //           this.router.navigate(['/admin'])
+  //       },
+  //       (error) => {
+  //           console.error('Error returning rental', error);
+  //           this.toastr.error('Failed to return DVD');
+  //       }
+  //   );
+  // }
+  //   rejectAction(id: number) {
+  //     this.adminservice.rejectrental(id).subscribe(
+  //       (response: any) => {
+  //         // Handle JSON response
+  //         this.toastr.success(response.message, 'Success');
+  //         this.getrentals();
+  //       },
+  //       (error) => {
+  //         // Handle JSON error response
+  //         const errorMessage =
+  //           error.error?.message || 'An unexpected error occurred.';
+  //         this.toastr.error(errorMessage, 'Error');
+  //       }
+  //     );
+  //   }
+  
+  //   acceptAction(id: number): void {
+  //     this.adminservice.acceptRental(id).subscribe({
+  //       next: (data) => {
+  //         console.log(data);
+  //         // Assuming `data` contains rental information, including the DVD title
+  //         const movieName = data;
+  //         this.toastr.success(`Rental accepted successfully"!`, 'Success');
+  //         this.getrentals();
+  //       },
+  //       error: (err) => {
+  //         console.error('Error accepting rental:', err);
+  //         this.toastr.error(
+  //           'Failed to accept the rental. Please try again.',
+  //           'Error'
+  //         );
+  //       },
+  //     });
+  //   }
+  //   loadAcceptedRentalsCount() {
+  //     this.adminservice.getAcceptedRentalsCount().subscribe(
+  //       (response: { count: number }) => {
+  //         this.acceptedRentalsCount = response.count;
+  //       },
+  //       (error) => {
+  //         console.error('Failed to fetch accepted rentals count:', error);
+  //       }
+  //     );
+  //   }
+  //   loadReturnedRentalsCount() {
+  //     this.adminservice.getReturnedRentalsCount().subscribe(
+  //       (response: { count: number }) => {
+  //         this.returnedRentalsCount = response.count;
+  //       },
+  //       (error) => {
+  //         console.error('Failed to fetch returned rentals count:', error);
+  //       }
+  //     );
+  //   }
+  
+  //   loadRejectedRentalsCount() {
+  //     this.adminservice.getRejectedRentalsCount().subscribe(
+  //       (response: { count: number }) => {
+  //         this.rejectedRentalsCount = response.count;
+  //       },
+  //       (error) => {
+  //         console.error('Failed to fetch rejected rentals count:', error);
+  //       }
+  //     );
+  //   }
+  
+  //     // Fetch rentals for a specific customer
+  //     fetchRentals() {
+  //       this.adminservice.getRentalsByCustomer(this.customerId).subscribe({
+  //         next: (data) => {
+  //           this.rentals = data;
+  //           this.showTable = true;
+  //         },
+  //         error: (err) => {
+  //           this.toastr.error(err.error.message || 'rentalid is invalid');
+  //           this.showTable = false;
+  //         },
+  //       });
+  //     }
+
   newRental = {
     customerName: '',
     nic: '',
@@ -54,5 +147,6 @@ export class RentalsComponent {
   onView(id: number) {
     console.log('View rental details for ID:', id);
   }
+  
   }
   

@@ -41,7 +41,7 @@ export class LoginComponent {
         if(decode.Role == "Admin") {
           this.rout.navigate(['/Manager/home']);
         } else if (decode.Role == "Customer") {
-          this.rout.navigate(['/Customer']);
+          this.rout.navigate(['/customer']);
         }
        
       },complete:()=>{

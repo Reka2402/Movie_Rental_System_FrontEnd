@@ -1,4 +1,6 @@
 export interface Movie {
+  copiesAvailable: number;
+  title: any;
   id: string;
   genreId: number;
   directorId: number;
@@ -31,14 +33,18 @@ export interface Movierequest {
     name: string,
     email: string,
     password: string,
-    role: number
+    role: number,
+    nic:string,
+    phone:string
   }
   export interface User {
    id:number;
     name: string,
     email: string,
     password: string,
-    role: number
+    role: number,
+    nic:string,
+    phone:string
   } 
 
 export interface Genre {
@@ -69,7 +75,8 @@ export interface RentalRequestModel {
   rentalDays: number;
   totalAmount: number;
   isOverdue: boolean;
-  status: string;
+  status: number;
+
 }
 
 export interface RentalResponseModel {

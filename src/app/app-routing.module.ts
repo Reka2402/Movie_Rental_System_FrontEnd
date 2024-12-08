@@ -18,9 +18,10 @@ import { RentalPageComponent } from './components/customer-profile/rental-page/r
 import { RentalHistoryComponent } from './components/customer-profile/rental-history/rental-history.component';
 import { NotificationsComponent } from './components/customer-profile/notifications/notifications.component';
 import { HomeComponent } from './components/home/home.component';
+import { CustomerhomeComponent } from './components/customer-profile/customerhome/customerhome.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -38,9 +39,10 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'Customer',
+    path: 'customer',
     component: CustomerProfileComponent,
     children: [
+      { path: 'home', component:CustomerhomeComponent  },
       { path: 'rentalHistory', component: RentalHistoryComponent },
       { path: 'notifications', component: NotificationsComponent },
       { path: 'rent/:movieName', component: RentalPageComponent },

@@ -11,8 +11,8 @@ export class RentalService {
 
   constructor(private http: HttpClient) {}
 
-  addRental(movieId:any){
-    return this.http.post(`${this.baseUrl}/Add_Rendal?CustomerId=${'CB75FBF3-16DA-4056-B4FE-399BC7A66F82'}&MovieId=${movieId}`,null);
+  addrental(rentalRequest:RentalRequestModel){
+    return this.http.post(this.baseUrl+'/Add_Rental',rentalRequest)
   }
 
   getAllRentals(): Observable<RentalResponseModel[]> {

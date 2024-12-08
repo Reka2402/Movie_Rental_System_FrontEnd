@@ -189,7 +189,7 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn" [ngClass]="rentButtonClass" (click)="rentMovie()"
+              <button type="button" class="btn" [ngClass]="rentButtonClass" (click)="rentMovie(selectedMovie)"
                 [disabled]="isPending || totalPrice === 0">
                 {{ rentButtonText }}
               </button>

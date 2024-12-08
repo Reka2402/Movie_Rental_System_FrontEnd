@@ -27,6 +27,7 @@ import { ProfileComponent } from './components/customer-profile/profile/profile.
 import { RentalHistoryComponent } from './components/customer-profile/rental-history/rental-history.component';
 import { NotificationsComponent } from './components/customer-profile/notifications/notifications.component';
 import { RentalPageComponent } from './components/customer-profile/rental-page/rental-page.component';
+import { CustomerhomeComponent } from './components/customer-profile/customerhome/customerhome.component';
 //import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
@@ -48,6 +49,7 @@ import { RentalPageComponent } from './components/customer-profile/rental-page/r
     RentalHistoryComponent,
     NotificationsComponent,
     RentalPageComponent,
+    CustomerhomeComponent,
  
    
   ],

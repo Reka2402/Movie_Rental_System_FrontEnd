@@ -26,6 +26,9 @@ export class RegisterComponent {
           password: ['', [Validators.required, Validators.minLength(6)]],
           confirmPassword: ['', Validators.required],
           role: ['', Validators.required],
+          nic : ['', Validators.required],
+          phone: ['', Validators.required],
+
           terms: [false, Validators.requiredTrue]
       })
   }
@@ -35,6 +38,8 @@ export class RegisterComponent {
   get confirmPassword() { return this.signupForm.get('confirmPassword'); }
   get role() { return this.signupForm.get('role'); }
   get terms() { return this.signupForm.get('terms'); }
+  get nic() { return this.signupForm.get('nic'); }
+  get phone() { return this.signupForm.get('phone'); }
 
   onSubmit() {
     var User = this.signupForm.value
@@ -45,6 +50,8 @@ export class RegisterComponent {
       name:User.fullname,
         email:User.email,
         password:User.password,
+        nic:User.nic,
+        phone:User.phone,
         role:Number(User.role)
       }
       this.signUpService.UserSignUp(AddUser).subscribe({

@@ -39,5 +39,7 @@ export interface SignUp {
   email: string,
   password: string,
   role: number
+  nic:string,
+  phone:string,
 }
 

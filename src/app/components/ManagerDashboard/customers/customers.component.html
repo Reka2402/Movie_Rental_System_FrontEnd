@@ -43,8 +43,10 @@
             <!-- <th scope="col">Id</th> -->
             <th scope="col">Full Name</th>
             <th scope="col">Email</th>
-            <th scope="col">Password</th>
-            <th scope="col">Role</th>
+            <th scope="col">Nic Number</th>
+            <th scope="col">Phone Number</th>
+            <!-- <th scope="col">Password</th> -->
+            <!-- <th scope="col">Role</th> -->
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -53,8 +55,8 @@
             <!-- <th scope="row">{{ user.id }}</th> -->
             <td>{{ user.name }}</td>
             <td>{{ user.email }}</td>
-            <td>{{ user.password }}</td>
-            <td>{{ user.role }}</td>
+            <td>{{ user.nic }}</td>
+            <td>{{ user.phone }}</td>
             <td>
               <button 
                 class="btn btn-edit btn-outline-light btn-sm me-2" 
@@ -108,6 +110,28 @@
             class="form-control" 
 
             name="email" 
+            style="background-color: #2C3E50; color: #FFF; border: 1px solid #1ABC9C; font-size: 14px;"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="userNic" class="form-label" style="color: #1ABC9C; font-size: 14px;">Nic</label>
+          <input 
+            type="text" 
+            id="userNic" 
+            class="form-control" 
+
+            name="nic" 
+            style="background-color: #2C3E50; color: #FFF; border: 1px solid #1ABC9C; font-size: 14px;"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="userMobile" class="form-label" style="color: #1ABC9C; font-size: 14px;">Mobile Number</label>
+          <input 
+            type="text" 
+            id="userPhone" 
+            class="form-control" 
+
+            name="phone" 
             style="background-color: #2C3E50; color: #FFF; border: 1px solid #1ABC9C; font-size: 14px;"
           />
         </div>
