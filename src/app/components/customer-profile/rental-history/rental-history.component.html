@@ -1,1 +1,38 @@
-<p class="text-danger">rental-history works!</p>
+<div class="rental-history bg-dark text-white p-4 rounded shadow">
+    <h3 class="text-center text-light mb-4">Rental History</h3>
+    <table class="table table-dark table-striped table-hover rounded">
+      <thead class="table-light text-dark">
+        <tr>
+          <th>Rental ID</th>
+          <th>DVD Title</th>
+          <th>Rental Date</th>
+          <th>Return Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>101</td>
+          <td>The Shawshank Redemption</td>
+          <td>2024-12-01</td>
+          <td>2024-12-08</td>
+          <td><span class="badge bg-success">Returned</span></td>
+        </tr>
+        <tr>
+          <td>102</td>
+          <td>Inception</td>
+          <td>2024-12-05</td>
+          <td>2024-12-12</td>
+          <td><span class="badge bg-warning text-dark">Pending</span></td>
+        </tr>
+        <tr>
+          <td>103</td>
+          <td>Avengers: Endgame</td>
+          <td>2024-12-02</td>
+          <td>2024-12-09</td>
+          <td><span class="badge bg-danger">Overdue</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

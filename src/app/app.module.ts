@@ -28,6 +28,8 @@ import { RentalHistoryComponent } from './components/customer-profile/rental-his
 import { NotificationsComponent } from './components/customer-profile/notifications/notifications.component';
 import { RentalPageComponent } from './components/customer-profile/rental-page/rental-page.component';
 import { CustomerhomeComponent } from './components/customer-profile/customerhome/customerhome.component';
+
+import { FavoritesComponent } from './components/customer-profile/favorites/favorites.component';
 //import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
@@ -50,6 +52,8 @@ import { CustomerhomeComponent } from './components/customer-profile/customerhom
     NotificationsComponent,
     RentalPageComponent,
     CustomerhomeComponent,
+
+    FavoritesComponent,
  
    
   ],

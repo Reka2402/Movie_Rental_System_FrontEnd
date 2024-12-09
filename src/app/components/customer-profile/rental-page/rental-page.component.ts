@@ -13,3 +13,5 @@ export class RentalPageComponent  implements OnInit{
     this.movieName = this.route.snapshot.paramMap.get('movieName');
   }
 }
+
+

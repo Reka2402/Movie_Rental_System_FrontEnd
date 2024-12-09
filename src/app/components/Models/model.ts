@@ -77,6 +77,7 @@ export interface RentalRequestModel {
   isOverdue: boolean;
   status: number;
 
+
 }
 
 export interface RentalResponseModel {
@@ -92,6 +93,13 @@ export interface RentalResponseModel {
   isOverdue: boolean;
   status: string;
   initialPrice: number;
+
 }
+
+export interface Favourite {
+  userId: string;
+  movieId: string;
+}
+
 
 

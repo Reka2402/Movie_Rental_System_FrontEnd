@@ -1,0 +1,16 @@
+<div class="favourites-container">
+  <h2>Your Favourite Movies</h2>
+  <div *ngIf="favourites.length > 0; else noFavourites">
+    <ul>
+      <li *ngFor="let favourite of favourites">
+        Movie ID: {{ favourite.movieId }}  <!-- Adjust this to show actual movie details -->
+      </li>
+    </ul>
+  </div>
+  <ng-template #noFavourites>
+    <p>You have no favourite movies yet.</p>
+  </ng-template>
+</div>
+
+
+

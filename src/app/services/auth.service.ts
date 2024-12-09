@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { jwtDecode } from "jwt-decode";
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,18 @@ export class AuthService {
     } else {
       return false
     }
+  }
+  login(credentials: { email: string; password: string }): Observable<any> {
+    return this.http.post<any>(`${this.UserURL}/login`, credentials);
+  }
+
+  getUserIdFromToken(): string | null {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      const decodedToken = JSON.parse(atob(token.split('.')[1])); // Decode JWT token
+      return decodedToken.userId; // Assuming userId is part of the payload
+    }
+    return null;
   }
 }
 export interface SignIn {

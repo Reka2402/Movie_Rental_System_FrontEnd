@@ -19,6 +19,10 @@ import { RentalHistoryComponent } from './components/customer-profile/rental-his
 import { NotificationsComponent } from './components/customer-profile/notifications/notifications.component';
 import { HomeComponent } from './components/home/home.component';
 import { CustomerhomeComponent } from './components/customer-profile/customerhome/customerhome.component';
+import { FavoritesComponent } from './components/customer-profile/favorites/favorites.component';
+
+
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -42,10 +46,14 @@ const routes: Routes = [
     path: 'customer',
     component: CustomerProfileComponent,
     children: [
-      { path: 'home', component:CustomerhomeComponent  },
+      { path: 'rentalhome', component:CustomerhomeComponent  },
       { path: 'rentalHistory', component: RentalHistoryComponent },
+      { path: 'favs', component: FavoritesComponent},
+      
+      
       { path: 'notifications', component: NotificationsComponent },
-      { path: 'rent/:movieName', component: RentalPageComponent },
+      { path: 'passwordchange', component: RentalPageComponent },
+      { path: 'rent', component: RentalPageComponent },
     ],
   },
 ];

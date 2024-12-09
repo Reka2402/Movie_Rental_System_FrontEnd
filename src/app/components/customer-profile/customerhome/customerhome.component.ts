@@ -3,7 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { MovieService } from '../../../services/movie.service';
 import { UserService } from '../../../services/user.service';
-import { Movierequest, Movie } from '../../Models/model';
+import { Movierequest, Movie, RentalRequestModel, Favourite } from '../../Models/model';
+import { ToastrService } from 'ngx-toastr';
+import { RentalService } from '../../../services/rental.service';
+import { CustomerService } from '../../../services/customer.service';
+import { AuthService } from '../../../services/auth.service';
 declare var bootstrap: any;
 
 @Component({
@@ -12,12 +16,13 @@ declare var bootstrap: any;
   styleUrl: './customerhome.component.css'
 })
 export class CustomerhomeComponent {
+  
   rentalDays: number = 1;
   option1: boolean = false;
   option2: boolean = false;
   option3: boolean = false;
   totalPrice: number = 0;
-
+  
   selectedMovie: any = null;
   showHistory = false;
   isSignedIn = true;
@@ -28,68 +33,143 @@ export class CustomerhomeComponent {
   moviesadd: Movierequest[] = [];
   movies: Movie[] = [];
   movieForm: any;
- 
-  option1Price: number = 2;  
-  option2Price: number = 3;  
-  option3Price: number = 4;  
-
-
-  quantity: number = 1;
-  rentButtonText: string = 'Rent Now'; 
-  rentButtonClass: string = 'btn-danger'; 
-  isPending: boolean = false;
-
-  constructor(private rout: ActivatedRoute,private router: Router,private userservice:UserService,private movieService: MovieService) {
-    this.UID = String(rout.snapshot.paramMap.get('Id'))
-  }
-
   
+  option1Price: number = 2;
+  option2Price: number = 3;
+  option3Price: number = 4;
+  
+  quantity: number = 1;
+  rentButtonText: string = 'Rent Now';
+  rentButtonClass: string = 'btn-danger';
+  isPending: boolean = false;
+  customerservice: any;
+  userId: string | null = null;
+  rentButtonState: { [key: string]: { text: string, class: string } } = {};
+ 
+
   @ViewChild('profileModal') profileModal!: ElementRef;
   rentalHistory: any[] = [];
+  @Output() movie = new EventEmitter<any>();
 
+  constructor(
+    private rout: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService,
+    private userservice: UserService,
+    private movieService: MovieService,
+    private rentalservice: RentalService,
+    private toster: ToastrService,
+    private favoritesService: CustomerService,
+  ) {
+    this.UID = String(rout.snapshot.paramMap.get('Id'));
+  }
+  ngOnInit(): void {
+   // this.userId = this.authService.getUserIdFromToken(); // Now it's safe to use the service
+    this.loadMovies();
+  }
  
+  // movieId: string | null = null; 
+  // onMovieSelect(movieId: string): void {
+  //   this.movieId = movieId;
+  // }
+
+  // addToFavorites(): void {
+  //   if (!this.userId || !this.movieId) {
+  //     alert('User or movie ID is missing');
+  //     return;
+  //   }
+
+  //   const favourite: Favourite = {
+  //     userId: this.userId,
+  //     movieId: this.movieId,
+  //   };
+
+  //   this.favoritesService.addFavourite(favourite).subscribe({
+  //     next: () => {
+  //       alert('Movie added to favourites!');
+  //     },
+  //     error: (err) => {
+  //       console.error('Error adding to favourites:', err);
+  //       alert('Failed to add movie to favourites');
+  //     },
+  //   });
+  // }
+
+
+  loadMovies() {
+    this.movieService.getMovies().subscribe((data: Movie[]) => {
+      this.movies = data;
+      console.log(this.movies);
+    });
+  }
+
   openRentModal() {
+
+    this.rentButtonState = {};
+  
     const rentModal = new bootstrap.Modal(document.getElementById('rentModal'));
     rentModal.show();
   }
-  rentMovie() {
+
+  rentMovie(dvd: Movie) {
+    if (!this.isSignedIn) {
+      this.toster.error('You must be logged in to rent a DVD.', 'Error');
+      return;
+    }
+
+    if (dvd.copiesAvailable <= 0) {
+      this.toster.error(
+        `The DVD "${dvd.title}" is out of stock and cannot be rented.`,
+        'Error'
+      );
+      return;
+    }
   
-    console.log('Renting movie:', this.selectedMovie.movieName);
-    console.log('Rental Days:', this.rentalDays);  
-    this.rentButtonText = 'Pending';
-    this.rentButtonClass = 'btn-warning';
-    const rentModal = new bootstrap.Modal(document.getElementById('rentModal'));
-    rentModal.hide();
+    this.rentButtonState[dvd.id] = { text: 'Pending', class: 'btn-warning' };
+  
+    const rentalRequest: RentalRequestModel = {
+      userId: String(this.customer.Id),
+      movieId: String(dvd.id),
+      requestedDate: new Date().toISOString(),
+      approvedDate: new Date().toISOString(),
+      rentalDate: new Date().toISOString(),
+      returnDate: this.calculateReturnDate(this.rentalDays),
+      rentalDays: this.rentalDays,
+      totalAmount: this.totalPrice,
+      isOverdue: false,
+      status: 1,
+    };
+  
+    this.rentalservice.addrental(rentalRequest).subscribe({
+      next: (response: any) => {
+        this.toster.success('Rent Successful!', 'Success');
+        const rentModal = new bootstrap.Modal(document.getElementById('rentModal'));
+        rentModal.hide();
+        this.rentButtonState[dvd.id] = { text: 'Rent Now', class: 'btn-danger' };
+        this.router.navigate(['/customer/home']);
+      },
+      error: (error: any) => {
+        console.error('Error during rental:', error);
+        this.toster.error('Failed to rent DVD. Please try again.', 'Error');
+        this.rentButtonState[dvd.id] = { text: 'Rent Now', class: 'btn-danger' };
+      },
+    });
   }
-  ngOnInit(): void {
-    this.loaddVD();
-    this.movieService.getMovies().subscribe((data) => {
-      this.movies = data;  
-      console.log(this.movies);
-      
-    })
-    
+
+  calculateReturnDate(rentalDays: number): string {
+    const today = new Date();
+    today.setDate(today.getDate() + rentalDays);
+    return today.toISOString();
   }
-  loaddVD() {
-    this.movieService.getMovies().subscribe(data => {
-      this.movies = data;
-      console.log(this.movies);
-      
-    })
-  }
- 
-  setSelectedMovie(movie: any): void {
+
+  setSelectedMovie(movie: Movie): void {
     this.selectedMovie = movie;
+    this.calculatePrice();
   }
-  viewRentalHistory(): void {
- 
-    console.log('Rental History:', this.rentalHistory);
-  }
+
   showRentalHistory() {
     this.showHistory = true;
-  }
-  rentNow(movieName: string) {
-    this.router.navigate(['/customer/rent', movieName]);
+    console.log('Rental History:', this.rentalHistory);
   }
 
   openProfileModal(): void {
@@ -97,20 +177,60 @@ export class CustomerhomeComponent {
     const bootstrapModal = new bootstrap.Modal(modalElement);
     bootstrapModal.show();
   }
-  @Output() movie = new EventEmitter();
 
   AddMovie(movie: any) {
     this.movie.emit(movie);
   }
+
   calculatePrice() {
-    let basePrice = this.selectedMovie.price; 
+    if (!this.selectedMovie) return;
+
+    let basePrice = this.selectedMovie.price;
     let rentalPrice = basePrice * this.rentalDays;    
     let additionalPrice = 0;
+
     if (this.option1) additionalPrice += this.option1Price;
     if (this.option2) additionalPrice += this.option2Price;
     if (this.option3) additionalPrice += this.option3Price;
+
     this.totalPrice = rentalPrice + additionalPrice;
+  }
+
+  toggleOption(option: number) {
+    switch (option) {
+      case 1:
+        this.option1 = !this.option1;
+        break;
+      case 2:
+        this.option2 = !this.option2;
+        break;
+      case 3:
+        this.option3 = !this.option3;
+        break;
+    }
+    this.calculatePrice();
+  }
+
+  addToFavorites(movie: Movie): void {
+    if (!this.isSignedIn) {
+      this.toster.error('You must be logged in to add a movie to favorites.', 'Error');
+      return;
+    }
+
+    //Check if the movie is already in the favorites
+    let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    const alreadyInFavorites = favorites.some((fav: Movie) => fav.id === movie.id);
+
+    if (alreadyInFavorites) {
+      this.toster.info('This movie is already in your favorites.', 'Info');
+    } else {
+      favorites.push(movie);
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+      this.toster.success('Movie added to favorites!', 'Success');
+    }
+  }
+ 
+
   }
   
 
-}

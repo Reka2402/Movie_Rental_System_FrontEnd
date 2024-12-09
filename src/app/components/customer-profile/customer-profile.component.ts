@@ -43,7 +43,11 @@ export class CustomerProfileComponent {
   
 // Initialize a map to track the button state for each movie by movie ID
 rentButtonState: { [key: string]: { text: string, class: string } } = {};
+isExpanded: boolean = false;
 
+toggleSidebar() {
+  this.isExpanded = !this.isExpanded;
+}
 
 
   @ViewChild('profileModal') profileModal!: ElementRef;

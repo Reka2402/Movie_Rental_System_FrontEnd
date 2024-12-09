@@ -1,0 +1,21 @@
+.favourites-container {
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+  
+  h2 {
+    color: #2c3e50;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #ecf0f1;
+    border-radius: 5px;
+  }
+  
