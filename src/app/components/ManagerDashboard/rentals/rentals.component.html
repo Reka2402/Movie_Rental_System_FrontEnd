@@ -1,144 +1,55 @@
+<!-- rental.component.html -->
 <div class="container mt-5">
-    <div class="card shadow-lg p-3 mb-5 rounded" style="background-color: #f5f5f5; color: #333;">
-      <div class="card-body">
-        <div class="d-flex justify-content-between mb-3">
-          <div class="p-2 w-50">
-            <input 
-              type="text" 
-              class="form-control" 
-              [(ngModel)]="searchText" 
-              placeholder="Search Rentals..." 
-              style="background-color: #e0e0e0; color: #333; border: 1px solid #ccc;"
-            />
-          </div>
-          <div class="ml-auto p-2">
-            <button 
-              type="button" 
-              class="btn btn-dark btn-lg px-4" 
-              (click)="openAddRentalPopup()" 
-              style="background-color: black; color: white;"
-            >
-              + Add New Rental
-            </button>
-          </div>
-        </div>
-  
-        <table class="table table-hover align-middle table-bordered" style="background-color: #fff;">
-          <thead style="background-color: #333; color: #fff;">
+  <div class="card shadow-lg p-3 mb-5 rounded" style="background-color: #34495E; color: #FFF;">
+    <div class="card-body">
+      <h4 class="mb-4 text-center" style="color: #1ABC9C;">Rental History</h4>
+      <div *ngIf="isLoading" class="text-center">
+        <p>Loading rental details...</p>
+      </div>
+      <div *ngIf="!isLoading && rentals.length === 0" class="text-center">
+        <p>No rentals found.</p>
+      </div>
+      <div *ngIf="!isLoading && rentals.length > 0" class="table-responsive">
+        <table class="table table-hover align-middle table-bordered" style="background-color: #2C3E50; font-size: 14px;">
+          <thead style="background-color: #1ABC9C; color: #FFF;">
             <tr>
-              <th scope="col">Customer Name</th>
-              <th scope="col">NIC</th>
-              <th scope="col">Rented DVD</th>
-              <th scope="col">Rental Status</th>
-              <th scope="col">Action</th>
+              <th>Username</th>
+              <th>Movie Name</th>
+              <th>Requested Date</th>
+              <th>Rental Days</th>
+              <th>Rental Quantity</th>
+              <th>Total Amount</th>
+              <th>Action</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let rental of rentals " style="color: #333;">
-              <td>{{ rental.customerName }}</td>
-              <td>{{ rental.nic }}</td>
-              <td>{{ rental.rentedDvd }}</td>
-              <td>{{ rental.rentalStatus }}</td>
+            <tr *ngFor="let rental of rentals" style="color: #FFF; background-color: #34495E;">
+              <td>{{ rental.username }}</td>
+              <td>{{ rental.movieName }}</td>
+              <td>{{ rental.requestedDate | date }}</td>
+              <td>{{ rental.rentalDays }}</td>
+              <td>{{ rental.rentalQuantity }}</td>
+              <td>{{ rental.totalAmount | currency }}</td>
               <td>
-                <button 
-                  class="btn btn-outline-dark btn-sm me-2" 
-                  (click)="onEdit(rental.id)" 
-                  style="border-radius: 4px;"
+                <button class="btn btn-outline-light btn-sm me-2" style="border-radius: 6px;">Details</button>
+              </td>
+              <td>
+                <span
+                  class="badge"
+                  [ngClass]="{
+                    'bg-success': rental.status === 'Returned',
+                    'bg-warning': rental.status === 'Pending',
+                    'bg-danger': rental.status === 'Overdue'
+                  }"
                 >
-                  <i class="bi bi-pencil-square"></i>
-                </button>
-                <button 
-                  class="btn btn-outline-danger btn-sm me-2" 
-                  (click)="onDelete(rental.id)" 
-                  style="border-radius: 4px;"
-                >
-                  <i class="bi bi-trash"></i>
-                </button>
-                <button 
-                  class="btn btn-outline-secondary btn-sm" 
-                  (click)="onView(rental.id)" 
-                  style="border-radius: 4px;"
-                >
-                  <i class="bi bi-eye"></i>
-                </button>
+                  {{ rental.status }}
+                </span>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-  
-    <!-- Add Rental Popup -->
-    <div *ngIf="isAddRentalPopupOpen" class="popup-overlay">
-      <div class="popup-content card shadow-lg p-4" style="background-color: #f5f5f5;">
-        <h4 class="mb-4">Add New Rental</h4>
-        <form>
-          <div class="mb-3">
-            <label for="customerName" class="form-label">Customer Name</label>
-            <input 
-              type="text" 
-              id="customerName" 
-              class="form-control" 
-              [(ngModel)]="newRental.customerName" 
-              name="customerName" 
-              style="background-color: #e0e0e0; color: #333;"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="nic" class="form-label">NIC</label>
-            <input 
-              type="text" 
-              id="nic" 
-              class="form-control" 
-              [(ngModel)]="newRental.nic" 
-              name="nic" 
-              style="background-color: #e0e0e0; color: #333;"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="rentedDvd" class="form-label">Rented DVD</label>
-            <input 
-              type="text" 
-              id="rentedDvd" 
-              class="form-control" 
-              [(ngModel)]="newRental.rentedDvd" 
-              name="rentedDvd" 
-              style="background-color: #e0e0e0; color: #333;"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="rentalStatus" class="form-label">Rental Status</label>
-            <select 
-              id="rentalStatus" 
-              class="form-select" 
-              [(ngModel)]="newRental.rentalStatus" 
-              name="rentalStatus" 
-              style="background-color: #e0e0e0; color: #333;"
-            >
-              <option>Pending</option>
-              <option>Returned</option>
-              <option>Overdue</option>
-            </select>
-          </div>
-          <div class="d-flex justify-content-end">
-            <button 
-              type="button" 
-              class="btn btn-secondary me-2" 
-              (click)="closeAddRentalPopup()"
-            >
-              Cancel
-            </button>
-            <button 
-              type="button" 
-              class="btn btn-dark" 
-              (click)="addRental()"
-              style="background-color: black; color: white;"
-            >
-              Add Rental
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
   </div>
-  
+</div>

@@ -1,43 +1,46 @@
+<!-- inventory.component.html -->
 <div class="container mt-5">
-    <div class="card shadow-lg p-3 mb-5 rounded" style="background-color: #f5f5f5; color: #333;">
-      <div class="card-body">
-        <div class="d-flex justify-content-between mb-3">
-          <div class="p-2 w-50">
-            <input 
-              type="text" 
-              class="form-control" 
-              [(ngModel)]="searchText" 
-              placeholder="Search Inventory..." 
-              style="background-color: #e0e0e0; color: #333; border: 1px solid #ccc;"
-            />
-          </div>
-          <div class="ml-auto p-2">
-            <button 
-              type="button" 
-              class="btn btn-dark btn-lg px-4" 
-              (click)="openAddInventoryPopup()" 
-              style="background-color: black; color: white;"
-            >
-              + Add New DVD
-            </button>
-          </div>
+  <div class="card shadow-lg p-3 mb-5 rounded" style="background-color: #34495E; color: #FFF;">
+    <div class="card-body">
+      <h4 class="mb-4 text-center" style="color: #1ABC9C;">DVD Inventory</h4>
+      <div class="d-flex justify-content-between mb-3">
+        <div class="p-2 w-50">
+          <input 
+            type="text" 
+            class="form-control px-4 py-2" 
+            [(ngModel)]="searchText" 
+            placeholder="🔍 Search Inventory..." 
+            style="background-color: #2C3E50; color: #FFF; border: none; border-radius: 30px;"
+          />
         </div>
-  
-        <table class="table table-hover align-middle table-bordered" style="background-color: #fff;">
-          <thead style="background-color: #333; color: #fff;">
+        <div class="ml-auto p-2">
+          <button 
+            type="button" 
+            class="btn btn-dark btn-lg px-4" 
+            (click)="openAddInventoryPopup()" 
+            style="background-color: #1ABC9C; color: white; border-radius: 6px;"
+          >
+            + Add New DVD
+          </button>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-hover align-middle table-bordered" style="background-color: #2C3E50; font-size: 14px;">
+          <thead style="background-color: #1ABC9C; color: #FFF;">
             <tr>
-              <th scope="col">DVD Name</th>
-              <th scope="col">Total Copies</th>
-              <th scope="col">Available Copies</th>
-              <th scope="col">Overdue DVDs</th>
-              <th scope="col">Pending DVDs</th>
-              <th scope="col">Rented DVDs</th>
-              <th scope="col">Returned DVDs</th>
-              <th scope="col">Action</th>
+              <th>DVD Name</th>
+              <th>Total Copies</th>
+              <th>Available Copies</th>
+              <th>Overdue DVDs</th>
+              <th>Pending DVDs</th>
+              <th>Rented DVDs</th>
+              <th>Returned DVDs</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let dvd of inventory " style="color: #333;">
+            <tr *ngFor="let dvd of inventory" style="color: #FFF; background-color: #34495E;">
               <td>{{ dvd.dvdName }}</td>
               <td>{{ dvd.totalCopies }}</td>
               <td><span [ngClass]="getBadgeClass(dvd.availableCopies)">{{ dvd.availableCopies }}</span></td>
@@ -47,17 +50,15 @@
               <td>{{ dvd.returnedDvds }}</td>
               <td>
                 <button 
-                  class="btn btn-outline-dark btn-sm me-2" 
+                  class="btn btn-outline-light btn-sm me-2" 
                   (click)="onEdit(dvd.id)" 
-                  style="border-radius: 4px;"
-                >
+                  style="border-radius: 6px;">
                   <i class="bi bi-pencil-square"></i>
                 </button>
                 <button 
                   class="btn btn-outline-secondary btn-sm" 
                   (click)="onView(dvd.id)" 
-                  style="border-radius: 4px;"
-                >
+                  style="border-radius: 6px;">
                   <i class="bi bi-eye"></i>
                 </button>
               </td>
@@ -66,75 +67,77 @@
         </table>
       </div>
     </div>
-  
-    <!-- Add Inventory Popup -->
-    <div *ngIf="isAddInventoryPopupOpen" class="popup-overlay">
-      <div class="popup-content card shadow-lg p-4" style="background-color: #f5f5f5;">
-        <h4 class="mb-4">Add New DVD</h4>
-        <form>
-          <div class="mb-3">
-            <label for="dvdName" class="form-label">DVD Name</label>
+  </div>
+
+  <!-- Add Inventory Popup -->
+  <div *ngIf="isAddInventoryPopupOpen" class="popup-overlay">
+    <div class="popup-content card shadow-lg p-4 mb-5 bg-dark text-white rounded" style="width: 100%; max-width: 600px; max-height: 80vh; overflow-y: auto;">
+      <h4 class="mb-4 text-center" style="color: #1ABC9C;">Add New DVD</h4>
+      <form>
+        <div class="row">
+          <div class="col-lg-6 mb-3">
+            <label for="dvdName" class="form-label" style="color: #1ABC9C;">DVD Name</label>
             <input 
               type="text" 
               id="dvdName" 
-              class="form-control" 
+              class="form-control border border-light rounded" 
               [(ngModel)]="newDvd.dvdName" 
               name="dvdName" 
-              style="background-color: #e0e0e0; color: #333;"
+              style="background-color: #2C3E50; color: #FFF;"
             />
           </div>
-          <div class="mb-3">
-            <label for="totalCopies" class="form-label">Total Copies</label>
+          <div class="col-lg-6 mb-3">
+            <label for="totalCopies" class="form-label" style="color: #1ABC9C;">Total Copies</label>
             <input 
               type="number" 
               id="totalCopies" 
-              class="form-control" 
+              class="form-control border border-light rounded" 
               [(ngModel)]="newDvd.totalCopies" 
               name="totalCopies" 
-              style="background-color: #e0e0e0; color: #333;"
+              style="background-color: #2C3E50; color: #FFF;"
             />
           </div>
-          <div class="mb-3">
-            <label for="availableCopies" class="form-label">Available Copies</label>
+          <div class="col-lg-6 mb-3">
+            <label for="availableCopies" class="form-label" style="color: #1ABC9C;">Available Copies</label>
             <input 
               type="number" 
               id="availableCopies" 
-              class="form-control" 
+              class="form-control border border-light rounded" 
               [(ngModel)]="newDvd.availableCopies" 
               name="availableCopies" 
-              style="background-color: #e0e0e0; color: #333;"
+              style="background-color: #2C3E50; color: #FFF;"
             />
           </div>
-          <div class="mb-3">
-            <label for="overdueDvds" class="form-label">Overdue DVDs</label>
+          <div class="col-lg-6 mb-3">
+            <label for="overdueDvds" class="form-label" style="color: #1ABC9C;">Overdue DVDs</label>
             <input 
               type="number" 
               id="overdueDvds" 
-              class="form-control" 
+              class="form-control border border-light rounded" 
               [(ngModel)]="newDvd.overdueDvds" 
               name="overdueDvds" 
-              style="background-color: #e0e0e0; color: #333;"
+              style="background-color: #2C3E50; color: #FFF;"
             />
           </div>
-          <div class="d-flex justify-content-end">
-            <button 
-              type="button" 
-              class="btn btn-secondary me-2" 
-              (click)="closeAddInventoryPopup()"
-            >
-              Cancel
-            </button>
-            <button 
-              type="button" 
-              class="btn btn-dark" 
-              (click)="addInventory()"
-              style="background-color: black; color: white;"
-            >
-              Add DVD
-            </button>
-          </div>
-        </form>
-      </div>
+        </div>
+        <div class="d-flex justify-content-between mt-3">
+          <button 
+            type="button" 
+            class="btn btn-secondary px-4 py-2" 
+            (click)="closeAddInventoryPopup()"
+            style="border-radius: 6px; background-color: #34495E; color: #FFF;">
+            Cancel
+          </button>
+          <button 
+            type="button" 
+            class="btn btn-dark px-4 py-2" 
+            (click)="addInventory()" 
+        
+            style="border-radius: 6px; background-color: #27AE60; color: white;">
+            Add DVD
+          </button>
+        </div>
+      </form>
     </div>
   </div>
-  
+</div>

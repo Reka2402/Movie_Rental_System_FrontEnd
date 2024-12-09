@@ -80,15 +80,14 @@
             <td>{{ movie.description }}</td>
             <td>{{ movie.totalCopies }}</td>
             <td>
-              <button
-                class="btn btn-outline-light btn-sm me-2"
-                (click)="onEdit(movie.id)"
-                style="border-radius: 6px; font-size: 14px; transition: 0.3s ease;"
-                onmouseover="this.style.backgroundColor='#2C3E50'"
-                onmouseout="this.style.backgroundColor='transparent'"
-              >
-                <i class="bi bi-pencil-square"></i>
-              </button>
+             
+              <button 
+              class="btn btn-edit btn-outline-light btn-sm me-2" 
+              (click)="onEdit(movie.id)" 
+              style="border-radius: 4px; font-size: 14px; transition: 0.3s ease;"
+            >
+              <i class="bi bi-pencil-square"></i>
+            </button>
               <button
                 class="btn btn-outline-danger btn-sm"
                 (click)="onDelete(movie.id)"
