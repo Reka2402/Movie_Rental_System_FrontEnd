@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RentalService } from '../../../services/rental.service';
+import { Movie, Movierequest, RentalRequestModel, RentalResponseModel, User } from '../../Models/model';
 
 @Component({
   selector: 'app-rentals',
@@ -7,7 +8,11 @@ import { RentalService } from '../../../services/rental.service';
   styleUrl: './rentals.component.css'
 })
 export class RentalsComponent {
-  rentals: any[] = [];
+  rentals: RentalResponseModel[] = [];
+  users : User[]=[];
+  movies:Movierequest[]=[];
+  
+
   isLoading: boolean = true;
 
   constructor(private rentalService: RentalService) {}
@@ -25,7 +30,7 @@ export class RentalsComponent {
       (error) => {
         console.error('Error fetching rental data:', error);
         this.isLoading = false;
-      }
+      } 
     );
   }
   // searchText: string = '';

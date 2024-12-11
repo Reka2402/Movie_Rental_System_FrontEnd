@@ -14,6 +14,7 @@ export interface Movie {
   totalCopies: number;
 }
 
+
 export interface Movierequest {
   id: string;
   movieName: string;
@@ -73,6 +74,7 @@ export interface RentalRequestModel {
   rentalDate: string;
   returnDate: string;
   rentalDays: number;
+  rentalquantity:number;
   totalAmount: number;
   isOverdue: boolean;
   status: number;
@@ -88,12 +90,16 @@ export interface RentalResponseModel {
   approvedDate: string;
   rentalDate: string;
   returnDate: string;
+  rentalquantity:number;
   rentalDays: number;
   totalAmount: number;
   isOverdue: boolean;
   status: string;
   initialPrice: number;
+  username:string;
+  movieName:string;
 
+ 
 }
 
 export interface Favourite {

@@ -19,6 +19,7 @@ export class CustomerProfileComponent {
   option2: boolean = false;
   option3: boolean = false;
   totalPrice: number = 0;
+  searchText: string = '';
   
   selectedMovie: any = null;
   showHistory = false;
@@ -106,7 +107,7 @@ toggleSidebar() {
   
     // Create the rental request object
     const rentalRequest: RentalRequestModel = {
-      userId: String(this.customer.Id), // User ID as a string
+      userId: String(this.customer.Id), 
       movieId: String(dvd.id), // Movie ID as a string
       requestedDate: new Date().toISOString(), // Current date in ISO format
       approvedDate: new Date().toISOString(), // Initially empty or could be filled if applicable
@@ -115,7 +116,8 @@ toggleSidebar() {
       rentalDays: this.rentalDays,
       totalAmount: this.totalPrice, // The calculated total price
       isOverdue: false, // Initially false, you can update based on return date
-      status: 1, // Initial status can be "Pending", "Approved", etc.
+      status: 1,
+      rentalquantity: 0
     };
   
     // Send the rental request to the backend

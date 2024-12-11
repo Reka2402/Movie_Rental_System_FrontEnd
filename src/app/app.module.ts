@@ -30,6 +30,8 @@ import { RentalPageComponent } from './components/customer-profile/rental-page/r
 import { CustomerhomeComponent } from './components/customer-profile/customerhome/customerhome.component';
 
 import { FavoritesComponent } from './components/customer-profile/favorites/favorites.component';
+import { FilterMoviesPipe } from './Pipes/filter-movies.pipe';
+import { FilterUsersPipe } from './Pipes/filter-users.pipe';
 //import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
@@ -54,6 +56,8 @@ import { FavoritesComponent } from './components/customer-profile/favorites/favo
     CustomerhomeComponent,
 
     FavoritesComponent,
+      FilterMoviesPipe,
+      FilterUsersPipe,
  
    
   ],

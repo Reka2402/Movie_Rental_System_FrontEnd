@@ -19,7 +19,7 @@ body {
 
 .logo i {
   font-size: 32px; /* Icon size slightly larger */
-  animation: tada 1s infinite; /* Add a bouncing/tada effect */
+  animation: tada 1s infinite; 
 }
 
 .header {

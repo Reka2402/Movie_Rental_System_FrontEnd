@@ -51,7 +51,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let user of users" style="color: #FFF;">
+          <tr *ngFor="let user of users | filterUsers:searchText" style="color: #FFF;">
             <!-- <th scope="row">{{ user.id }}</th> -->
             <td>{{ user.name }}</td>
             <td>{{ user.email }}</td>

@@ -2,16 +2,59 @@
     font-size: 2rem;
     font-weight: 900;
   }
+    
+  #mainContent {
+    transition: margin-left 0.3s;
+    z-index: 1; 
+  }
 
   #sidebar {
     height: 100vh;
     width: 80px;
     transition: width 0.3s;
+    flex-shrink: 0;
+    z-index: 2;
+  }
+  #sidebar .logo {
+    font-size: 1.5rem; /* Smaller font size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden; /* Hide overflowing text in collapsed state */
+    transition: font-size 0.3s, width 0.3s;
+  }
+  #sidebar .logo i {
+    font-size: 2rem; /* Adjust icon size */
+    margin-right: 0.5rem; /* Add space between icon and text */
+  }
+  
+  #sidebar .logo.expanded i {
+    font-size: 2.5rem; /* Icon size in expanded state */
   }
   
   #sidebar.expanded {
     width: 250px;
   }
+  #sidebar .logo span {
+    display: none; /* Hide logo text in collapsed state */
+  }
+  #sidebar.expanded .logo span {
+    display: inline; /* Show logo text in expanded state */
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  #sidebar .toggle-btn {
+    font-size: 1.2rem; /* Smaller toggle icon size */
+    margin: 0.5rem; /* Adjust spacing */
+    cursor: pointer;
+  }
+  
+  #sidebar.expanded .toggle-btn {
+    font-size: 1.5rem; /* Toggle icon size in expanded state */
+  }
+  
   
   #sidebar .nav-link {
     flex-direction: column;

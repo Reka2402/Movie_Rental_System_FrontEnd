@@ -48,9 +48,7 @@ const routes: Routes = [
     children: [
       { path: 'rentalhome', component:CustomerhomeComponent  },
       { path: 'rentalHistory', component: RentalHistoryComponent },
-      { path: 'favs', component: FavoritesComponent},
-      
-      
+      { path: 'favs', component: FavoritesComponent},      
       { path: 'notifications', component: NotificationsComponent },
       { path: 'passwordchange', component: RentalPageComponent },
       { path: 'rent', component: RentalPageComponent },

@@ -22,6 +22,7 @@ export class CustomerhomeComponent {
   option2: boolean = false;
   option3: boolean = false;
   totalPrice: number = 0;
+  userId!: string
   
   selectedMovie: any = null;
   showHistory = false;
@@ -43,7 +44,7 @@ export class CustomerhomeComponent {
   rentButtonClass: string = 'btn-danger';
   isPending: boolean = false;
   customerservice: any;
-  userId: string | null = null;
+ 
   rentButtonState: { [key: string]: { text: string, class: string } } = {};
  
 
@@ -138,6 +139,7 @@ export class CustomerhomeComponent {
       totalAmount: this.totalPrice,
       isOverdue: false,
       status: 1,
+      rentalquantity: 0
     };
   
     this.rentalservice.addrental(rentalRequest).subscribe({
@@ -216,18 +218,21 @@ export class CustomerhomeComponent {
       this.toster.error('You must be logged in to add a movie to favorites.', 'Error');
       return;
     }
+    
+    const newFavorite: Favourite = {
+      userId: this.customer.Id,
+      movieId: movie.id,
+    };
 
-    //Check if the movie is already in the favorites
-    let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-    const alreadyInFavorites = favorites.some((fav: Movie) => fav.id === movie.id);
-
-    if (alreadyInFavorites) {
-      this.toster.info('This movie is already in your favorites.', 'Info');
-    } else {
-      favorites.push(movie);
-      localStorage.setItem('favorites', JSON.stringify(favorites));
-      this.toster.success('Movie added to favorites!', 'Success');
-    }
+    this.favoritesService.addFavourite(newFavorite.userId , newFavorite.movieId).subscribe({
+      next: () => {
+        this.toster.success('Movie added to favorites!', 'Success');
+      },
+      error: (error) => {
+        console.error(error);
+        this.toster.info('This movie is already in your favorites.', 'Info');
+      },
+    });
   }
  
 

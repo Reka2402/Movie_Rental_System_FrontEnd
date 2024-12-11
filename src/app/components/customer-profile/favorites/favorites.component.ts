@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../../../services/customer.service';
+import { ToastrService } from 'ngx-toastr';
+import { Movie } from '../../Models/model';
 
 @Component({
   selector: 'app-favorites',
@@ -7,16 +9,36 @@ import { CustomerService } from '../../../services/customer.service';
   styleUrl: './favorites.component.css'
 })
 export class FavoritesComponent implements OnInit {
-  favorites: any[] = [];
+  favouriteMovies: Movie[] = [];
+  isLoading = true;
+  errorMessage: string | null = null;
 
-  constructor(private favoritesService: CustomerService) {}
+  constructor(
+    private favouritesService: CustomerService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
-   // this.loadFavorites();
-  }
+    const userId = localStorage.getItem('userId'); 
 
-  // loadFavorites(): void {
-  //   this.favorites = this.favoritesService.getFavorites(); // Get favorites from the service
-  // }
+    if (!userId) {
+      this.errorMessage = 'User not logged in.';
+      this.isLoading = false;
+      return;
+    }
+
+    this.favouritesService.getFavouritesByUserId(userId).subscribe({
+      next: (movies) => {
+        this.favouriteMovies = movies;
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error(error);
+        this.errorMessage = 'Failed to load favourites. Please try again.';
+        this.toastr.error(this.errorMessage, 'Error');
+        this.isLoading = false;
+      },
+    });
+  }
 }
 

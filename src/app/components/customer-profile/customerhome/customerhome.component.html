@@ -7,7 +7,7 @@
           {{ movie.movieName }}
         </div>
         <div class="movie-details text-center text-light d-flex flex-column justify-content-center">
-          <p class="mb-1 text-light">{{  movie.genre.name }}</p>
+          <p class="mb-1 text-light">{{ movie.genre.name }}</p>
           <p class="fw-bold text-success mb-2">Price: {{ movie.price | currency: 'USD' }}</p>
           <button class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#viewMoreModal"
             (click)="selectedMovie = movie">
@@ -49,14 +49,10 @@
         <button type="button" class="btn" [ngClass]="rentButtonClass" (click)="openRentModal()"
           [disabled]="rentButtonText === 'Pending'">
           {{ rentButtonText }}
+        </button>     
+        <button type="button" class="btn btn-outline-danger" (click)="addToFavorites(selectedMovie)">
+          Add to Favorites
         </button>
-       <!-- Parent Component Template -->
-<button type="button" class="btn btn-outline-danger" (click)="addToFavorites(selectedMovie)">
-  Add to Favorites
-</button>
-
-
-
       </div>
     </div>
   </div>
@@ -109,8 +105,8 @@
 
             <!-- Calculated Total Price -->
             <p><strong>Total Price:</strong> ${{totalPrice}}</p>
-           
-            
+
+
           </div>
         </div>
       </div>
