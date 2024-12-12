@@ -2,8 +2,6 @@
   style="background-image: url(/Sliders/movie-detail-bg.png); background-size: cover; background-position: center;">
   <div class="row shadow-lg rounded-4 overflow-hidden"
     style="width: 65rem; height: 90vh; background: rgba(30, 30, 30, 0.95);">
-
-    <!-- Image Section -->
     <div class="col-md-5 p-0">
       <div class="h-100" style="background-image: url('/Sliders/login.jpg'); 
                   background-size: cover; 
@@ -11,19 +9,19 @@
                   filter: brightness(0.8) saturate(0.9);">
       </div>
     </div>
-
-    <!-- Register Form Section -->
     <div class="col-md-7 p-5 d-flex align-items-center">
       <div class="card p-4 border-0 bg-transparent text-white w-100"
-           style="height: 100%; overflow-y: auto; max-height: 80vh; scrollbar-width: thin; scrollbar-color: #af4343 #1c1c1c;">
+        style="height: 100%; overflow-y: auto; max-height: 80vh; scrollbar-width: thin; scrollbar-color: #af4343 #1c1c1c;">
         <style>
           ::-webkit-scrollbar {
             width: 10px;
           }
+
           ::-webkit-scrollbar-track {
             background: #1c1c1c;
             border-radius: 5px;
           }
+
           ::-webkit-scrollbar-thumb {
             background-color: #af4343;
             border-radius: 5px;
@@ -32,8 +30,6 @@
         </style>
         <h3 class="text-center mb-4 text-danger fw-bold">Create Your Account !</h3>
         <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-
-          <!-- Full Name -->
           <div class="mb-3">
             <label for="fullname" class="form-label text-light">Full Name</label>
             <div class="input-group shadow-sm">
@@ -48,8 +44,6 @@
               Full Name is required
             </div>
           </div>
-
-          <!-- Email -->
           <div class="mb-3">
             <label for="email" class="form-label text-light">Email Address</label>
             <div class="input-group shadow-sm">
@@ -65,8 +59,6 @@
               Valid email is required
             </div>
           </div>
-
-          <!-- NIC Number -->
           <div class="mb-3">
             <label for="nic" class="form-label text-light">NIC Number</label>
             <div class="input-group shadow-sm">
@@ -82,24 +74,21 @@
               NIC Number is required
             </div>
           </div>
-          
-          <!-- Mobile Number -->
           <div class="mb-3">
             <label for="phone" class="form-label text-light">Mobile Number</label>
             <div class="input-group shadow-sm">
               <span class="input-group-text bg-secondary text-white border-secondary">
                 <i class="bi bi-telephone"></i>
               </span>
-              <input type="text" formControlName="phone" id="phone" 
-                     class="form-control bg-dark text-white border-secondary rounded-3" 
-                     placeholder="Enter your mobile number" />
+              <input type="text" formControlName="phone" id="phone"
+                class="form-control bg-dark text-white border-secondary rounded-3"
+                placeholder="Enter your mobile number" />
             </div>
-            <div class="form-text text-danger mt-1" *ngIf="signupForm.get('phone')?.touched && signupForm.get('phone')?.invalid">
+            <div class="form-text text-danger mt-1"
+              *ngIf="signupForm.get('phone')?.touched && signupForm.get('phone')?.invalid">
               Mobile Number is required
             </div>
           </div>
-
-          <!-- Password -->
           <div class="mb-3">
             <label for="password" class="form-label text-light">Password</label>
             <div class="input-group shadow-sm">
@@ -114,8 +103,6 @@
               Password must be at least 6 characters long
             </div>
           </div>
-
-          <!-- Confirm Password -->
           <div class="mb-3">
             <label for="confirmPassword" class="form-label text-light">Confirm Password</label>
             <div class="input-group shadow-sm">
@@ -131,8 +118,6 @@
               Passwords must match
             </div>
           </div>
-
-          <!-- Role -->
           <div class="mb-3">
             <label for="role" class="form-label text-light">Select Role</label>
             <div class="input-group shadow-sm">
@@ -151,8 +136,6 @@
               Role is required
             </div>
           </div>
-
-          <!-- Terms and Conditions -->
           <div class="mb-4 form-check">
             <input type="checkbox" formControlName="terms" class="form-check-input border-secondary" id="termsCheck" />
             <label class="form-check-label text-light" for="termsCheck">
@@ -163,15 +146,11 @@
               You must agree to the terms
             </div>
           </div>
-
-          <!-- Submit Button -->
           <div class="d-grid">
             <button type="submit" class="btn btn-danger btn-lg shadow rounded-pill" [disabled]="signupForm.invalid">
               Register
             </button>
           </div>
-
-          <!-- Login Redirect -->
           <div class="text-center mt-4">
             <p class="text-white">
               Already have an account? <a href="/login" class="text-danger text-decoration-none fw-bold">Login</a>
@@ -180,6 +159,5 @@
         </form>
       </div>
     </div>
-
   </div>
 </div>

@@ -11,47 +11,42 @@ import { jwtDecode } from 'jwt-decode';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-
   signinForm: FormGroup;
-
   constructor(
     private formBuilder: FormBuilder,
     private signInService: AuthService,
     private toastr: ToastrService,
-    private rout:Router
+    private rout: Router
   ) {
-      this.signinForm = this.formBuilder.group({
-          email: ['', [Validators.required, Validators.email]],
-          password: ['', [Validators.required, Validators.minLength(6)]],
-          rememberMe:['']
-      });
+    this.signinForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      rememberMe: ['']
+    });
   }
   onSubmit() {
     this.signInService.UserSignIn(this.signinForm.value).subscribe({
-      next:(response:any) => {
-        localStorage.setItem("token" , response);
+      next: (response: any) => {
+        localStorage.setItem("token", response);
         const token: string = localStorage.getItem('token')!;
         const decode: any = jwtDecode(token);
         localStorage.setItem("Role", decode.Role)
-        this.toastr.success("User Login Successfully.." , "" , {
-          positionClass:"toast-top-right",
-          progressBar:true,
-          timeOut:4000
+        this.toastr.success("User Login Successfully..", "", {
+          positionClass: "toast-top-right",
+          progressBar: true,
+          timeOut: 4000
         });
-        if(decode.Role == "Admin") {
+        if (decode.Role == "Admin") {
           this.rout.navigate(['/Manager/home']);
         } else if (decode.Role == "Customer") {
           this.rout.navigate(['/customer']);
         }
-       
-      },complete:()=>{
-
-        
-      },error:(error:any)=>{
-        this.toastr.warning( error.error, "" , {
-          positionClass:"toast-top-right",
-          progressBar:true,
-          timeOut:4000
+      }, complete: () => {
+      }, error: (error: any) => {
+        this.toastr.warning(error.error, "", {
+          positionClass: "toast-top-right",
+          progressBar: true,
+          timeOut: 4000
         })
       }
     })

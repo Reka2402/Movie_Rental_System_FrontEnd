@@ -7,20 +7,18 @@ import { TokenService } from '../../../services/token.service';
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
-  styleUrls: ['./favorites.component.css'] // Fixed typo: 'styleUrl' to 'styleUrls'
+  styleUrls: ['./favorites.component.css'] 
 })
 export class FavoritesComponent implements OnInit {
   favouriteMovies: Movie[] = [];
   errorMessage: string | null = null;
   userId: string | null = null;
-  favourites: any[] = []; // To hold favorite movies data
-
+  favourites: any[] = []; 
   constructor(
     private favouritesService: CustomerService,
     private tokenService: TokenService,
     private toastr: ToastrService
   ) { }
-
   ngOnInit(): void {
     this.userId = this.tokenService.getUserIdFromToken();
     if (this.userId) {
@@ -29,7 +27,6 @@ export class FavoritesComponent implements OnInit {
       
     }
   }
-
   loadFavourites(): void {
     this.favouritesService.getFavouritesByUserId(this.userId!).subscribe({
       next: (response: any) => {
@@ -45,7 +42,6 @@ export class FavoritesComponent implements OnInit {
       }
     });
   }
-
   removeFavourite(favouriteId: string): void {
     console.log(favouriteId);
     
@@ -58,6 +54,5 @@ export class FavoritesComponent implements OnInit {
 
       }
     )
-
   }
 }

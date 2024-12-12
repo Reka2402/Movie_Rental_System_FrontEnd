@@ -13,24 +13,23 @@ export class RegisterComponent {
   signupForm: FormGroup;
   submitted = false;
   passwordsMatch: boolean = true;
- 
   constructor(
     private formBuilder: FormBuilder,
     private signUpService: AuthService,
     private toastr: ToastrService,
-    private rout:Router
+    private rout: Router
   ) {
-      this.signupForm = this.formBuilder.group({
-          fullname: ['', Validators.required],
-          email: ['', [Validators.required, Validators.email]],
-          password: ['', [Validators.required, Validators.minLength(6)]],
-          confirmPassword: ['', Validators.required],
-          role: ['', Validators.required],
-          nic : ['', Validators.required],
-          phone: ['', Validators.required],
+    this.signupForm = this.formBuilder.group({
+      fullname: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required],
+      role: ['', Validators.required],
+      nic: ['', Validators.required],
+      phone: ['', Validators.required],
 
-          terms: [false, Validators.requiredTrue]
-      })
+      terms: [false, Validators.requiredTrue]
+    })
   }
   get fullname() { return this.signupForm.get('fullname'); }
   get email() { return this.signupForm.get('email'); }
@@ -43,60 +42,54 @@ export class RegisterComponent {
 
   onSubmit() {
     var User = this.signupForm.value
-
-    var isPasswordMatch:boolean = this.passwordMatch(User.password ,  this.signupForm.value.confirmPassword) 
-    if(isPasswordMatch){
-      const AddUser:SignUp = {
-      name:User.fullname,
-        email:User.email,
-        password:User.password,
-        nic:User.nic,
-        phone:User.phone,
-        role:Number(User.role)
+    var isPasswordMatch: boolean = this.passwordMatch(User.password, this.signupForm.value.confirmPassword)
+    if (isPasswordMatch) {
+      const AddUser: SignUp = {
+        name: User.fullname,
+        email: User.email,
+        password: User.password,
+        nic: User.nic,
+        phone: User.phone,
+        role: Number(User.role)
       }
       this.signUpService.UserSignUp(AddUser).subscribe({
-        next:(response) =>{
-          this.toastr.success("User SignUp Successfully.." , "" , {
-            positionClass:"toast-top-right",
-            progressBar:true,
-            timeOut:4000
+        next: (response) => {
+          this.toastr.success("User SignUp Successfully..", "", {
+            positionClass: "toast-top-right",
+            progressBar: true,
+            timeOut: 4000
           })
-        },complete:()=>{
+        }, complete: () => {
           this.rout.navigate(['/login'])
-        },error:(error)=>{
+        }, error: (error) => {
           console.log(error)
-          this.toastr.warning(error.error , "" , {
-            positionClass:"toast-top-right",
-            progressBar:true,
-            timeOut:4000
+          this.toastr.warning(error.error, "", {
+            positionClass: "toast-top-right",
+            progressBar: true,
+            timeOut: 4000
           })
         }
       })
-    }else{
-      this.toastr.warning("password not match.." , "" , {
-        positionClass:"toast-top-right",
-        progressBar:true,
-        timeOut:4000
+    } else {
+      this.toastr.warning("password not match..", "", {
+        positionClass: "toast-top-right",
+        progressBar: true,
+        timeOut: 4000
       })
     }
-    
   }
-
-  passwordMatch(password:string , confirmPassword:string):boolean{
-    if(password != confirmPassword){
+  passwordMatch(password: string, confirmPassword: string): boolean {
+    if (password != confirmPassword) {
       return false
-    }else{
+    } else {
       return true
     }
   }
-
-
   checkPasswords(): void {
     const password = this.signupForm.get('password')?.value;
     const confirmPassword = this.signupForm.get('confirmPassword')?.value;
     this.passwordsMatch = password === confirmPassword;
   }
-
 }
 
 

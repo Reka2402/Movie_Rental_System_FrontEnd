@@ -16,42 +16,33 @@ declare var bootstrap: any;
   styleUrl: './customerhome.component.css'
 })
 export class CustomerhomeComponent {
-  
   rentalDays: number = 1;
   option1: boolean = false;
   option2: boolean = false;
   option3: boolean = false;
   totalPrice: number = 0;
   userId!: string
-  
   selectedMovie: any = null;
   showHistory = false;
   isSignedIn = true;
   UID: string;
   token: string = localStorage.getItem('token')!;
   customer: any = jwtDecode(this.token);
-
   moviesadd: Movierequest[] = [];
   movies: Movie[] = [];
   movieForm: any;
-  
   option1Price: number = 2;
   option2Price: number = 3;
   option3Price: number = 4;
-  
   quantity: number = 1;
   rentButtonText: string = 'Rent Now';
   rentButtonClass: string = 'btn-danger';
   isPending: boolean = false;
   customerservice: any;
- 
   rentButtonState: { [key: string]: { text: string, class: string } } = {};
- 
-
   @ViewChild('profileModal') profileModal!: ElementRef;
   rentalHistory: any[] = [];
   @Output() movie = new EventEmitter<any>();
-
   constructor(
     private rout: ActivatedRoute,
     private router: Router,
@@ -65,10 +56,10 @@ export class CustomerhomeComponent {
     this.UID = String(rout.snapshot.paramMap.get('Id'));
   }
   ngOnInit(): void {
-   // this.userId = this.authService.getUserIdFromToken(); // Now it's safe to use the service
+    // this.userId = this.authService.getUserIdFromToken(); 
     this.loadMovies();
   }
- 
+
   // movieId: string | null = null; 
   // onMovieSelect(movieId: string): void {
   //   this.movieId = movieId;
@@ -107,7 +98,7 @@ export class CustomerhomeComponent {
   openRentModal() {
 
     this.rentButtonState = {};
-  
+
     const rentModal = new bootstrap.Modal(document.getElementById('rentModal'));
     rentModal.show();
   }
@@ -125,9 +116,9 @@ export class CustomerhomeComponent {
       );
       return;
     }
-  
+
     this.rentButtonState[dvd.id] = { text: 'Pending', class: 'btn-warning' };
-  
+
     const rentalRequest: RentalRequestModel = {
       userId: String(this.customer.Id),
       movieId: String(dvd.id),
@@ -141,7 +132,7 @@ export class CustomerhomeComponent {
       status: 1,
       rentalquantity: 0
     };
-  
+
     this.rentalservice.addrental(rentalRequest).subscribe({
       next: (response: any) => {
         this.toster.success('Rent Successful!', 'Success');
@@ -188,7 +179,7 @@ export class CustomerhomeComponent {
     if (!this.selectedMovie) return;
 
     let basePrice = this.selectedMovie.price;
-    let rentalPrice = basePrice * this.rentalDays;    
+    let rentalPrice = basePrice * this.rentalDays;
     let additionalPrice = 0;
 
     if (this.option1) additionalPrice += this.option1Price;
@@ -218,14 +209,14 @@ export class CustomerhomeComponent {
       this.toster.error('You must be logged in to add a movie to favorites.', 'Error');
       return;
     }
-    
+
     const newFavorite: Favourite = {
       userId: this.customer.Id,
       movieId: movie.id,
       Id: ''
     };
 
-    this.favoritesService.addFavourite(newFavorite.userId , newFavorite.movieId).subscribe({
+    this.favoritesService.addFavourite(newFavorite.userId, newFavorite.movieId).subscribe({
       next: () => {
         this.toster.success('Movie added to favorites!', 'Success');
       },
@@ -235,8 +226,8 @@ export class CustomerhomeComponent {
       },
     });
   }
- 
 
-  }
-  
+
+}
+
 
