@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { jwtDecode } from "jwt-decode";
 import { Observable } from 'rxjs';
+import { User } from '../components/Models/model';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,7 @@ export class AuthService {
     }
     return null;
   }
+  
 }
 export interface SignIn {
   email: string,

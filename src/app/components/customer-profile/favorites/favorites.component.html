@@ -1,39 +1,55 @@
 <div class="container mt-4">
-    <h2>Your Favourite Movies</h2>
-  
-    <div *ngIf="isLoading" class="text-center">
-      <p>Loading your favourites...</p>
+  <h2 class="text-center mb-4 text-light">Your Favourite Movies</h2>
+
+  <!-- No Favourites Message -->
+  <ng-template #noFavourites>
+    <div class="text-center text-warning">
+      <p>You have no favourite movies yet.</p>
     </div>
-  
-    <div *ngIf="errorMessage" class="alert alert-danger">
-      {{ errorMessage }}
-    </div>
-  
-    <div *ngIf="!isLoading && favouriteMovies.length === 0" class="alert alert-info">
-      <p>No favourite movies found.</p>
-    </div>
-  
-    <div class="row" *ngIf="favouriteMovies.length > 0">
-      <div class="col-md-4" *ngFor="let movie of favouriteMovies">
-        <div class="card mb-4">
-          <img
-            [src]="movie.imageUrl || 'assets/default-movie.jpg'"
-            class="card-img-top"
-            alt="{{ movie.movieName }}"
-          />
-          <div class="card-body">
-            <h5 class="card-title">{{ movie.movieName }}</h5>
-            <p class="card-text">
-              {{ movie.description }}
-            </p>
-            <p><strong>Price:</strong> ${{ movie.price }}</p>
-            <p><strong>Release Date:</strong> {{ movie.releaseDate | date }}</p>
-          </div>
+  </ng-template>
+
+  <!-- Favourite Movies Grid -->
+  <div class="row justify-content-center">
+    <div
+      *ngFor="let favourite of favourites"
+      class="col-lg-3 col-md-4 col-sm-6 col-12 mt-4"
+    >
+      <div class="movie-card position-relative overflow-hidden shadow-lg card-hover">
+        <img
+          [src]="favourite.imageUrl || 'assets/placeholder.jpg'"
+          class="movie-image"
+          alt="{{ favourite.title }}"
+        />
+        <div class="movie-title bg-danger">
+          {{ favourite.title }}
+        </div>
+        <div class="movie-details text-center text-light d-flex flex-column justify-content-center">
+          <p class="mb-1 text-light">{{ favourite.category }}</p>
+          <p class="fw-bold text-success mb-2">
+            Price: {{ favourite.price | currency: 'USD' }}
+          </p>
+          <button
+            class="btn btn-outline-light btn-sm"
+            data-bs-toggle="modal"
+            data-bs-target="#viewMoreModal"
+          
+          >
+            View More
+          </button>
+          <button
+            class="btn btn-outline-danger btn-sm mt-2"
+            (click)="removeFavourite(favourite.id)"
+          >
+            Remove
+          </button>
+        
         </div>
       </div>
     </div>
   </div>
-  
 
-
-
+  <!-- No Favourites Display -->
+  <div *ngIf="favourites.length === 0" class="text-center text-warning">
+    <p>You have no favourite movies yet.</p>
+  </div>
+</div>

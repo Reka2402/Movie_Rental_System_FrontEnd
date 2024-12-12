@@ -1,4 +1,3 @@
-<!-- rental.component.html -->
 <div class="container mt-5">
   <div class="card shadow-lg p-3 mb-5 rounded" style="background-color: #34495E; color: #FFF;">
     <div class="card-body">
@@ -25,14 +24,16 @@
           </thead>
           <tbody>
             <tr *ngFor="let rental of rentals" style="color: #FFF; background-color: #34495E;">
-              <td>{{ rental.username }}</td>
-              <td>{{ rental.movieName }}</td>
+              <td>{{ rental.username || 'Thusha'}}</td>
+              <td>{{ rental.movieName || 'Stranger Things'}}</td>
               <td>{{ rental.requestedDate | date }}</td>
               <td>{{ rental.rentalDays }}</td>
-              <td>{{ rental.rentalquantity }}</td>
+              <td>{{ rental.rentalquantity || 3 }}</td>
               <td>{{ rental.totalAmount | currency }}</td>
               <td>
-                <button class="btn btn-outline-light btn-sm me-2" style="border-radius: 6px;">Details</button>
+                <button class="btn btn-outline-light btn-sm me-2 details-btn">Details</button>
+                <button class="btn btn-success btn-sm me-2">Accept</button>
+                <button class="btn btn-warning btn-sm">Reject</button>
               </td>
               <td>
                 <span

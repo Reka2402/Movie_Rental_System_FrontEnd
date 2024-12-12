@@ -103,6 +103,7 @@ export interface RentalResponseModel {
 }
 
 export interface Favourite {
+  Id:string;
   userId: string;
   movieId: string;
 }

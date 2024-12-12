@@ -23,7 +23,6 @@ import { ReportsComponent } from './components/ManagerDashboard/reports/reports.
 import { InventoryComponent } from './components/ManagerDashboard/inventory/inventory.component';
 import { CustomerProfileComponent } from './components/customer-profile/customer-profile.component';
 import { SummaryViewComponent } from './components/ManagerDashboard/summary-view/summary-view.component';
-import { ProfileComponent } from './components/customer-profile/profile/profile.component';
 import { RentalHistoryComponent } from './components/customer-profile/rental-history/rental-history.component';
 import { NotificationsComponent } from './components/customer-profile/notifications/notifications.component';
 import { RentalPageComponent } from './components/customer-profile/rental-page/rental-page.component';
@@ -32,6 +31,8 @@ import { CustomerhomeComponent } from './components/customer-profile/customerhom
 import { FavoritesComponent } from './components/customer-profile/favorites/favorites.component';
 import { FilterMoviesPipe } from './Pipes/filter-movies.pipe';
 import { FilterUsersPipe } from './Pipes/filter-users.pipe';
+import { ProfileCustomerComponent } from './components/customer-profile/profile-customer/profile-customer.component';
+import { PasswordUpdateComponent } from './components/customer-profile/password-update/password-update.component';
 //import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
@@ -49,17 +50,15 @@ import { FilterUsersPipe } from './Pipes/filter-users.pipe';
     InventoryComponent,
     CustomerProfileComponent,
     SummaryViewComponent,
-    ProfileComponent,
     RentalHistoryComponent,
     NotificationsComponent,
     RentalPageComponent,
     CustomerhomeComponent,
-
     FavoritesComponent,
       FilterMoviesPipe,
       FilterUsersPipe,
- 
-   
+      ProfileCustomerComponent,
+      PasswordUpdateComponent
   ],
   imports: [
     BrowserModule,

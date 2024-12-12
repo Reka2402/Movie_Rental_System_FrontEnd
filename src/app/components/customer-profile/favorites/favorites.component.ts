@@ -2,43 +2,62 @@ import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../../../services/customer.service';
 import { ToastrService } from 'ngx-toastr';
 import { Movie } from '../../Models/model';
+import { TokenService } from '../../../services/token.service';
 
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
-  styleUrl: './favorites.component.css'
+  styleUrls: ['./favorites.component.css'] // Fixed typo: 'styleUrl' to 'styleUrls'
 })
 export class FavoritesComponent implements OnInit {
   favouriteMovies: Movie[] = [];
-  isLoading = true;
   errorMessage: string | null = null;
+  userId: string | null = null;
+  favourites: any[] = []; // To hold favorite movies data
 
   constructor(
     private favouritesService: CustomerService,
+    private tokenService: TokenService,
     private toastr: ToastrService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    const userId = localStorage.getItem('userId'); 
-
-    if (!userId) {
-      this.errorMessage = 'User not logged in.';
-      this.isLoading = false;
-      return;
+    this.userId = this.tokenService.getUserIdFromToken();
+    if (this.userId) {
+      this.loadFavourites();
+      console.log(this.loadFavourites());
+      
     }
+  }
 
-    this.favouritesService.getFavouritesByUserId(userId).subscribe({
-      next: (movies) => {
-        this.favouriteMovies = movies;
-        this.isLoading = false;
+  loadFavourites(): void {
+    this.favouritesService.getFavouritesByUserId(this.userId!).subscribe({
+      next: (response: any) => {
+        this.favourites = response;
+        console.log(this.favourites);
       },
-      error: (error) => {
-        console.error(error);
-        this.errorMessage = 'Failed to load favourites. Please try again.';
-        this.toastr.error(this.errorMessage, 'Error');
-        this.isLoading = false;
-      },
+      error: (error: any) => {
+        this.toastr.error('Failed to load favourites', '', {
+          positionClass: 'toast-top-right',
+          progressBar: true,
+          timeOut: 4000
+        });
+      }
     });
   }
-}
 
+  removeFavourite(favouriteId: string): void {
+    console.log(favouriteId);
+    
+    this.favouritesService.removeFavourite(favouriteId).subscribe(
+      (response) => {
+        this.toastr.success('', 'Success')
+      },
+      (error) => {
+        console.error('error deleting dvd', error);
+
+      }
+    )
+
+  }
+}

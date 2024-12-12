@@ -20,6 +20,9 @@ import { NotificationsComponent } from './components/customer-profile/notificati
 import { HomeComponent } from './components/home/home.component';
 import { CustomerhomeComponent } from './components/customer-profile/customerhome/customerhome.component';
 import { FavoritesComponent } from './components/customer-profile/favorites/favorites.component';
+import { ProfileCustomerComponent } from './components/customer-profile/profile-customer/profile-customer.component';
+import { PasswordUpdateComponent } from './components/customer-profile/password-update/password-update.component';
+
 
 
 
@@ -50,7 +53,8 @@ const routes: Routes = [
       { path: 'rentalHistory', component: RentalHistoryComponent },
       { path: 'favs', component: FavoritesComponent},      
       { path: 'notifications', component: NotificationsComponent },
-      { path: 'passwordchange', component: RentalPageComponent },
+      { path: 'profile', component: ProfileCustomerComponent },
+      { path: 'pw', component: PasswordUpdateComponent },
       { path: 'rent', component: RentalPageComponent },
     ],
   },

@@ -222,6 +222,7 @@ export class CustomerhomeComponent {
     const newFavorite: Favourite = {
       userId: this.customer.Id,
       movieId: movie.id,
+      Id: ''
     };
 
     this.favoritesService.addFavourite(newFavorite.userId , newFavorite.movieId).subscribe({

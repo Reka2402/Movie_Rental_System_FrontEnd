@@ -19,4 +19,12 @@
     max-width: 800px;
     z-index: 10000;
   }
+  .btn-edit {
+    background-color: #1ABC9C ;
+  }
+ 
+  .btn-edit:hover {
+    background-color: #1ABC9C !important;
+    transition: background-color 0.3s ease;
+  }
   
