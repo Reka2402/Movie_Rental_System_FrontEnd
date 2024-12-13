@@ -42,7 +42,7 @@ export class CustomerProfileComponent {
   isPending: boolean = false;
   customerservice: any;
   
-// Initialize a map to track the button state for each movie by movie ID
+
 rentButtonState: { [key: string]: { text: string, class: string } } = {};
 isExpanded: boolean = false;
 
@@ -78,7 +78,7 @@ toggleSidebar() {
   }
 
   openRentModal() {
-    // Reset the button state before showing the modal
+   
     this.rentButtonState = {};
   
     const rentModal = new bootstrap.Modal(document.getElementById('rentModal'));
@@ -87,13 +87,13 @@ toggleSidebar() {
   
   
   rentMovie(dvd: Movie) {
-    // Check if the user is signed in
+   
     if (!this.isSignedIn) {
       this.toster.error('You must be logged in to rent a DVD.', 'Error');
       return;
     }
   
-    // Check if the movie is in stock
+ 
     if (dvd.copiesAvailable <= 0) {
       this.toster.error(
         `The DVD "${dvd.title}" is out of stock and cannot be rented.`,
@@ -102,10 +102,10 @@ toggleSidebar() {
       return;
     }
   
-    // Update the button state to "Pending" for the selected movie
+    
     this.rentButtonState[dvd.id] = { text: 'Pending', class: 'btn-warning' };
   
-    // Create the rental request object
+   
     const rentalRequest: RentalRequestModel = {
       userId: String(this.customer.Id), 
       movieId: String(dvd.id), // Movie ID as a string

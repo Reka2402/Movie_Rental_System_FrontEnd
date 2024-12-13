@@ -16,6 +16,7 @@ declare var bootstrap: any;
   styleUrl: './customerhome.component.css'
 })
 export class CustomerhomeComponent {
+  
   rentalDays: number = 1;
   option1: boolean = false;
   option2: boolean = false;
@@ -38,7 +39,9 @@ export class CustomerhomeComponent {
   rentButtonText: string = 'Rent Now';
   rentButtonClass: string = 'btn-danger';
   isPending: boolean = false;
+  
   customerservice: any;
+  
   rentButtonState: { [key: string]: { text: string, class: string } } = {};
   @ViewChild('profileModal') profileModal!: ElementRef;
   rentalHistory: any[] = [];
@@ -55,37 +58,11 @@ export class CustomerhomeComponent {
   ) {
     this.UID = String(rout.snapshot.paramMap.get('Id'));
   }
+  
   ngOnInit(): void {
-    // this.userId = this.authService.getUserIdFromToken(); 
+
     this.loadMovies();
   }
-
-  // movieId: string | null = null; 
-  // onMovieSelect(movieId: string): void {
-  //   this.movieId = movieId;
-  // }
-
-  // addToFavorites(): void {
-  //   if (!this.userId || !this.movieId) {
-  //     alert('User or movie ID is missing');
-  //     return;
-  //   }
-
-  //   const favourite: Favourite = {
-  //     userId: this.userId,
-  //     movieId: this.movieId,
-  //   };
-
-  //   this.favoritesService.addFavourite(favourite).subscribe({
-  //     next: () => {
-  //       alert('Movie added to favourites!');
-  //     },
-  //     error: (err) => {
-  //       console.error('Error adding to favourites:', err);
-  //       alert('Failed to add movie to favourites');
-  //     },
-  //   });
-  // }
 
 
   loadMovies() {
@@ -149,6 +126,33 @@ export class CustomerhomeComponent {
     });
   }
 
+  reserveMovie(movie: Movie) {
+    if (!this.isSignedIn) {
+      this.toster.error('You must be logged in to reserve a DVD.', 'Error');
+      return;
+    }
+  
+    const reservation = {
+      userId: this.customer.id, 
+      movieId: movie.id,
+      reservedDate: new Date().toISOString(),
+    };
+  
+    this.rentalservice.reserveMovie(reservation).subscribe({
+      next: () => {
+        this.toster.success('Reservation Successful!', 'Success');
+        const rentModal = new bootstrap.Modal(document.getElementById('rentModal'));
+        rentModal.hide();
+      },
+      error: (error: any) => {
+        console.error('Error during reservation:', error);
+        this.toster.error('Failed to reserve DVD. Please try again.', 'Error');
+      },
+    });
+  }
+  
+  
+
   calculateReturnDate(rentalDays: number): string {
     const today = new Date();
     today.setDate(today.getDate() + rentalDays);
@@ -159,6 +163,7 @@ export class CustomerhomeComponent {
     this.selectedMovie = movie;
     this.calculatePrice();
   }
+  
 
   showRentalHistory() {
     this.showHistory = true;
