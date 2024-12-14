@@ -166,10 +166,9 @@ toggleSidebar() {
     console.log('Rental History:', this.rentalHistory);
   }
 
-  openProfileModal(): void {
-    const modalElement = this.profileModal.nativeElement;
-    const bootstrapModal = new bootstrap.Modal(modalElement);
-    bootstrapModal.show();
+  logout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('Role');
   }
 
   AddMovie(movie: any) {

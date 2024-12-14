@@ -22,6 +22,8 @@ import { CustomerhomeComponent } from './components/customer-profile/customerhom
 import { FavoritesComponent } from './components/customer-profile/favorites/favorites.component';
 import { ProfileCustomerComponent } from './components/customer-profile/profile-customer/profile-customer.component';
 import { PasswordUpdateComponent } from './components/customer-profile/password-update/password-update.component';
+import { authCustomerGuard } from './Guard/auth-customer.guard';
+import { authManagerGuard } from './Guard/auth-manager.guard';
 
 
 
@@ -30,11 +32,14 @@ import { PasswordUpdateComponent } from './components/customer-profile/password-
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent ,
+    canActivate:[authCustomerGuard]
+  },
   { path: 'register', component: RegisterComponent },
   { path: 'movies', component: CollectionsComponent },
   {
-    path: 'Manager',
+    path: 'manager',
+      canActivate:[authManagerGuard],
     component: ManagerDashboardComponent,
     children: [
       { path: 'home', component: SummaryViewComponent },

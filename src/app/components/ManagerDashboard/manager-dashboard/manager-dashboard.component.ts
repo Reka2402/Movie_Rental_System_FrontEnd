@@ -14,4 +14,10 @@ export class ManagerDashboardComponent  {
   toggleSidebar() {
     this.isSidebarExpanded = !this.isSidebarExpanded;
   }
+
+  logout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('Role');
+  }
+
 }

@@ -11,6 +11,7 @@ export class RentalsComponent {
   rentals: RentalResponseModel[] = [];
   users : User[]=[];
   movies:Movierequest[]=[];
+  id!:string;
   
 
   isLoading: boolean = true;
@@ -32,6 +33,13 @@ export class RentalsComponent {
         this.isLoading = false;
       } 
     );
+  }
+
+  accept(id:string){
+    this.rentalService.ApproveRental(id).subscribe((data)=>{
+
+    })
+       
   }
   // searchText: string = '';
   // isAddRentalPopupOpen: boolean = false;

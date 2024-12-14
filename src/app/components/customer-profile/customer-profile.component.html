@@ -81,8 +81,14 @@
               3
             </span>
           </div>
-          <img src="/icons'/avatar.png" class="rounded-circle" alt="Profile" width="40" style="cursor: pointer;"
-            (click)="openProfileModal()" />
+          <!-- Dropdown button with profile image -->
+<div class="dropdown">
+  <img src="/icons'/avatar.png" class="rounded-circle" alt="Profile" width="40" style="cursor: pointer;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+  <div class="dropdown-menu dropdown-menu-right">
+    <a class="dropdown-item" href="logout.html" id="logoutBtn" (click)="logout()">Logout</a>
+  </div>
+</div>
+
         </div>
       </div>
 

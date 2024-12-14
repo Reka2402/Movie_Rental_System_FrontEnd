@@ -16,6 +16,9 @@ export class RentalService {
     return this.http.post(this.baseUrl+'/Add_Rental',rentalRequest)
   }
  
+  ApproveRental(rentalid:string){
+    return this.http.put(this.baseUrl+"/approve/"+rentalid,rentalid)
+  }
 
   getAllRentals(): Observable<RentalResponseModel[]> {
     return this.http.get<RentalResponseModel[]>(`${this.baseUrl}/Get_All_Rentals`);

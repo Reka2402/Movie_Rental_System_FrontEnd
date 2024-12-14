@@ -13,7 +13,18 @@
     background-attachment: fixed; /* Make the background fixed */
     background-size: cover; /* Ensure it covers the entire container */
   }
-  
+  /* Optional: Style the dropdown */
+.dropdown-menu {
+  min-width: 150px;
+}
+.dropdown-item {
+  cursor: pointer;
+  color: white;
+}
+.dropdown-item:hover{
+  color: #000;
+}
+
 
   #sidebar {
     height: 100vh;

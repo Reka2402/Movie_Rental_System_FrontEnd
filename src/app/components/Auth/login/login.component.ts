@@ -26,27 +26,30 @@ export class LoginComponent {
   }
   onSubmit() {
     this.signInService.UserSignIn(this.signinForm.value).subscribe({
-      next: (response: any) => {
-        localStorage.setItem("token", response);
+      next:(response:any) => {
+        localStorage.setItem("token" , response);
         const token: string = localStorage.getItem('token')!;
         const decode: any = jwtDecode(token);
         localStorage.setItem("Role", decode.Role)
-        this.toastr.success("User Login Successfully..", "", {
-          positionClass: "toast-top-right",
-          progressBar: true,
-          timeOut: 4000
+        this.toastr.success("User Login Successfully.." , "" , {
+          positionClass:"toast-top-right",
+          progressBar:true,
+          timeOut:4000
         });
-        if (decode.Role == "Admin") {
-          this.rout.navigate(['/Manager/home']);
+        if(decode.Role == "Admin") {
+          this.rout.navigate(['/manager/home']);
         } else if (decode.Role == "Customer") {
           this.rout.navigate(['/customer']);
         }
-      }, complete: () => {
-      }, error: (error: any) => {
-        this.toastr.warning(error.error, "", {
-          positionClass: "toast-top-right",
-          progressBar: true,
-          timeOut: 4000
+       
+      },complete:()=>{
+
+        
+      },error:(error:any)=>{
+        this.toastr.warning( error.error, "" , {
+          positionClass:"toast-top-right",
+          progressBar:true,
+          timeOut:4000
         })
       }
     })
