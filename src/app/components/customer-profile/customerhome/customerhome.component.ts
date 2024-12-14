@@ -16,7 +16,7 @@ declare var bootstrap: any;
   styleUrl: './customerhome.component.css'
 })
 export class CustomerhomeComponent {
-  
+
   rentalDays: number = 1;
   option1: boolean = false;
   option2: boolean = false;
@@ -112,7 +112,7 @@ export class CustomerhomeComponent {
 
     this.rentalservice.addrental(rentalRequest).subscribe({
       next: (response: any) => {
-        this.toster.success('Rent Successful!', 'Success');
+        this.toster.success('Rent Successfull! Please Check Your Mail! ', 'Success');
         const rentModal = new bootstrap.Modal(document.getElementById('rentModal'));
         rentModal.hide();
         this.rentButtonState[dvd.id] = { text: 'Rent Now', class: 'btn-danger' };

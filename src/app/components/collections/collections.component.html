@@ -1,39 +1,37 @@
-<body class="bg-dark">
+<body class="bg-dark text-light">
   <div class="container">
     <header class="text-center py-4">
-      <a href="#" class="logo text-white">
+      <a href="#" class="logo text-white text-decoration-none">
         <i class="bx bx-movie-play bx-tada text-danger"></i>
         Fl<span class="text-danger">i</span>x
       </a>
-      <h1 class="text-light text-uppercase" style="font-family: 'Roboto';">
+      <h1 class="text-light text-uppercase" style="font-family: 'Poppins', sans-serif">
         Explore <span class="text-danger">Our</span> Collections
       </h1>
-      <p class="text-light" style="font-family: 'Open Sans';">
+      <p class="text-light" style="font-family: 'Roboto', sans-serif">
         Dive into the world of movies, series, cartoons, and anime. Rent and enjoy your favorites today!
       </p>
     </header>
 
-    <div *ngFor="let movie of movies" style="font-family: 'Montserrat';">
-      
+    <div *ngFor="let movie of movies" style="font-family: 'Montserrat', sans-serif">
       <div class="row justify-content-center">
         <div
           class="col-lg-3 col-md-4 col-sm-6 col-12 mt-4"
           *ngFor="let movie of movies"
         >
-          <div class="movie-card position-relative overflow-hidden shadow-lg">
-            <img [src]="movie.imageUrl" class="movie-image" alt="{{ movie.movieName }}" />
-              <div class="movie-title bg-danger">
-                {{ movie.movieName }}
-              </div>
-            <div class="movie-details text-center text-light d-flex flex-column justify-content-center">
-              <p class="mb-1 text-light">{{  movie.genre.name }}</p>
-              <!-- <p>
-                <ng-container *ngFor="let star of getStars(selectedMovie?.rating)">
-                  <i class="bi bi-star-fill text-warning"></i>
-                </ng-container>
-              </p> -->
+          <div class="movie-card position-relative shadow">
+            <img
+              [src]="movie.imageUrl"
+              class="movie-image"
+              alt="{{ movie.movieName }}"
+            />
+            <div class="movie-title">
+              {{ movie.movieName }}
+            </div>
+            <div class="movie-details">
+              <p class="mb-1">{{ movie.genre.name }}</p>
               <p class="fw-bold text-success mb-2">
-                Price: {{ movie.price | currency: 'USD' }}
+                Price: {{ movie.price | currency : "USD" }}
               </p>
               <button
                 class="btn btn-danger btn-sm mb-1"
@@ -55,47 +53,193 @@
         </div>
       </div>
     </div>
-    
-  
-    <!-- Modal for Viewing More Details -->
-<div class="modal fade" id="viewMoreModal" tabindex="-1" aria-labelledby="viewMoreModalLabel" aria-hidden="true" style="font-family: 'Poppins';">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content bg-dark text-light">
-      <div class="modal-header">
-        <h5 class="modal-title" id="viewMoreModalLabel">{{ selectedMovie?.name }}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-md-4">
-            <img [src]="selectedMovie?.imageUrl" class="img-fluid rounded" alt="{{ selectedMovie?.name }}">
-          </div>
-          <div class="col-md-8">
-            <p><strong>Genre:</strong> {{ selectedMovie?.genre.name }}</p>
-            <p><strong>Release Date:</strong> {{ selectedMovie?.releaseDate | date }}</p>
-            <p><strong>Director:</strong> {{ selectedMovie?.director.name }}</p>
-            <!-- <p><strong>Cast:</strong> <span *ngFor="let actor of selectedMovie?.cast; let last = last">{{ actor.name }}<span *ngIf="!last">,</span></span></p> -->
-          
-            <!-- <p>
-              <strong>Rating:</strong>
-              <ng-container *ngFor="let star of getStars(selectedMovie?.rating)">
-                <i class="bi bi-star-fill text-warning"></i>
-              </ng-container>
-            </p> -->
-            
-            <p><strong>Description:</strong> {{ selectedMovie?.description }}</p>
-            <p><strong>Price:</strong> {{ selectedMovie?.price | currency: 'USD' }}</p>
-            <p><strong>Available Copies:</strong> {{ selectedMovie?.totalCopies }}</p>
+    <body class="bg-dark text-light">
+  <div class="container">
+    <header class="text-center py-4">
+      <a href="#" class="logo text-white text-decoration-none">
+        <i class="bx bx-movie-play bx-tada text-danger"></i>
+        Fl<span class="text-danger">i</span>x
+      </a>
+      <h1 class="text-light text-uppercase" style="font-family: 'Poppins', sans-serif">
+        Explore <span class="text-danger">Our</span> Collections
+      </h1>
+      <p class="text-light" style="font-family: 'Roboto', sans-serif">
+        Dive into the world of movies, series, cartoons, and anime. Rent and enjoy your favorites today!
+      </p>
+    </header>
+
+    <div *ngFor="let movie of movies" style="font-family: 'Montserrat', sans-serif">
+      <div class="row justify-content-center">
+        <div
+          class="col-lg-3 col-md-4 col-sm-6 col-12 mt-4"
+          *ngFor="let movie of movies"
+        >
+          <div class="movie-card position-relative shadow">
+            <img
+              [src]="movie.imageUrl"
+              class="movie-image"
+              alt="{{ movie.movieName }}"
+            />
+            <div class="movie-title">
+              {{ movie.movieName }}
+            </div>
+            <div class="movie-details">
+              <p class="mb-1">{{ movie.genre.name }}</p>
+              <p class="fw-bold text-success mb-2">
+                Price: {{ movie.price | currency : "USD" }}
+              </p>
+              <button
+                class="btn btn-danger btn-sm mb-1"
+                *ngIf="movie.totalCopies > 0"
+                [routerLink]="'/login'"
+              >
+                Rent Now
+              </button>
+              <button
+                class="btn btn-outline-light btn-sm"
+                data-bs-toggle="modal"
+                data-bs-target="#viewMoreModal"
+                (click)="selectedMovie = movie"
+              >
+                View More
+              </button>
+            </div>
           </div>
         </div>
       </div>
-     
-        <button type="button" *ngIf="selectedMovie?.totalCopies > 0" [routerLink]="'/login'" class="btn btn-danger">
-          Sign In to Rent
-        </button>
     </div>
   </div>
-</div>
+</body>
+<div
+      class="modal fade"
+      id="viewMoreModal"
+      tabindex="-1"
+      aria-labelledby="viewMoreModalLabel"
+      aria-hidden="true"
+      style="font-family: 'Poppins'"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-dark text-light">
+          <div class="modal-header">
+            <h5 class="modal-title" id="viewMoreModalLabel">
+              {{ selectedMovie?.name }}
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-4">
+                <img
+                  [src]="selectedMovie?.imageUrl"
+                  class="img-fluid rounded"
+                  alt="{{ selectedMovie?.name }}"
+                />
+              </div>
+              <div class="col-md-8">
+                <p><strong>Genre:</strong> {{ selectedMovie?.genre.name }}</p>
+                <p>
+                  <strong>Release Date:</strong>
+                  {{ selectedMovie?.releaseDate | date }}
+                </p>
+                <p>
+                  <strong>Director:</strong> {{ selectedMovie?.director.name }}
+                </p>
 
+                <p>
+                  <strong>Description:</strong> {{ selectedMovie?.description }}
+                </p>
+                <p>
+                  <strong>Price:</strong>
+                  {{ selectedMovie?.price | currency : "USD" }}
+                </p>
+                <p>
+                  <strong>Available Copies:</strong>
+                  {{ selectedMovie?.totalCopies }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            *ngIf="selectedMovie?.totalCopies > 0"
+            [routerLink]="'/login'"
+            class="btn btn-danger"
+          >
+            Sign In to Rent
+          </button>
+        </div>
+      </div>
+    </div><div
+    class="modal fade"
+    id="viewMoreModal"
+    tabindex="-1"
+    aria-labelledby="viewMoreModalLabel"
+    aria-hidden="true"
+    style="font-family: 'Poppins'"
+  >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content bg-dark text-light">
+        <div class="modal-header">
+          <h5 class="modal-title" id="viewMoreModalLabel">
+            {{ selectedMovie?.name }}
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-4">
+              <img
+                [src]="selectedMovie?.imageUrl"
+                class="img-fluid rounded"
+                alt="{{ selectedMovie?.name }}"
+              />
+            </div>
+            <div class="col-md-8">
+              <p><strong>Genre:</strong> {{ selectedMovie?.genre.name }}</p>
+              <p>
+                <strong>Release Date:</strong>
+                {{ selectedMovie?.releaseDate | date }}
+              </p>
+              <p>
+                <strong>Director:</strong> {{ selectedMovie?.director.name }}
+              </p>
+
+              <p>
+                <strong>Description:</strong> {{ selectedMovie?.description }}
+              </p>
+              <p>
+                <strong>Price:</strong>
+                {{ selectedMovie?.price | currency : "USD" }}
+              </p>
+              <p>
+                <strong>Available Copies:</strong>
+                {{ selectedMovie?.totalCopies }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          *ngIf="selectedMovie?.totalCopies > 0"
+          [routerLink]="'/login'"
+          class="btn btn-danger"
+        >
+          Sign In to Rent
+        </button>
+      </div>
+    </div>
+  </div>
   </div>
 </body>

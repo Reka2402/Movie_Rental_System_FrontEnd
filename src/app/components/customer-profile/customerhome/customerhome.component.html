@@ -1,3 +1,4 @@
+
 <div *ngFor="let movie of movies" class="movie-container">
   <div class="row justify-content-center">
     <div class="col-lg-3 col-md-4 col-sm-6 col-12 mt-4" *ngFor="let movie of movies">
@@ -36,12 +37,10 @@
             <p><strong>Genre:</strong> {{selectedMovie?.genre.name}}</p>
             <p><strong>Release Date:</strong> {{selectedMovie?.releaseDate | date}}</p>
             <p><strong>Director:</strong> {{selectedMovie?.director.name}}</p>
-            <p><strong>Rating:</strong> {{selectedMovie?.rating}}</p>
+            
             <p><strong>Description:</strong> {{selectedMovie?.description}}</p>
-            <p><strong>Cast:</strong></p>
-            <ul>
-              <li *ngFor="let actor of selectedMovie?.cast">{{actor.name}}</li>
-            </ul>
+         
+           
           </div>
         </div>
       </div>

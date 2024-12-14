@@ -1,189 +1,148 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-inventory',
   templateUrl: './inventory.component.html',
-  styleUrl: './inventory.component.css'
+  styleUrls: ['./inventory.component.css']
 })
-export class InventoryComponent implements OnInit {
-  
+export class InventoryComponent {
+  searchText: string = '';
+  isAddInventoryPopupOpen: boolean = false;
 
-  inventory: any[] = [
+  // Hardcoded Inventory Data (Converted from SQL)
+  inventory = [
     {
-      dvdName: 'Inception',
+      id: '1',
+      dvdName: 'The 100',
       totalCopies: 10,
-      availableCopies: 7,
-      overdueDvds: 1,
-      pendingDvds: 2,
-      rentedDvds: 3,
-      returnedDvds: 5,
+      availableCopies: 10,
+      overdueDvds: 0,
+      pendingDvds: 0,
+      rentedDvds: 0,
+      returnedDvds: 0
     },
     {
-      dvdName: 'The Dark Knight',
+      id: '2',
+      dvdName: 'Stranger Things',
       totalCopies: 15,
-      availableCopies: 5,
-      overdueDvds: 2,
-      pendingDvds: 3,
-      rentedDvds: 7,
-      returnedDvds: 8,
+      availableCopies: 14,
+      overdueDvds: 0,
+      pendingDvds: 1,
+      rentedDvds: 1,
+      returnedDvds: 0
     },
     {
-      dvdName: 'Interstellar',
-      totalCopies: 8,
-      availableCopies: 0,
-      overdueDvds: 2,
-      pendingDvds: 1,
-      rentedDvds: 5,
-      returnedDvds: 3,
+      id: '3',
+      dvdName: 'Hunger Games',
+      totalCopies: 20,
+      availableCopies: 18,
+      overdueDvds: 0,
+      pendingDvds: 0,
+      rentedDvds: 0,
+      returnedDvds: 0
     },
+    {
+      id: '4',
+      dvdName: 'Frozen 2',
+      totalCopies: 25,
+      availableCopies: 23,
+      overdueDvds: 0,
+      pendingDvds: 0,
+      rentedDvds: 0,
+      returnedDvds: 0
+    },
+    {
+      id: '5',
+      dvdName: 'Money Heist',
+      totalCopies: 30,
+      availableCopies: 28,
+      overdueDvds: 0,
+      pendingDvds: 0,
+      rentedDvds: 0,
+      returnedDvds: 0
+    },
+    {
+      id: '6',
+      dvdName: 'How to Train Your Dragon',
+      totalCopies: 18,
+      availableCopies: 17,
+      overdueDvds: 0,
+      pendingDvds: 0,
+      rentedDvds: 0,
+      returnedDvds: 0
+    },
+    {
+      id: '7',
+      dvdName: 'Moana 2',
+      totalCopies: 12,
+      availableCopies: 11,
+      overdueDvds: 0,
+      pendingDvds: 0,
+      rentedDvds: 0,
+      returnedDvds: 0
+    },
+    {
+      id: '8',
+      dvdName: 'Wanda',
+      totalCopies: 22,
+      availableCopies: 20,
+      overdueDvds: 0,
+      pendingDvds: 0,
+      rentedDvds: 0,
+      returnedDvds: 0
+    },
+    {
+      id: '9',
+      dvdName: 'Avatar',
+      totalCopies: 30,
+      availableCopies: 28,
+      overdueDvds: 0,
+      pendingDvds: 0,
+      rentedDvds: 0,
+      returnedDvds: 0
+    },
+    {
+      id: '10',
+      dvdName: 'Mufasa',
+      totalCopies: 17,
+      availableCopies: 15,
+      overdueDvds: 0,
+      pendingDvds: 0,
+      rentedDvds: 0,
+      returnedDvds: 0
+    }
   ];
 
   newDvd = {
     dvdName: '',
     totalCopies: 0,
     availableCopies: 0,
-    overdueDvds: 0,
+    overdueDvds: 0
   };
 
-  searchText: string = '';
-  isAddInventoryPopupOpen: boolean = false;
-
-  constructor() {}
-
-  ngOnInit(): void {}
-
-  openAddInventoryPopup(): void {
+  openAddInventoryPopup() {
     this.isAddInventoryPopupOpen = true;
   }
 
-  closeAddInventoryPopup(): void {
+  closeAddInventoryPopup() {
     this.isAddInventoryPopupOpen = false;
-    this.resetNewDvdForm();
   }
 
-  resetNewDvdForm(): void {
-    this.newDvd = {
-      dvdName: '',
-      totalCopies: 0,
-      availableCopies: 0,
-      overdueDvds: 0,
-    };
-  }
-
-  addInventory(): void {
-    const newDvdCopy = { ...this.newDvd };
-    this.inventory.push(newDvdCopy);
+  addInventory() {
+    this.inventory.push({ ...this.newDvd, id: (this.inventory.length + 1).toString(), rentedDvds: 0, returnedDvds: 0, pendingDvds: 0 });
+    this.newDvd = { dvdName: '', totalCopies: 0, availableCopies: 0, overdueDvds: 0 };
     this.closeAddInventoryPopup();
   }
 
-  onEdit(dvdName: string): void {
-    console.log('Edit DVD:', dvdName);
-  }
-
-  onView(dvdName: string): void {
-    console.log('View DVD:', dvdName);
-  }
-
   getBadgeClass(availableCopies: number): string {
-    if (availableCopies === 0) {
-      return 'badge bg-danger';
-    } else if (availableCopies < 5) {
-      return 'badge bg-warning text-dark';
-    } else {
-      return 'badge bg-success';
-    }
+    return availableCopies > 5 ? 'badge bg-success' : 'badge bg-danger';
+  }
+
+  onEdit(id: string) {
+    console.log(`Edit DVD with ID: ${id}`);
+  }
+
+  onView(id: string) {
+    console.log(`View DVD with ID: ${id}`);
   }
 }
-
-
-
-
-//   import { Component, OnInit } from '@angular/core';
-// import { InventoryService } from './inventory.service';
-
-// @Component({
-//   selector: 'app-inventory',
-//   templateUrl: './inventory.component.html',
-//   styleUrls: ['./inventory.component.css'],
-// })
-// export class InventoryComponent implements OnInit {
-//   inventory: any[] = [];
-//   newDvd = {
-//     dvdName: '',
-//     totalCopies: 0,
-//     availableCopies: 0,
-//     overdueDvds: 0,
-//   };
-//   searchText: string = '';
-//   isAddInventoryPopupOpen: boolean = false;
-//   isFormValid: boolean = false;
-
-//   constructor(private inventoryService: InventoryService) {}
-
-//   ngOnInit(): void {
-//     this.loadInventory();
-//   }
-
-//   loadInventory(): void {
-//     this.inventoryService.getInventory().subscribe(
-//       (data) => {
-//         this.inventory = data;
-//       },
-//       (error) => {
-//         console.error('Error loading inventory:', error);
-//       }
-//     );
-//   }
-
-//   openAddInventoryPopup(): void {
-//     this.isAddInventoryPopupOpen = true;
-//   }
-
-//   closeAddInventoryPopup(): void {
-//     this.isAddInventoryPopupOpen = false;
-//     this.resetNewDvdForm();
-//   }
-
-//   resetNewDvdForm(): void {
-//     this.newDvd = {
-//       dvdName: '',
-//       totalCopies: 0,
-//       availableCopies: 0,
-//       overdueDvds: 0,
-//     };
-//   }
-
-//   addInventory(): void {
-//     if (this.isFormValid) {
-//       this.inventoryService.addDvd(this.newDvd).subscribe(
-//         (response) => {
-//           this.loadInventory();
-//           this.closeAddInventoryPopup();
-//         },
-//         (error) => {
-//           console.error('Error adding DVD:', error);
-//         }
-//       );
-//     }
-//   }
-
-//   onEdit(dvdId: number): void {
-//     console.log('Edit DVD:', dvdId);
-//   }
-
-//   onView(dvdId: number): void {
-//     console.log('View DVD:', dvdId);
-//   }
-
-//   getBadgeClass(availableCopies: number): string {
-//     if (availableCopies === 0) {
-//       return 'badge bg-danger';
-//     } else if (availableCopies < 5) {
-//       return 'badge bg-warning text-dark';
-//     } else {
-//       return 'badge bg-success';
-//     }
-//   }
-// }
-
-

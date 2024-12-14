@@ -1,1 +1,86 @@
-<p>reports works!</p>
+<!-- Manager Dashboard Report Section -->
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Reports Section</h2>
+    
+    <!-- Report Options -->
+    <div class="d-flex justify-content-center gap-4">
+      <button class="btn btn-primary w-25" (click)="viewCustomerReport()">Customer Report</button>
+      <button class="btn btn-success w-25" (click)="viewRentalReport()">Rental Report</button>
+      <button class="btn btn-warning w-25" (click)="viewInventoryReport()">Inventory Report</button>
+    </div>
+    
+    <!-- Report Details Section -->
+    <div class="mt-4" *ngIf="reportSelected">
+      <!-- Customer Report Table -->
+      <div *ngIf="reportSelected === 'customer'">
+        <h3>Customer Report</h3>
+        <table class="table table-bordered">
+          <thead class="table-dark">
+            <tr>
+              <th>Customer ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Reka</td>
+              <td>ut01336gmail.com.com</td>
+              <td>1234567890</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <!-- Rental Report Table -->
+      <div *ngIf="reportSelected === 'rental'">
+        <h3>Rental Report</h3>
+        <table class="table table-bordered">
+          <thead class="table-dark">
+            <tr>
+              <th>Rental ID</th>
+              <th>Customer ID</th>
+              <th>Movie Title</th>
+              <th>Rental Date</th>
+              <th>Return Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>1</td>
+              <td>stranger Things</td>
+              <td>2024-12-01</td>
+              <td>2024-12-07</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <!-- Inventory Report Table -->
+      <div *ngIf="reportSelected === 'inventory'">
+        <h3>Inventory Report</h3>
+        <table class="table table-bordered">
+          <thead class="table-dark">
+            <tr>
+              <th>DVD ID</th>
+              <th>Title</th>
+              <th>Genre</th>
+              <th>Stock Available</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Stranger Things</td>
+              <td>Drama</td>
+              <td>15</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

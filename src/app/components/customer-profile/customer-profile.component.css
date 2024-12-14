@@ -5,10 +5,15 @@
     font-weight: 900;
   }
     
+ 
   #mainContent {
     transition: margin-left 0.3s;
-    z-index: 1; 
+    z-index: 1;
+    background-color: black; /* Ensure the background color is black */
+    background-attachment: fixed; /* Make the background fixed */
+    background-size: cover; /* Ensure it covers the entire container */
   }
+  
 
   #sidebar {
     height: 100vh;
